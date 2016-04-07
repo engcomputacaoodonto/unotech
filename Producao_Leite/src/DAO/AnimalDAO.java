@@ -18,6 +18,9 @@ public class AnimalDAO
         try
         {
             c.getPreparedStatement().setString(1, animal.getNome());
+            c.getPreparedStatement().setString(2, animal.getNumero());
+            c.getPreparedStatement().setString(3, animal.getRaca());
+            c.getPreparedStatement().setDate(4, animal.getDataNasc());
         }
         catch (SQLException ex)
         {
