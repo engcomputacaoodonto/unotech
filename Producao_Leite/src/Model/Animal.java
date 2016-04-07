@@ -12,12 +12,12 @@ public class Animal
     private String numero;
     private String raca;
     private Date dataNasc;
-    private char sexo;
-    private char situacao;
+    private String sexo;
+    private String situacao;
 
     public Animal(){}
     
-    public Animal(int id, String nome, String numero, String raca, Date dataNasc, char sexo, char situacao)
+    public Animal(int id, String nome, String numero, String raca, Date dataNasc, String sexo, String situacao)
     {
         this.id = id;
         this.nome = nome;
@@ -78,22 +78,22 @@ public class Animal
         this.dataNasc = dataNasc;
     }
 
-    public char getSexo()
+    public String getSexo()
     {
         return sexo;
     }
 
-    public void setSexo(char sexo)
+    public void setSexo(String sexo)
     {
         this.sexo = sexo;
     }
 
-    public char getSituacao()
+    public String getSituacao()
     {
         return situacao;
     }
 
-    public void setSituacao(char situacao)
+    public void setSituacao(String situacao)
     {
         this.situacao = situacao;
     }   
