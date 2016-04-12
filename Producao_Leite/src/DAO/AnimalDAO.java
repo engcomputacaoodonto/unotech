@@ -9,7 +9,7 @@ import java.sql.SQLException;
  */
 public class AnimalDAO
 {
-    public void registrarAnimal(Animal animal)
+    public static void registrarAnimal(Animal animal)
     {
         Conecta c = new Conecta();
         String sql = "INSERT INTO Animal VALUES (NULL, ?, ?, ?, ?, ?, ?)";

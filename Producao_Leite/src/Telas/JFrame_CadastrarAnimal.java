@@ -5,7 +5,13 @@
  */
 package Telas;
 
+import DAO.AnimalDAO;
 import Model.Animal;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFormattedTextField;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -34,7 +40,6 @@ public class JFrame_CadastrarAnimal extends javax.swing.JFrame {
         jTextField_Nome = new javax.swing.JTextField();
         jTextField_Brinco = new javax.swing.JTextField();
         jTextField_Raca = new javax.swing.JTextField();
-        jTextField_Data_Nasc = new javax.swing.JTextField();
         jCheckBox_Macho = new javax.swing.JCheckBox();
         jCheckBox_Femea = new javax.swing.JCheckBox();
         jLabel_Nome = new javax.swing.JLabel();
@@ -45,6 +50,7 @@ public class JFrame_CadastrarAnimal extends javax.swing.JFrame {
         jLabel_Titulo_CA = new javax.swing.JLabel();
         jButton_Voltar = new javax.swing.JButton();
         jButton_Gravar = new javax.swing.JButton();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,6 +95,8 @@ public class JFrame_CadastrarAnimal extends javax.swing.JFrame {
             }
         });
 
+        jFormattedTextField1.setText("jFormattedTextField1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,16 +110,17 @@ public class JFrame_CadastrarAnimal extends javax.swing.JFrame {
                     .addComponent(jLabel_DataNasc)
                     .addComponent(jLabel_Sexo))
                 .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jTextField_Nome)
+                        .addComponent(jTextField_Brinco)
+                        .addComponent(jTextField_Raca)
+                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jCheckBox_Macho)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox_Femea))
-                    .addComponent(jTextField_Nome, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
-                    .addComponent(jTextField_Brinco)
-                    .addComponent(jTextField_Raca)
-                    .addComponent(jTextField_Data_Nasc))
-                .addContainerGap(32, Short.MAX_VALUE))
+                        .addComponent(jCheckBox_Femea)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,14 +151,18 @@ public class JFrame_CadastrarAnimal extends javax.swing.JFrame {
                     .addComponent(jTextField_Raca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel_Raca))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField_Data_Nasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel_DataNasc))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox_Macho)
-                    .addComponent(jCheckBox_Femea)
-                    .addComponent(jLabel_Sexo))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel_Sexo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jCheckBox_Macho)
+                            .addComponent(jCheckBox_Femea))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_Voltar)
@@ -178,11 +191,13 @@ public class JFrame_CadastrarAnimal extends javax.swing.JFrame {
         Animal animal = new Animal();
         animal.setNome(jTextField_Nome.getText());
         animal.setNumero(jTextField_Brinco.getText());
-        animal.setRaca(jTextField_Data_Nasc.getText());
+        animal.setRaca(jTextField_Raca.getText());
         if(jCheckBox_Macho.isSelected())
             animal.setSexo("M");
         if(jCheckBox_Femea.isSelected())
             animal.setSexo("F");
+        
+        AnimalDAO.registrarAnimal(animal);
     }//GEN-LAST:event_jButton_GravarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -190,6 +205,7 @@ public class JFrame_CadastrarAnimal extends javax.swing.JFrame {
     private javax.swing.JButton jButton_Voltar;
     private javax.swing.JCheckBox jCheckBox_Femea;
     private javax.swing.JCheckBox jCheckBox_Macho;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel_Brinco;
     private javax.swing.JLabel jLabel_DataNasc;
     private javax.swing.JLabel jLabel_Nome;
@@ -197,8 +213,11 @@ public class JFrame_CadastrarAnimal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_Sexo;
     private javax.swing.JLabel jLabel_Titulo_CA;
     private javax.swing.JTextField jTextField_Brinco;
-    private javax.swing.JTextField jTextField_Data_Nasc;
     private javax.swing.JTextField jTextField_Nome;
     private javax.swing.JTextField jTextField_Raca;
     // End of variables declaration//GEN-END:variables
+
+    private void MaskFormatter(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
