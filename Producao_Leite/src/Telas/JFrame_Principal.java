@@ -37,6 +37,11 @@ public class JFrame_Principal extends javax.swing.JFrame {
 
         jButton_Cadastro_Animais.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton_Cadastro_Animais.setText("Cadastrar Animal");
+        jButton_Cadastro_Animais.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Cadastro_AnimaisActionPerformed(evt);
+            }
+        });
 
         jLabel_Titulo.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel_Titulo.setText("UNOTECH");
@@ -72,6 +77,10 @@ public class JFrame_Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton_Cadastro_AnimaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Cadastro_AnimaisActionPerformed
+        new JFrame_CadastrarAnimal();
+    }//GEN-LAST:event_jButton_Cadastro_AnimaisActionPerformed
 
     /**
      * @param args the command line arguments

@@ -13,10 +13,10 @@ import java.sql.ResultSet;
 public class Conecta
 {
     private String DRIVER = "com.mysql.jdbc.Driver";
-    private String db = "pizzaria";
+    private String db = "producaoleite";
     private String url = "jdbc:mysql://localhost:3306/" + db;
     private String username = "root";
-    private String password = "29642119";
+    private String password = "unoesc";
     private String sql = "";
     private PreparedStatement pStatement;
     private ResultSet rSet;

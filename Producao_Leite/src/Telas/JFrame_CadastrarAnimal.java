@@ -16,6 +16,8 @@ public class JFrame_CadastrarAnimal extends javax.swing.JFrame {
      */
     public JFrame_CadastrarAnimal() {
         initComponents();
+        setVisible(true);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -62,6 +64,11 @@ public class JFrame_CadastrarAnimal extends javax.swing.JFrame {
         jLabel_Titulo_CA.setText("Cadastrar Animal");
 
         jButton_Voltar.setText("Voltar");
+        jButton_Voltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_VoltarActionPerformed(evt);
+            }
+        });
 
         jButton_Gravar.setText("Gravar");
 
@@ -135,6 +142,10 @@ public class JFrame_CadastrarAnimal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton_VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VoltarActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton_VoltarActionPerformed
 
     /**
      * @param args the command line arguments
