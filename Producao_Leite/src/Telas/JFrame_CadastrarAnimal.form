@@ -35,10 +35,10 @@
               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jTextField_Nome" max="32767" attributes="0"/>
+                      <Component id="jTextField_Nome" pref="263" max="32767" attributes="0"/>
                       <Component id="jTextField_Brinco" max="32767" attributes="0"/>
                       <Component id="jTextField_Raca" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jFormattedTextField1" alignment="0" pref="263" max="32767" attributes="0"/>
+                      <Component id="jFormattedTextField_Data_Nasc" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jCheckBox_Macho" min="-2" max="-2" attributes="0"/>
@@ -46,7 +46,7 @@
                       <Component id="jCheckBox_Femea" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="28" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
@@ -87,7 +87,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jFormattedTextField1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jFormattedTextField_Data_Nasc" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel_DataNasc" min="-2" max="-2" attributes="0"/>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -185,10 +185,10 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_GravarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jFormattedTextField1"/>
-      </Properties>
+    <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField_Data_Nasc">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFormattedTextField_Data_NascActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
