@@ -16,7 +16,7 @@ public class Conecta
     private String db = "producaoleite";
     private String url = "jdbc:mysql://localhost:3306/" + db;
     private String username = "root";
-    private String password = "unoesc";
+    private String password = "29642119";
     private String sql = "";
     private PreparedStatement pStatement;
     private ResultSet rSet;

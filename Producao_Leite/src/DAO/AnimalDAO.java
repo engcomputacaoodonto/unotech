@@ -12,7 +12,7 @@ public class AnimalDAO
     public static void registrarAnimal(Animal animal)
     {
         Conecta c = new Conecta();
-        String sql = "INSERT INTO Animal VALUES (NULL, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO CadastroAnimal VALUES(NULL, ?, ?, ?, ?, ?, ?)";
         c.pStmt(sql);
         
         try

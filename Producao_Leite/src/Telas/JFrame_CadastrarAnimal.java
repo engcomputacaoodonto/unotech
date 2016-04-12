@@ -7,7 +7,10 @@ package Telas;
 
 import DAO.AnimalDAO;
 import Model.Animal;
+import java.sql.Date;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
@@ -205,12 +208,26 @@ public class JFrame_CadastrarAnimal extends javax.swing.JFrame {
         animal.setNome(jTextField_Nome.getText());
         animal.setNumero(jTextField_Brinco.getText());
         animal.setRaca(jTextField_Raca.getText());
+        /*DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            animal.setDataNasc((Date)formatter.parse(jFormattedTextField_Data_Nasc.getText()));
+        } catch (ParseException ex) {
+            Logger.getLogger(JFrame_CadastrarAnimal.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+
         if(jCheckBox_Macho.isSelected())
             animal.setSexo("M");
         if(jCheckBox_Femea.isSelected())
             animal.setSexo("F");
         
         AnimalDAO.registrarAnimal(animal);
+        
+        jTextField_Nome.setText(null);
+        jTextField_Brinco.setText(null);
+        jTextField_Raca.setText(null);
+        jFormattedTextField_Data_Nasc.setText(null);
+        jCheckBox_Femea.setSelected(false);
+        jCheckBox_Macho.setSelected(false);
     }//GEN-LAST:event_jButton_GravarActionPerformed
 
     private void jFormattedTextField_Data_NascActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField_Data_NascActionPerformed
