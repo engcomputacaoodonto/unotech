@@ -71,6 +71,8 @@ public class JFrame_CadastrarAnimal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jTextField_Nome.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+
         jCheckBox_Macho.setText("Macho");
         jCheckBox_Macho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
