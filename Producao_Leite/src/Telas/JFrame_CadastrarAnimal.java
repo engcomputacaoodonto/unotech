@@ -208,12 +208,19 @@ public class JFrame_CadastrarAnimal extends javax.swing.JFrame {
         animal.setNome(jTextField_Nome.getText());
         animal.setNumero(jTextField_Brinco.getText());
         animal.setRaca(jTextField_Raca.getText());
-        /*DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            animal.setDataNasc((Date)formatter.parse(jFormattedTextField_Data_Nasc.getText()));
-        } catch (ParseException ex) {
+        
+        //System.out.println(jFormattedTextField_Data_Nasc.getText());
+        
+        try
+        { 
+            java.util.Date dataUtil = new SimpleDateFormat("dd/MM/yyyy").parse(jFormattedTextField_Data_Nasc.getText());
+            Date data = new Date(dataUtil.getTime());
+            animal.setDataNasc(data);
+        }
+        catch (ParseException ex)
+        {
             Logger.getLogger(JFrame_CadastrarAnimal.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
 
         if(jCheckBox_Macho.isSelected())
             animal.setSexo("M");
