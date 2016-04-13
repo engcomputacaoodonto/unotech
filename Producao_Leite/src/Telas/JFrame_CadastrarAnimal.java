@@ -227,6 +227,8 @@ public class JFrame_CadastrarAnimal extends javax.swing.JFrame {
         if(jCheckBox_Femea.isSelected())
             animal.setSexo("F");
         
+        animal.setSituacao("A");
+        
         AnimalDAO.registrarAnimal(animal);
         
         jTextField_Nome.setText(null);
