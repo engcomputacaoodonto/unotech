@@ -2,7 +2,9 @@ package DAO;
 
 import util.Conecta;
 import Model.Animal;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 /**
  *
  * @author Shelmo
@@ -30,6 +32,40 @@ public class AnimalDAO
         {
             c.Desconectar();
             System.err.println("Erro: " + ex.getMessage());
+        }
+    }
+    
+    public static ArrayList<Animal> getListaAnimais()
+    {
+        Conecta c = new Conecta();
+        ArrayList<Animal> listaAnimal = new ArrayList<>();
+        
+        Animal animal;
+        
+        try
+        {
+            ResultSet rSet = c.getPreparedStatement().executeQuery("SELECT * FROM CadastroAnimal");
+            for(;rSet.next();)
+            {
+                animal = new Animal();
+                animal.setId(rSet.getInt("idCadastroAnimal"));
+                animal.setNome(rSet.getString("nome"));
+                animal.setNumero(rSet.getString("numero"));
+                animal.setRaca(rSet.getString("raca"));
+                animal.setDataNasc(rSet.getDate("dataNasc"));
+                animal.setSexo(rSet.getString("sexo"));
+                animal.setSituacao("situacao");
+                listaAnimal.add(animal);
+            }
+            rSet.close();
+            c.Desconectar();
+            return listaAnimal;
+        }
+        catch (SQLException ex)
+        {
+            System.err.println("Erro: " + ex.getMessage());
+            c.Desconectar();
+            return listaAnimal;
         }
     }
 }

@@ -5,17 +5,26 @@
  */
 package Telas;
 
+import DAO.AnimalDAO;
+import Model.Animal;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Shelmo
  */
 public class JFrame_Principal extends javax.swing.JFrame {
 
+    private Object Nome;
+
     /**
      * Creates new form JFrame_Principal
      */
-    public JFrame_Principal() {
+    public JFrame_Principal()
+    {
         initComponents();
+        atualizarTabela();
     }
 
     /**
@@ -27,16 +36,18 @@ public class JFrame_Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        jButton_Fechar = new javax.swing.JButton();
         jButton_Cadastro_Animais = new javax.swing.JButton();
         jLabel_Titulo = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable_Animais = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Fechar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_Fechar.setText("Fechar");
+        jButton_Fechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton_FecharActionPerformed(evt);
             }
         });
 
@@ -51,32 +62,113 @@ public class JFrame_Principal extends javax.swing.JFrame {
         jLabel_Titulo.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel_Titulo.setText("UNOTECH");
 
+        jTable_Animais.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Nome", "Numero", "Raça", "Data Nascimento", "Sexo"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jTable_Animais.setColumnSelectionAllowed(true);
+        jTable_Animais.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jTable_Animais);
+        jTable_Animais.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (jTable_Animais.getColumnModel().getColumnCount() > 0) {
+            jTable_Animais.getColumnModel().getColumn(0).setResizable(false);
+            jTable_Animais.getColumnModel().getColumn(1).setResizable(false);
+            jTable_Animais.getColumnModel().getColumn(2).setResizable(false);
+            jTable_Animais.getColumnModel().getColumn(3).setResizable(false);
+            jTable_Animais.getColumnModel().getColumn(4).setResizable(false);
+        }
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel_Titulo)
+                .addGap(409, 409, 409))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(102, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton_Fechar)
+                .addGap(42, 42, 42))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(82, 82, 82)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(42, 42, 42))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton_Cadastro_Animais, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(88, 88, 88))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel_Titulo)
-                        .addGap(113, 113, 113))))
+                    .addComponent(jButton_Cadastro_Animais, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 854, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(97, 97, 97))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addContainerGap()
                 .addComponent(jLabel_Titulo)
-                .addGap(59, 59, 59)
+                .addGap(6, 6, 6)
                 .addComponent(jButton_Cadastro_Animais)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(jButton_Fechar)
                 .addGap(28, 28, 28))
         );
 
@@ -87,10 +179,33 @@ public class JFrame_Principal extends javax.swing.JFrame {
         new JFrame_CadastrarAnimal();
     }//GEN-LAST:event_jButton_Cadastro_AnimaisActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton_FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_FecharActionPerformed
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButton_FecharActionPerformed
 
+    private void atualizarTabela()
+    {
+        try
+        {
+            ArrayList<Animal> listaAnimal = AnimalDAO.getListaAnimais();
+            if (!listaAnimal.isEmpty())
+            {
+                String[] nomeColunas = {"Nome", " Numero", "Raça", "Data de Nascimento", "Sexo"};
+                DefaultTableModel model = (DefaultTableModel) jTable_Animais.getModel();
+                model.setColumnIdentifiers(nomeColunas);
+                model.setNumRows(0);
+                for (Animal c : listaAnimal)
+                {
+                    System.out.println("Teste\n");
+                    model.addRow(new Object[]{c.getNome(), c.getNumero(), c.getRaca(), c.getDataNasc(), c.getSexo()});           
+                }
+                
+            }
+        } catch (Exception e) {
+            
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -129,8 +244,10 @@ public class JFrame_Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton_Cadastro_Animais;
+    private javax.swing.JButton jButton_Fechar;
     private javax.swing.JLabel jLabel_Titulo;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable_Animais;
     // End of variables declaration//GEN-END:variables
 }
