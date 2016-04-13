@@ -208,9 +208,7 @@ public class JFrame_CadastrarAnimal extends javax.swing.JFrame {
         animal.setNome(jTextField_Nome.getText());
         animal.setNumero(jTextField_Brinco.getText());
         animal.setRaca(jTextField_Raca.getText());
-        
-        //System.out.println(jFormattedTextField_Data_Nasc.getText());
-        
+             
         try
         { 
             java.util.Date dataUtil = new SimpleDateFormat("dd/MM/yyyy").parse(jFormattedTextField_Data_Nasc.getText());
