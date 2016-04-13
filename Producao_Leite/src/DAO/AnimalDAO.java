@@ -35,6 +35,24 @@ public class AnimalDAO
         }
     }
     
+    public static void removerAnimal(Animal animal)
+    {
+        Conecta c = new Conecta();
+        String sql = "DELETE FROM CadastroAnimal WHERE id = ?";
+        c.pStmt(sql);
+        try
+        {
+            c.getPreparedStatement().setInt(1, animal.getId());
+            c.getPreparedStatement().execute();
+            c.Desconectar();
+        }
+        catch (SQLException ex)
+        {
+            c.Desconectar();
+            System.err.println("Erro: " + ex.getMessage());
+        }
+    }
+    
     public static ArrayList<Animal> getListaAnimais()
     {
         Conecta c = new Conecta();
