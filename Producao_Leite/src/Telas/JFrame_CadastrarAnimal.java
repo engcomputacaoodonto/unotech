@@ -63,6 +63,11 @@ public class JFrame_CadastrarAnimal extends javax.swing.JFrame {
         jButton_Voltar = new javax.swing.JButton();
         jButton_Gravar = new javax.swing.JButton();
         jFormattedTextField_Data_Nasc = new javax.swing.JFormattedTextField();
+        jLabel_Erro_Nome = new javax.swing.JLabel();
+        jLabel_Erro_Brinco = new javax.swing.JLabel();
+        jLabel_Erro_Raca = new javax.swing.JLabel();
+        jLabel_Erro_Data_Nasc = new javax.swing.JLabel();
+        jLabel_Erro_Sexo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,7 +91,7 @@ public class JFrame_CadastrarAnimal extends javax.swing.JFrame {
 
         jLabel_Raca.setText("Raça:");
 
-        jLabel_DataNasc.setText("Data de Nascimento");
+        jLabel_DataNasc.setText("Data de Nascimento:");
 
         jLabel_Sexo.setText("Sexo");
 
@@ -113,30 +118,25 @@ public class JFrame_CadastrarAnimal extends javax.swing.JFrame {
             }
         });
 
+        jLabel_Erro_Nome.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel_Erro_Nome.setText("    ");
+
+        jLabel_Erro_Brinco.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel_Erro_Brinco.setText("    ");
+
+        jLabel_Erro_Raca.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel_Erro_Raca.setText("    ");
+
+        jLabel_Erro_Data_Nasc.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel_Erro_Data_Nasc.setText("    ");
+
+        jLabel_Erro_Sexo.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel_Erro_Sexo.setText("     ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel_Nome)
-                    .addComponent(jLabel_Brinco)
-                    .addComponent(jLabel_Raca)
-                    .addComponent(jLabel_DataNasc)
-                    .addComponent(jLabel_Sexo))
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextField_Nome, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
-                        .addComponent(jTextField_Brinco)
-                        .addComponent(jTextField_Raca)
-                        .addComponent(jFormattedTextField_Data_Nasc, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jCheckBox_Macho)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox_Femea)))
-                .addContainerGap(28, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,39 +147,81 @@ public class JFrame_CadastrarAnimal extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel_Titulo_CA)
-                        .addGap(127, 127, 127))))
+                        .addGap(203, 203, 203))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(39, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel_DataNasc)
+                            .addComponent(jLabel_Sexo))
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jCheckBox_Macho)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCheckBox_Femea))
+                            .addComponent(jFormattedTextField_Data_Nasc, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel_Erro_Data_Nasc)
+                            .addComponent(jLabel_Erro_Sexo)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel_Brinco)
+                            .addGap(104, 104, 104)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel_Erro_Brinco)
+                                .addComponent(jTextField_Brinco)))
+                        .addComponent(jLabel_Nome)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(144, 144, 144)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel_Erro_Nome)
+                                .addComponent(jTextField_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel_Raca)
+                            .addGap(111, 111, 111)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel_Erro_Raca)
+                                .addComponent(jTextField_Raca)))))
+                .addGap(48, 48, 48))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(35, 35, 35)
                 .addComponent(jLabel_Titulo_CA)
-                .addGap(42, 42, 42)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_Nome)
                     .addComponent(jLabel_Nome))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel_Erro_Nome)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField_Brinco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_Brinco)
                     .addComponent(jLabel_Brinco))
+                .addGap(6, 6, 6)
+                .addComponent(jLabel_Erro_Brinco)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel_Raca)
+                    .addComponent(jTextField_Raca, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel_Erro_Raca)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField_Raca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_Raca))
+                    .addComponent(jLabel_DataNasc)
+                    .addComponent(jFormattedTextField_Data_Nasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
+                .addComponent(jLabel_Erro_Data_Nasc)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jFormattedTextField_Data_Nasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_DataNasc))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabel_Sexo))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCheckBox_Macho)
-                            .addComponent(jCheckBox_Femea))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_Sexo)
+                    .addComponent(jCheckBox_Macho)
+                    .addComponent(jCheckBox_Femea))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel_Erro_Sexo)
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_Voltar)
                     .addComponent(jButton_Gravar))
@@ -204,30 +246,48 @@ public class JFrame_CadastrarAnimal extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox_FemeaActionPerformed
 
     private void jButton_GravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_GravarActionPerformed
+        boolean testes;
+        
+        setText();
+        
         Animal animal = new Animal();
         animal.setNome(jTextField_Nome.getText());
         animal.setNumero(jTextField_Brinco.getText());
         animal.setRaca(jTextField_Raca.getText());
-             
-        try
-        { 
-            java.util.Date dataUtil = new SimpleDateFormat("dd/MM/yyyy").parse(jFormattedTextField_Data_Nasc.getText());
-            Date data = new Date(dataUtil.getTime());
-            animal.setDataNasc(data);
-        }
-        catch (ParseException ex)
-        {
-            Logger.getLogger(JFrame_CadastrarAnimal.class.getName()).log(Level.SEVERE, null, ex);
+        
+        testes = verificacoes(animal);
+        
+        if(!jFormattedTextField_Data_Nasc.getText().equals("__/__/____"))
+            {
+            try
+            { 
+                java.util.Date dataUtil = new SimpleDateFormat("dd/MM/yyyy").parse(jFormattedTextField_Data_Nasc.getText());
+                Date data = new Date(dataUtil.getTime());
+                animal.setDataNasc(data);
+            }
+            catch (ParseException ex)
+            {
+                jLabel_Erro_Data_Nasc.setText("Data inválida!");
+                return;
+            }
         }
 
         if(jCheckBox_Macho.isSelected())
             animal.setSexo("M");
         if(jCheckBox_Femea.isSelected())
             animal.setSexo("F");
+        if(!jCheckBox_Femea.isSelected() && !jCheckBox_Macho.isSelected())
+        {
+            jLabel_Erro_Sexo.setText("Selecione o sexo do animal!");
+            return;
+        }
         
         animal.setSituacao("A");
         
-        AnimalDAO.registrarAnimal(animal);
+        if(testes)
+            AnimalDAO.registrarAnimal(animal);
+        else
+            return;
         
         jTextField_Nome.setText(null);
         jTextField_Brinco.setText(null);
@@ -240,6 +300,53 @@ public class JFrame_CadastrarAnimal extends javax.swing.JFrame {
     private void jFormattedTextField_Data_NascActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField_Data_NascActionPerformed
     }//GEN-LAST:event_jFormattedTextField_Data_NascActionPerformed
 
+    
+    private boolean verificacoes(Animal animal)
+    {
+        boolean retorno = true;
+        
+        if(animal.getNome().length() == 0)
+        {
+            jLabel_Erro_Nome.setText("O campo Nome deve ser preenchido!");
+            retorno = false;
+        }
+        
+        if(animal.getNome().length() > 255)
+        {
+            jLabel_Erro_Nome.setText("O campo Nome deve ocupar no máximo 255 caracteres!");
+            retorno = false;
+        }
+        
+        if(animal.getNumero().length() == 0)
+        {
+            jLabel_Erro_Brinco.setText("O campo Brinco deve ser preenchido!");
+            retorno = false;
+        }
+        
+        if(animal.getNumero().length() != 6 && animal.getNumero().length() != 15 && animal.getNumero().length() != 0)
+        {
+            jLabel_Erro_Brinco.setText("Utilize o número de registro na CIDASC! (6 ou 15 dígitos)");
+            retorno = false;
+        }
+        
+        if(animal.getRaca().length() > 255)
+        {
+            jLabel_Erro_Raca.setText("O campo Raça deve ocupar no máximo 255 caracteres!");
+            retorno = false;
+        }
+
+        return retorno;
+    }
+    
+    private void setText()
+    {
+        jLabel_Erro_Nome.setText(" ");
+        jLabel_Erro_Brinco.setText(" ");
+        jLabel_Erro_Raca.setText(" ");
+        jLabel_Erro_Data_Nasc.setText(" ");
+        jLabel_Erro_Sexo.setText(" ");
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_Gravar;
     private javax.swing.JButton jButton_Voltar;
@@ -248,6 +355,11 @@ public class JFrame_CadastrarAnimal extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jFormattedTextField_Data_Nasc;
     private javax.swing.JLabel jLabel_Brinco;
     private javax.swing.JLabel jLabel_DataNasc;
+    private javax.swing.JLabel jLabel_Erro_Brinco;
+    private javax.swing.JLabel jLabel_Erro_Data_Nasc;
+    private javax.swing.JLabel jLabel_Erro_Nome;
+    private javax.swing.JLabel jLabel_Erro_Raca;
+    private javax.swing.JLabel jLabel_Erro_Sexo;
     private javax.swing.JLabel jLabel_Nome;
     private javax.swing.JLabel jLabel_Raca;
     private javax.swing.JLabel jLabel_Sexo;
