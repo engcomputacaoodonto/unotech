@@ -38,7 +38,7 @@ public class AnimalDAO
     public static void removerAnimal(Animal animal)
     {
         Conecta c = new Conecta();
-        String sql = "DELETE FROM CadastroAnimal WHERE id = ?";
+        String sql = "DELETE FROM CadastroAnimal WHERE idCadastroAnimal = ?";
         c.pStmt(sql);
         try
         {

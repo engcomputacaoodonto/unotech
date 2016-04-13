@@ -25,6 +25,7 @@ public class JFrame_Principal extends javax.swing.JFrame {
     {
         initComponents();
         atualizarTabela();
+        jLayeredPane_Plantel.setVisible(false);
     }
 
     /**
@@ -38,7 +39,7 @@ public class JFrame_Principal extends javax.swing.JFrame {
 
         jButton_Fechar = new javax.swing.JButton();
         jLabel_Titulo = new javax.swing.JLabel();
-        jLayeredPane1 = new javax.swing.JLayeredPane();
+        jLayeredPane_Plantel = new javax.swing.JLayeredPane();
         jButton_Cadastro_Animais = new javax.swing.JButton();
         jButton_Remover = new javax.swing.JButton();
         jButton_Atualizar = new javax.swing.JButton();
@@ -47,6 +48,7 @@ public class JFrame_Principal extends javax.swing.JFrame {
         jButton_Plantel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton_Fechar.setText("Fechar");
         jButton_Fechar.addActionListener(new java.awt.event.ActionListener() {
@@ -54,9 +56,11 @@ public class JFrame_Principal extends javax.swing.JFrame {
                 jButton_FecharActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton_Fechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(958, 606, -1, -1));
 
         jLabel_Titulo.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel_Titulo.setText("UNOTECH");
+        getContentPane().add(jLabel_Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(472, 13, -1, -1));
 
         jButton_Cadastro_Animais.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton_Cadastro_Animais.setText("Cadastrar Animal");
@@ -68,6 +72,11 @@ public class JFrame_Principal extends javax.swing.JFrame {
 
         jButton_Remover.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton_Remover.setText("Remover Animal");
+        jButton_Remover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_RemoverActionPerformed(evt);
+            }
+        });
 
         jButton_Atualizar.setText("Atualizar Tabela");
         jButton_Atualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -153,19 +162,19 @@ public class JFrame_Principal extends javax.swing.JFrame {
             jTable_Animais.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        jLayeredPane1.setLayer(jButton_Cadastro_Animais, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jButton_Remover, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jButton_Atualizar, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane_Plantel.setLayer(jButton_Cadastro_Animais, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane_Plantel.setLayer(jButton_Remover, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane_Plantel.setLayer(jButton_Atualizar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane_Plantel.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
-        jLayeredPane1.setLayout(jLayeredPane1Layout);
-        jLayeredPane1Layout.setHorizontalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jLayeredPane_PlantelLayout = new javax.swing.GroupLayout(jLayeredPane_Plantel);
+        jLayeredPane_Plantel.setLayout(jLayeredPane_PlantelLayout);
+        jLayeredPane_PlantelLayout.setHorizontalGroup(
+            jLayeredPane_PlantelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane_PlantelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addGroup(jLayeredPane_PlantelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jLayeredPane_PlantelLayout.createSequentialGroup()
                         .addComponent(jButton_Cadastro_Animais, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton_Remover)
@@ -174,11 +183,11 @@ public class JFrame_Principal extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1005, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        jLayeredPane1Layout.setVerticalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+        jLayeredPane_PlantelLayout.setVerticalGroup(
+            jLayeredPane_PlantelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane_PlantelLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jLayeredPane_PlantelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_Cadastro_Animais)
                     .addComponent(jButton_Remover, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_Atualizar))
@@ -187,42 +196,16 @@ public class JFrame_Principal extends javax.swing.JFrame {
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
-        jButton_Plantel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton_Plantel.setText("jButton1");
+        getContentPane().add(jLayeredPane_Plantel, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 113, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel_Titulo)
-                .addGap(409, 409, 409))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton_Fechar)
-                            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jButton_Plantel)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel_Titulo)
-                .addGap(1, 1, 1)
-                .addComponent(jButton_Plantel)
-                .addGap(18, 18, 18)
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton_Fechar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jButton_Plantel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jButton_Plantel.setText("Plantel");
+        jButton_Plantel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_PlantelActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton_Plantel, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 58, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -238,6 +221,17 @@ public class JFrame_Principal extends javax.swing.JFrame {
     private void jButton_AtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AtualizarActionPerformed
         atualizarTabela();
     }//GEN-LAST:event_jButton_AtualizarActionPerformed
+
+    private void jButton_PlantelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_PlantelActionPerformed
+        jLayeredPane_Plantel.setVisible(true);
+    }//GEN-LAST:event_jButton_PlantelActionPerformed
+
+    private void jButton_RemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RemoverActionPerformed
+        int select = jTable_Animais.getSelectedRow();
+        ArrayList<Animal> animal = AnimalDAO.getListaAnimais();
+        System.out.println(animal.get(select).getId());
+        AnimalDAO.removerAnimal(animal.get(select));
+    }//GEN-LAST:event_jButton_RemoverActionPerformed
 
     public void atualizarTabela()
     {
@@ -305,7 +299,7 @@ public class JFrame_Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton_Plantel;
     private javax.swing.JButton jButton_Remover;
     private javax.swing.JLabel jLabel_Titulo;
-    private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JLayeredPane jLayeredPane_Plantel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable_Animais;
     // End of variables declaration//GEN-END:variables
