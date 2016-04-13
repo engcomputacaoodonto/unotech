@@ -196,7 +196,6 @@ public class JFrame_Principal extends javax.swing.JFrame {
                 model.setNumRows(0);
                 for (Animal c : listaAnimal)
                 {
-                    System.out.println("Teste\n");
                     model.addRow(new Object[]{c.getNome(), c.getNumero(), c.getRaca(), c.getDataNasc(), c.getSexo()});           
                 }
                 
