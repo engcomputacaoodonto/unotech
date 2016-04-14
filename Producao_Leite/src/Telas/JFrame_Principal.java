@@ -42,10 +42,10 @@ public class JFrame_Principal extends javax.swing.JFrame {
         jLayeredPane_Plantel = new javax.swing.JLayeredPane();
         jButton_Cadastro_Animais = new javax.swing.JButton();
         jButton_Remover = new javax.swing.JButton();
-        jButton_Atualizar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_Animais = new javax.swing.JTable();
         jButton_Plantel = new javax.swing.JButton();
+        FixaCanto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -75,13 +75,6 @@ public class JFrame_Principal extends javax.swing.JFrame {
         jButton_Remover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_RemoverActionPerformed(evt);
-            }
-        });
-
-        jButton_Atualizar.setText("Atualizar Tabela");
-        jButton_Atualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_AtualizarActionPerformed(evt);
             }
         });
 
@@ -167,7 +160,6 @@ public class JFrame_Principal extends javax.swing.JFrame {
 
         jLayeredPane_Plantel.setLayer(jButton_Cadastro_Animais, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane_Plantel.setLayer(jButton_Remover, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane_Plantel.setLayer(jButton_Atualizar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane_Plantel.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane_PlantelLayout = new javax.swing.GroupLayout(jLayeredPane_Plantel);
@@ -176,13 +168,11 @@ public class JFrame_Principal extends javax.swing.JFrame {
             jLayeredPane_PlantelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane_PlantelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jLayeredPane_PlantelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jLayeredPane_PlantelLayout.createSequentialGroup()
+                .addGroup(jLayeredPane_PlantelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jLayeredPane_PlantelLayout.createSequentialGroup()
                         .addComponent(jButton_Cadastro_Animais, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton_Remover)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton_Atualizar))
+                        .addComponent(jButton_Remover))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1005, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -192,8 +182,7 @@ public class JFrame_Principal extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addGroup(jLayeredPane_PlantelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_Cadastro_Animais)
-                    .addComponent(jButton_Remover, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_Atualizar))
+                    .addComponent(jButton_Remover, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(50, Short.MAX_VALUE))
@@ -209,6 +198,7 @@ public class JFrame_Principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton_Plantel, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 58, -1, -1));
+        getContentPane().add(FixaCanto, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 630, 10, 20));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -221,10 +211,6 @@ public class JFrame_Principal extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton_FecharActionPerformed
 
-    private void jButton_AtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AtualizarActionPerformed
-        atualizarTabela();
-    }//GEN-LAST:event_jButton_AtualizarActionPerformed
-
     private void jButton_PlantelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_PlantelActionPerformed
         jLayeredPane_Plantel.setVisible(true);
     }//GEN-LAST:event_jButton_PlantelActionPerformed
@@ -234,9 +220,10 @@ public class JFrame_Principal extends javax.swing.JFrame {
         ArrayList<Animal> animal = AnimalDAO.getListaAnimais();
         System.out.println(animal.get(select).getId());
         AnimalDAO.removerAnimal(animal.get(select));
+        atualizarTabela();
     }//GEN-LAST:event_jButton_RemoverActionPerformed
 
-    public void atualizarTabela()
+    public static void atualizarTabela()
     {
         try
         {
@@ -296,7 +283,7 @@ public class JFrame_Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton_Atualizar;
+    private javax.swing.JLabel FixaCanto;
     private javax.swing.JButton jButton_Cadastro_Animais;
     private javax.swing.JButton jButton_Fechar;
     private javax.swing.JButton jButton_Plantel;
@@ -304,6 +291,6 @@ public class JFrame_Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_Titulo;
     private javax.swing.JLayeredPane jLayeredPane_Plantel;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable_Animais;
+    private static javax.swing.JTable jTable_Animais;
     // End of variables declaration//GEN-END:variables
 }

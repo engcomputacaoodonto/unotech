@@ -303,7 +303,10 @@ public class JFrame_CadastrarAnimal extends javax.swing.JFrame {
         animal.setSituacao("A");
         
         if(testes)
+        {
             AnimalDAO.registrarAnimal(animal);
+            JFrame_Principal.atualizarTabela();
+        }
         else
             return;
         
