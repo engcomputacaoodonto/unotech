@@ -145,9 +145,16 @@ public class JFrame_Principal extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jTable_Animais.setColumnSelectionAllowed(true);
@@ -155,11 +162,7 @@ public class JFrame_Principal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable_Animais);
         jTable_Animais.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (jTable_Animais.getColumnModel().getColumnCount() > 0) {
-            jTable_Animais.getColumnModel().getColumn(0).setResizable(false);
-            jTable_Animais.getColumnModel().getColumn(1).setResizable(false);
-            jTable_Animais.getColumnModel().getColumn(2).setResizable(false);
             jTable_Animais.getColumnModel().getColumn(3).setResizable(false);
-            jTable_Animais.getColumnModel().getColumn(4).setResizable(false);
         }
 
         jLayeredPane_Plantel.setLayer(jButton_Cadastro_Animais, javax.swing.JLayeredPane.DEFAULT_LAYER);
