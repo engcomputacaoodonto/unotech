@@ -29,6 +29,7 @@ public class JFrame_CadastrarAnimal extends javax.swing.JFrame {
     public JFrame_CadastrarAnimal() {
         initComponents();
         setVisible(true);
+        setResizable(false);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         try
         {

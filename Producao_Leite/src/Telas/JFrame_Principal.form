@@ -68,6 +68,8 @@
                           <Component id="jButton_Cadastro_Animais" min="-2" pref="210" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jButton_Remover" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="JButton_AlterarAnimal" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane1" min="-2" pref="1005" max="-2" attributes="0"/>
                   </Group>
@@ -82,6 +84,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButton_Cadastro_Animais" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton_Remover" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="JButton_AlterarAnimal" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="360" max="-2" attributes="0"/>
@@ -171,6 +174,17 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JButton" name="JButton_AlterarAnimal">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="18" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Alterar Animal"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JButton_AlterarAnimalActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JButton" name="jButton_Plantel">

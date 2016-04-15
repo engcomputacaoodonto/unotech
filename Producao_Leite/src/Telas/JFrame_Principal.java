@@ -7,8 +7,12 @@ package Telas;
 
 import DAO.AnimalDAO;
 import Model.Animal;
+import java.sql.Date;
+import java.text.ParseException;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -25,6 +29,7 @@ public class JFrame_Principal extends javax.swing.JFrame {
     {
         initComponents();
         atualizarTabela();
+        setResizable(false);
         jLayeredPane_Plantel.setVisible(false);
     }
 
@@ -44,6 +49,7 @@ public class JFrame_Principal extends javax.swing.JFrame {
         jButton_Remover = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_Animais = new javax.swing.JTable();
+        JButton_AlterarAnimal = new javax.swing.JButton();
         jButton_Plantel = new javax.swing.JButton();
         FixaCanto = new javax.swing.JLabel();
 
@@ -158,9 +164,18 @@ public class JFrame_Principal extends javax.swing.JFrame {
             jTable_Animais.getColumnModel().getColumn(3).setResizable(false);
         }
 
+        JButton_AlterarAnimal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        JButton_AlterarAnimal.setText("Alterar Animal");
+        JButton_AlterarAnimal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JButton_AlterarAnimalActionPerformed(evt);
+            }
+        });
+
         jLayeredPane_Plantel.setLayer(jButton_Cadastro_Animais, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane_Plantel.setLayer(jButton_Remover, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane_Plantel.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane_Plantel.setLayer(JButton_AlterarAnimal, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane_PlantelLayout = new javax.swing.GroupLayout(jLayeredPane_Plantel);
         jLayeredPane_Plantel.setLayout(jLayeredPane_PlantelLayout);
@@ -172,7 +187,9 @@ public class JFrame_Principal extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jLayeredPane_PlantelLayout.createSequentialGroup()
                         .addComponent(jButton_Cadastro_Animais, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton_Remover))
+                        .addComponent(jButton_Remover)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JButton_AlterarAnimal))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1005, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -182,7 +199,8 @@ public class JFrame_Principal extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addGroup(jLayeredPane_PlantelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_Cadastro_Animais)
-                    .addComponent(jButton_Remover, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton_Remover, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JButton_AlterarAnimal))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(50, Short.MAX_VALUE))
@@ -218,10 +236,13 @@ public class JFrame_Principal extends javax.swing.JFrame {
     private void jButton_RemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RemoverActionPerformed
         int select = jTable_Animais.getSelectedRow();
         ArrayList<Animal> animal = AnimalDAO.getListaAnimais();
-        System.out.println(animal.get(select).getId());
         AnimalDAO.removerAnimal(animal.get(select));
         atualizarTabela();
     }//GEN-LAST:event_jButton_RemoverActionPerformed
+
+    private void JButton_AlterarAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButton_AlterarAnimalActionPerformed
+        JFrame_AlterarAnimal jfA = new JFrame_AlterarAnimal();
+    }//GEN-LAST:event_JButton_AlterarAnimalActionPerformed
 
     public static void atualizarTabela()
     {
@@ -236,7 +257,19 @@ public class JFrame_Principal extends javax.swing.JFrame {
                 model.setNumRows(0);
                 for (Animal c : listaAnimal)
                 {
-                    model.addRow(new Object[]{c.getNome(), c.getNumero(), c.getRaca(), c.getDataNasc(), c.getSexo()});           
+                    String sexo = null;
+                    if(c.getSexo().equals("F"))
+                        sexo = "Fêmea";
+                    if(c.getSexo().equals("M"))
+                        sexo = "Macho";
+                    try
+                    {
+                        MaskFormatter Data = new MaskFormatter("##/##/####");
+                        Date dataNasc = c.getDataNasc();
+                        model.addRow(new Object[]{c.getNome(), c.getNumero(), c.getRaca(), dataNasc, sexo});           
+                        
+                    } catch (ParseException exc) {
+                    }
                 }
                 
             }
@@ -284,6 +317,7 @@ public class JFrame_Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel FixaCanto;
+    private javax.swing.JButton JButton_AlterarAnimal;
     private javax.swing.JButton jButton_Cadastro_Animais;
     private javax.swing.JButton jButton_Fechar;
     private javax.swing.JButton jButton_Plantel;
