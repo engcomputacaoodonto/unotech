@@ -306,7 +306,7 @@ public class JFrame_CadastrarAnimal extends javax.swing.JFrame {
         if(testes)
         {
             AnimalDAO.registrarAnimal(animal);
-            JFrame_Principal.atualizarTabela();
+            JFrame_Principal.addAnimalList(animal);
         }
         else
             return;

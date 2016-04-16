@@ -72,7 +72,7 @@ public class AnimalDAO
                 animal.setRaca(rSet.getString("raca"));
                 animal.setDataNasc(rSet.getDate("dataNasc"));
                 animal.setSexo(rSet.getString("sexo"));
-                animal.setSituacao("situacao");
+                animal.setSituacao(rSet.getString("situacao"));
                 listaAnimal.add(animal);
             }
             rSet.close();

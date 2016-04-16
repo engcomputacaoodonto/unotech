@@ -5,7 +5,9 @@
  */
 package Telas;
 
+import Model.Animal;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 
@@ -15,10 +17,10 @@ import javax.swing.text.MaskFormatter;
  */
 public class JFrame_AlterarAnimal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form JFrame_AlterarAnimal
-     */
-    public JFrame_AlterarAnimal() {
+    Animal animal;
+    public JFrame_AlterarAnimal(Animal animal)
+    {
+        this.animal = animal;
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         initComponents();
         setVisible(true);
@@ -26,11 +28,29 @@ public class JFrame_AlterarAnimal extends javax.swing.JFrame {
         try
         {
             MaskFormatter Data = new MaskFormatter("##/##/####");
-            Data.setPlaceholderCharacter('_');
             jFormattedTextField_DataNasc.setFormatterFactory(new DefaultFormatterFactory(Data));
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            String format = sdf.format(this.animal.getDataNasc());
+            jFormattedTextField_DataNasc.setText(format);
         }
         catch (ParseException exc)
         {}
+        jTextField_Nome.setText(this.animal.getNome());
+        jTextField_Brico.setText(this.animal.getNumero());
+        jTextField_Raca.setText(this.animal.getRaca());
+        
+        if(this.animal.getSexo().equals("M"))
+            jCheckBox_Macho.setSelected(true);
+        if(this.animal.getSexo().equals("F"))
+            jCheckBox_Femea.setSelected(true);
+        
+        if(this.animal.getSituacao().equals("A"))
+            jCheckBox_Ativo.setSelected(true);
+        if(this.animal.getSituacao().equals("M"))
+            jCheckBox_Morto.setSelected(true);
+        if(this.animal.getSituacao().equals("V"))
+            jCheckBox_Vendido.setSelected(true);
+        
     }
 
     /**

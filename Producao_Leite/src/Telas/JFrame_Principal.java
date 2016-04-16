@@ -20,7 +20,7 @@ import javax.swing.text.MaskFormatter;
  */
 public class JFrame_Principal extends javax.swing.JFrame {
 
-    private Object Nome;
+    private static ArrayList<Animal> animalList;
 
     /**
      * Creates new form JFrame_Principal
@@ -28,7 +28,6 @@ public class JFrame_Principal extends javax.swing.JFrame {
     public JFrame_Principal()
     {
         initComponents();
-        atualizarTabela();
         setResizable(false);
         jLayeredPane_Plantel.setVisible(false);
     }
@@ -230,6 +229,8 @@ public class JFrame_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_FecharActionPerformed
 
     private void jButton_PlantelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_PlantelActionPerformed
+        animalList = AnimalDAO.getListaAnimais();
+        atualizarTabela();
         jLayeredPane_Plantel.setVisible(true);
     }//GEN-LAST:event_jButton_PlantelActionPerformed
 
@@ -241,21 +242,29 @@ public class JFrame_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_RemoverActionPerformed
 
     private void JButton_AlterarAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButton_AlterarAnimalActionPerformed
-        JFrame_AlterarAnimal jfA = new JFrame_AlterarAnimal();
+        int select = jTable_Animais.getSelectedRow();
+        Animal animal = new Animal();
+        animal.setId(animalList.get(select).getId());
+        animal.setNome(animalList.get(select).getNome());
+        animal.setNumero(animalList.get(select).getNumero());
+        animal.setRaca(animalList.get(select).getRaca());
+        animal.setDataNasc(animalList.get(select).getDataNasc());
+        animal.setSexo(animalList.get(select).getSexo());
+        animal.setSituacao(animalList.get(select).getSituacao());
+        new JFrame_AlterarAnimal(animal);
     }//GEN-LAST:event_JButton_AlterarAnimalActionPerformed
 
     public static void atualizarTabela()
     {
         try
         {
-            ArrayList<Animal> listaAnimal = AnimalDAO.getListaAnimais();
-            if (!listaAnimal.isEmpty())
+            if (!animalList.isEmpty())
             {
                 String[] nomeColunas = {"Nome", " Numero", "Raça", "Data de Nascimento", "Sexo"};
                 DefaultTableModel model = (DefaultTableModel) jTable_Animais.getModel();
                 model.setColumnIdentifiers(nomeColunas);
                 model.setNumRows(0);
-                for (Animal c : listaAnimal)
+                for (Animal c : animalList)
                 {
                     String sexo = null;
                     if(c.getSexo().equals("F"))
@@ -276,6 +285,12 @@ public class JFrame_Principal extends javax.swing.JFrame {
         } catch (Exception e) {
             
         }
+    }
+    
+    public static void addAnimalList(Animal animal)
+    {
+        animalList.add(animal);
+        atualizarTabela();
     }
     
     /**
