@@ -53,6 +53,32 @@ public class AnimalDAO
         }
     }
     
+    public static void alterarAnimal(Animal animal)
+    {
+        Conecta c = new Conecta();
+        String sql = "UPDATE CadastroAnimal SET nome = ?, numero = ?, raca = ?,"
+                + "dataNasc = ?, sexo = ?, situacao = ? WHERE idCadastroAnimal = ?";
+        c.pStmt(sql);
+        
+        try
+        {
+            c.getPreparedStatement().setString(1, animal.getNome());
+            c.getPreparedStatement().setString(2, animal.getNumero());
+            c.getPreparedStatement().setString(3, animal.getRaca());
+            c.getPreparedStatement().setDate(4, animal.getDataNasc());
+            c.getPreparedStatement().setString(5, animal.getSexo());
+            c.getPreparedStatement().setString(6, animal.getSituacao());
+            c.getPreparedStatement().setInt(7, animal.getId());
+            c.getPreparedStatement().execute();
+            c.Desconectar();
+        }
+        catch (SQLException ex)
+        {
+            c.Desconectar();
+            System.err.println("Erro: " + ex.getMessage());
+        }
+    }
+    
     public static ArrayList<Animal> getListaAnimais()
     {
         Conecta c = new Conecta();

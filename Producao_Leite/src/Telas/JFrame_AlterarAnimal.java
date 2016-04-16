@@ -5,7 +5,9 @@
  */
 package Telas;
 
+import DAO.AnimalDAO;
 import Model.Animal;
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.swing.text.DefaultFormatterFactory;
@@ -163,6 +165,11 @@ public class JFrame_AlterarAnimal extends javax.swing.JFrame {
         });
 
         jButton_Gravar.setText("Gravar Alterações");
+        jButton_Gravar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_GravarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -299,12 +306,94 @@ public class JFrame_AlterarAnimal extends javax.swing.JFrame {
             jCheckBox_Morto.setSelected(false);
     }//GEN-LAST:event_jCheckBox_VendidoActionPerformed
 
+    private void jButton_GravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_GravarActionPerformed
+        boolean teste;
+        setJLabelErros();
+        
+        animal.setNome(jTextField_Nome.getText());
+        animal.setNumero(jTextField_Brico.getText());
+        animal.setRaca(jTextField_Raca.getText());
+        
+        teste = verificacoes(animal);
+        
+        if(!jFormattedTextField_DataNasc.getText().equals("__/__/____"))
+            {
+            try
+            { 
+                java.util.Date dataUtil = new SimpleDateFormat("dd/MM/yyyy").parse(jFormattedTextField_DataNasc.getText());
+                Date data = new Date(dataUtil.getTime());
+                animal.setDataNasc(data);
+            }
+            catch (ParseException ex)
+            {
+                jLabel_Erro_DataNasc.setText("Data inválida!");
+                return;
+            }
+        }
+
+        if(jCheckBox_Macho.isSelected())
+            animal.setSexo("M");
+        if(jCheckBox_Femea.isSelected())
+            animal.setSexo("F");
+        
+        if(jCheckBox_Ativo.isSelected())
+            animal.setSituacao("A");
+        if(jCheckBox_Morto.isSelected())
+            animal.setSituacao("M");
+        if(jCheckBox_Vendido.isSelected())
+            animal.setSituacao("V");
+        
+        if(teste)
+        {
+            AnimalDAO.alterarAnimal(animal);
+            dispose();
+        }
+        
+    }//GEN-LAST:event_jButton_GravarActionPerformed
+
     private void setJLabelErros()
     {
         jLabel_Erro_Nome.setText(" ");
         jLabel_Erro_Brinco.setText(" ");
         jLabel_Erro_Raca.setText(" ");
         jLabel_Erro_DataNasc.setText(" ");
+    }
+    
+    private boolean verificacoes(Animal animal)
+    {
+        boolean retorno = true;
+        
+        if(animal.getNome().length() == 0)
+        {
+            jLabel_Erro_Nome.setText("O campo Nome deve ser preenchido!");
+            retorno = false;
+        }
+        
+        if(animal.getNome().length() > 255)
+        {
+            jLabel_Erro_Nome.setText("O campo Nome deve ocupar no máximo 255 caracteres!");
+            retorno = false;
+        }
+        
+        if(animal.getNumero().length() == 0)
+        {
+            jLabel_Erro_Brinco.setText("O campo Brinco deve ser preenchido!");
+            retorno = false;
+        }
+        
+        if(animal.getNumero().length() != 6 && animal.getNumero().length() != 15 && animal.getNumero().length() != 0)
+        {
+            jLabel_Erro_Brinco.setText("Utilize o número de registro na CIDASC! (6 ou 15 dígitos)");
+            retorno = false;
+        }
+        
+        if(animal.getRaca().length() > 255)
+        {
+            jLabel_Erro_Raca.setText("O campo Raça deve ocupar no máximo 255 caracteres!");
+            retorno = false;
+        }
+
+        return retorno;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
