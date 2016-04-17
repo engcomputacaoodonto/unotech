@@ -250,7 +250,7 @@ public class JFrame_Principal extends javax.swing.JFrame {
         int select = jTable_Animais.getSelectedRow();
         if(select == -1)
         {
-            JOptionPane.showMessageDialog(this, "Nenhum animal selecionado!", "Erro", 2);
+            JOptionPane.showMessageDialog(this, "Nenhum animal selecionado!", "Ops...", 2);
             return;
         }
         Animal animal = new Animal();
