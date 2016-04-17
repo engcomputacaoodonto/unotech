@@ -141,7 +141,7 @@ public class JFrame_CadastrarAnimal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(226, 226, 226)
                         .addComponent(jLabel_Titulo_CA))
@@ -186,13 +186,14 @@ public class JFrame_CadastrarAnimal extends javax.swing.JFrame {
                         .addComponent(jCheckBox_Femea))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(183, 183, 183)
-                        .addComponent(jLabel_Erro_Sexo))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton_Gravar)
-                        .addGap(12, 12, 12)
-                        .addComponent(jButton_Voltar)))
-                .addGap(48, 48, 48))
+                        .addComponent(jLabel_Erro_Sexo)))
+                .addContainerGap(72, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton_Gravar)
+                .addGap(18, 18, 18)
+                .addComponent(jButton_Voltar)
+                .addGap(26, 26, 26))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,11 +241,11 @@ public class JFrame_CadastrarAnimal extends javax.swing.JFrame {
                     .addComponent(jCheckBox_Femea))
                 .addGap(3, 3, 3)
                 .addComponent(jLabel_Erro_Sexo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton_Gravar)
-                    .addComponent(jButton_Voltar))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_Voltar)
+                    .addComponent(jButton_Gravar))
+                .addContainerGap())
         );
 
         pack();

@@ -9,7 +9,9 @@ import DAO.AnimalDAO;
 import Model.Animal;
 import java.sql.Date;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
@@ -53,6 +55,7 @@ public class JFrame_Principal extends javax.swing.JFrame {
         FixaCanto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton_Fechar.setText("Fechar");
@@ -157,6 +160,11 @@ public class JFrame_Principal extends javax.swing.JFrame {
         });
         jTable_Animais.setColumnSelectionAllowed(true);
         jTable_Animais.getTableHeader().setReorderingAllowed(false);
+        jTable_Animais.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_AnimaisMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable_Animais);
         jTable_Animais.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -240,6 +248,11 @@ public class JFrame_Principal extends javax.swing.JFrame {
 
     private void JButton_AlterarAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButton_AlterarAnimalActionPerformed
         int select = jTable_Animais.getSelectedRow();
+        if(select == -1)
+        {
+            JOptionPane.showMessageDialog(this, "Nenhum animal selecionado!", "Erro", 2);
+            return;
+        }
         Animal animal = new Animal();
         animal.setId(animalList.get(select).getId());
         animal.setNome(animalList.get(select).getNome());
@@ -248,8 +261,25 @@ public class JFrame_Principal extends javax.swing.JFrame {
         animal.setDataNasc(animalList.get(select).getDataNasc());
         animal.setSexo(animalList.get(select).getSexo());
         animal.setSituacao(animalList.get(select).getSituacao());
-        new JFrame_AlterarAnimal(animal);
+        new JFrame_AlterarAnimal(animal, select);
     }//GEN-LAST:event_JButton_AlterarAnimalActionPerformed
+
+    private void jTable_AnimaisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_AnimaisMouseClicked
+            int click = evt.getClickCount();
+            if(click == 2)
+            {
+                int select = jTable_Animais.getSelectedRow();
+                Animal animal = new Animal();
+                animal.setId(animalList.get(select).getId());
+                animal.setNome(animalList.get(select).getNome());
+                animal.setNumero(animalList.get(select).getNumero());
+                animal.setRaca(animalList.get(select).getRaca());
+                animal.setDataNasc(animalList.get(select).getDataNasc());
+                animal.setSexo(animalList.get(select).getSexo());
+                animal.setSituacao(animalList.get(select).getSituacao());
+                new JFrame_AlterarAnimal(animal, select);
+            }
+    }//GEN-LAST:event_jTable_AnimaisMouseClicked
 
     public static void atualizarTabela()
     {
@@ -264,18 +294,24 @@ public class JFrame_Principal extends javax.swing.JFrame {
                 for (Animal c : animalList)
                 {
                     String sexo = null;
+                    String situacao = null;
+                    String dataN = null;
                     if(c.getSexo().equals("F"))
                         sexo = "Fêmea";
                     if(c.getSexo().equals("M"))
                         sexo = "Macho";
-                    try
-                    {
-                        MaskFormatter Data = new MaskFormatter("##/##/####");
-                        Date dataNasc = c.getDataNasc();
-                        model.addRow(new Object[]{c.getNome(), c.getNumero(), c.getRaca(), dataNasc, sexo, c.getSituacao()});           
+                    
+                    if(c.getSituacao().equals("A"))
+                        situacao = "Ativo";
+                    if(c.getSituacao().equals("M"))
+                        situacao = "Morte";
+                    if(c.getSituacao().equals("V"))
+                        situacao = "Venda";
+                    
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                    dataN = sdf.format(c.getDataNasc());
+                    model.addRow(new Object[]{c.getNome(), c.getNumero(), c.getRaca(), dataN, sexo, situacao});      
                         
-                    } catch (ParseException exc) {
-                    }
                 }
                 
             }
@@ -287,6 +323,12 @@ public class JFrame_Principal extends javax.swing.JFrame {
     public static void addAnimalList(Animal animal)
     {
         animalList.add(animal);
+        atualizarTabela();
+    }
+    
+    public static void alterAnimalList(Animal animal, int select)
+    {
+        animalList.set(select, animal);
         atualizarTabela();
     }
     

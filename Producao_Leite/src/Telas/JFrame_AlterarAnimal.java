@@ -20,12 +20,15 @@ import javax.swing.text.MaskFormatter;
 public class JFrame_AlterarAnimal extends javax.swing.JFrame {
 
     Animal animal;
-    public JFrame_AlterarAnimal(Animal animal)
+    int select;
+    public JFrame_AlterarAnimal(Animal animal, int select)
     {
         this.animal = animal;
+        this.select = select;
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         initComponents();
         setVisible(true);
+        setResizable(false);
         setJLabelErros();
         try
         {
@@ -346,6 +349,7 @@ public class JFrame_AlterarAnimal extends javax.swing.JFrame {
         if(teste)
         {
             AnimalDAO.alterarAnimal(animal);
+            JFrame_Principal.alterAnimalList(animal, select);
             dispose();
         }
         
