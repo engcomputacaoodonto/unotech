@@ -7,11 +7,19 @@ package Telas;
 
 import DAO.AnimalDAO;
 import Model.Animal;
+import Telas.FramesAnimais.JFrame_AlterarAnimais;
+import Telas.FramesAnimais.JFrame_Animal;
+import Telas.FramesAnimais.JFrame_CadastrarAnimais;
+import Telas.FramesAnimais.JFrame_PesquisarAnimais;
+import Telas.FramesAnimais.JFrame_RemoverAnimais;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
@@ -51,6 +59,7 @@ public class JFrame_Principal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_Animais = new javax.swing.JTable();
         JButton_AlterarAnimal = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jButton_Plantel = new javax.swing.JButton();
         FixaCanto = new javax.swing.JLabel();
 
@@ -176,10 +185,18 @@ public class JFrame_Principal extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Pesquisar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         jLayeredPane_Plantel.setLayer(jButton_Cadastro_Animais, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane_Plantel.setLayer(jButton_Remover, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane_Plantel.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane_Plantel.setLayer(JButton_AlterarAnimal, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane_Plantel.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane_PlantelLayout = new javax.swing.GroupLayout(jLayeredPane_Plantel);
         jLayeredPane_Plantel.setLayout(jLayeredPane_PlantelLayout);
@@ -193,7 +210,9 @@ public class JFrame_Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton_Remover)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JButton_AlterarAnimal))
+                        .addComponent(JButton_AlterarAnimal)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1005, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -204,7 +223,8 @@ public class JFrame_Principal extends javax.swing.JFrame {
                 .addGroup(jLayeredPane_PlantelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_Cadastro_Animais)
                     .addComponent(jButton_Remover, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JButton_AlterarAnimal))
+                    .addComponent(JButton_AlterarAnimal)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(50, Short.MAX_VALUE))
@@ -226,7 +246,9 @@ public class JFrame_Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_Cadastro_AnimaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Cadastro_AnimaisActionPerformed
-        new JFrame_CadastrarAnimal();
+        //new JFrame_CadastrarAnimal();
+        //new JFrame_Animal();
+        new JFrame_CadastrarAnimais();
     }//GEN-LAST:event_jButton_Cadastro_AnimaisActionPerformed
 
     private void jButton_FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_FecharActionPerformed
@@ -241,9 +263,20 @@ public class JFrame_Principal extends javax.swing.JFrame {
 
     private void jButton_RemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RemoverActionPerformed
         int select = jTable_Animais.getSelectedRow();
-        ArrayList<Animal> animal = AnimalDAO.getListaAnimais();
-        AnimalDAO.removerAnimal(animal.get(select));
-        atualizarTabela();
+        if(select == -1)
+        {
+            JOptionPane.showMessageDialog(this, "Nenhum animal selecionado!", "Ops...", 2);
+            return;
+        }
+        Animal animal = new Animal();
+        animal.setId(animalList.get(select).getId());
+        animal.setNome(animalList.get(select).getNome());
+        animal.setNumero(animalList.get(select).getNumero());
+        animal.setRaca(animalList.get(select).getRaca());
+        animal.setDataNasc(animalList.get(select).getDataNasc());
+        animal.setSexo(animalList.get(select).getSexo());
+        animal.setSituacao(animalList.get(select).getSituacao());
+        new JFrame_RemoverAnimais(animal, select);
     }//GEN-LAST:event_jButton_RemoverActionPerformed
 
     private void JButton_AlterarAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButton_AlterarAnimalActionPerformed
@@ -261,7 +294,7 @@ public class JFrame_Principal extends javax.swing.JFrame {
         animal.setDataNasc(animalList.get(select).getDataNasc());
         animal.setSexo(animalList.get(select).getSexo());
         animal.setSituacao(animalList.get(select).getSituacao());
-        new JFrame_AlterarAnimal(animal, select);
+        new JFrame_AlterarAnimais(animal, select);
     }//GEN-LAST:event_JButton_AlterarAnimalActionPerformed
 
     private void jTable_AnimaisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_AnimaisMouseClicked
@@ -277,9 +310,13 @@ public class JFrame_Principal extends javax.swing.JFrame {
                 animal.setDataNasc(animalList.get(select).getDataNasc());
                 animal.setSexo(animalList.get(select).getSexo());
                 animal.setSituacao(animalList.get(select).getSituacao());
-                new JFrame_AlterarAnimal(animal, select);
+                new JFrame_AlterarAnimais(animal, select);
             }
     }//GEN-LAST:event_jTable_AnimaisMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new JFrame_PesquisarAnimais();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void atualizarTabela()
     {
@@ -332,6 +369,12 @@ public class JFrame_Principal extends javax.swing.JFrame {
         atualizarTabela();
     }
     
+    public static void removerAnimalList(int select)
+    {
+        animalList.remove(select);
+        atualizarTabela();
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -372,6 +415,7 @@ public class JFrame_Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel FixaCanto;
     private javax.swing.JButton JButton_AlterarAnimal;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton_Cadastro_Animais;
     private javax.swing.JButton jButton_Fechar;
     private javax.swing.JButton jButton_Plantel;
