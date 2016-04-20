@@ -1,9 +1,13 @@
 package Telas.FramesAnimais;
 
+import Model.Animal;
 import Telas.JFrame_Base;
+import Telas.JFrame_Principal;
 import java.awt.GridBagConstraints;
+import java.util.ArrayList;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 
@@ -18,17 +22,21 @@ public class JFrame_PesquisarAnimais extends JFrame_Base
     private JTextField jTextField_Pesquisa;
     private JCheckBox jCheckBox_Nome;
     private JCheckBox jCheckBox_Numero;
+    private ArrayList<Animal> animalList;
     
-    public JFrame_PesquisarAnimais()
+    public JFrame_PesquisarAnimais(ArrayList<Animal> animalList)
     {
         super();
         Componentes();
-        getjLabel_Titulo().setText("Pesquisar");
-        getjButton_Confirmar().setText("Pesquisar");
+        this.animalList = animalList;
     }
     
     private void Componentes()
     {
+        getjLabel_Titulo().setText("Pesquisar");
+        getjButton_Confirmar().setText("Pesquisar");
+        
+        
         jLabel_Pesquisa = new JLabel();
         jLabel_ErroPesquisa = new JLabel();
         jTextField_Pesquisa = new JTextField(40);
@@ -96,8 +104,24 @@ public class JFrame_PesquisarAnimais extends JFrame_Base
     
     public void Confirmar()
     {
-        
-        
-        
+        int linha = -1;
+        for(int i = 0;animalList.size() > i;i++)
+        {
+            if(animalList.get(i).getNome().equalsIgnoreCase(jTextField_Pesquisa.getText()))
+            {
+                linha = i;
+                break;
+            }
+        }
+        if(linha != -1)
+        {
+            JFrame_Principal.getJTable().setRowSelectionInterval(linha, linha);
+            JFrame_Principal.getJTable().setColumnSelectionInterval(0, 0);
+            dispose();
+        }
+        else
+        {
+             JOptionPane.showMessageDialog(this, "Animal não encontrado!", "Erro!", 2);
+        }
     }
 }

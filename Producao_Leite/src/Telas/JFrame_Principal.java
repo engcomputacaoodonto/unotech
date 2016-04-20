@@ -20,6 +20,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
@@ -315,7 +316,7 @@ public class JFrame_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable_AnimaisMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new JFrame_PesquisarAnimais();
+        new JFrame_PesquisarAnimais(animalList);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void atualizarTabela()
@@ -373,6 +374,11 @@ public class JFrame_Principal extends javax.swing.JFrame {
     {
         animalList.remove(select);
         atualizarTabela();
+    }
+    
+    public static JTable getJTable()
+    {
+        return jTable_Animais;
     }
     
     /**
