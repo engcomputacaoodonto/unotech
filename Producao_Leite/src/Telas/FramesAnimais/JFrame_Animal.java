@@ -74,27 +74,18 @@ public abstract class JFrame_Animal extends JFrame_Base
         jCheckBox_Venda = new JCheckBox();
         
         //Máscaras        
-        try
-        {
-            MaskFormatter mask = new MaskFormatter("##/##/####");
-            mask.setPlaceholderCharacter('_');
-            jFormattedTextField_Data_Nasc.setFormatterFactory(new DefaultFormatterFactory(mask));
-            mask = new MaskFormatter("######");
-            jFormattedTextField_Numero.setFormatterFactory(new DefaultFormatterFactory(mask));
-        }
-        catch (ParseException exc)
-        {
-            JOptionPane.showMessageDialog(this, exc.getMessage(), "Erro!", 3);
-        }
+        jFormattedTextField_Data_Nasc = setFormatData(jFormattedTextField_Data_Nasc);
+        jFormattedTextField_Numero = setFormatNumero(jFormattedTextField_Numero);
         
         //Nomes de Campos
-        getjLabel_Titulo().setText("Teste!");
         jLabel_Nome.setText("Nome*:");
         jLabel_Numero.setText("Número*:");
         jLabel_Raca.setText("Raça:");
         jLabel_Data_Nasc.setText("Data de Nascimento:");
-        jLabel_Sexo.setText("Sexo:*");
-        jLabel_Situacao.setText("Situação:*");
+        jLabel_Sexo.setText("Sexo*:");
+        jLabel_Situacao.setText("Situação*:");
+        
+        //Cor vermelha para erros
         jLabel_Erro_Nome.setForeground(new java.awt.Color(255, 0, 0));
         jLabel_Erro_Numero.setForeground(new java.awt.Color(255, 0, 0));
         jLabel_Erro_Raca.setForeground(new java.awt.Color(255, 0, 0));

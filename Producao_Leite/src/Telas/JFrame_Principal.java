@@ -12,6 +12,7 @@ import Telas.FramesAnimais.JFrame_Animal;
 import Telas.FramesAnimais.JFrame_CadastrarAnimais;
 import Telas.FramesAnimais.JFrame_PesquisarAnimais;
 import Telas.FramesAnimais.JFrame_RemoverAnimais;
+import Telas.FramesProducaoDiaria.JFrame_ProducaoDiaria;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -63,6 +64,7 @@ public class JFrame_Principal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton_Plantel = new javax.swing.JButton();
         FixaCanto = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -243,6 +245,14 @@ public class JFrame_Principal extends javax.swing.JFrame {
         getContentPane().add(jButton_Plantel, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 58, -1, -1));
         getContentPane().add(FixaCanto, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 630, 10, 20));
 
+        jButton2.setText("Produção Diaria");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -318,6 +328,10 @@ public class JFrame_Principal extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         new JFrame_PesquisarAnimais(animalList);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        //new JFrame_ProducaoDiaria();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     public static void atualizarTabela()
     {
@@ -422,6 +436,7 @@ public class JFrame_Principal extends javax.swing.JFrame {
     private javax.swing.JLabel FixaCanto;
     private javax.swing.JButton JButton_AlterarAnimal;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton_Cadastro_Animais;
     private javax.swing.JButton jButton_Fechar;
     private javax.swing.JButton jButton_Plantel;

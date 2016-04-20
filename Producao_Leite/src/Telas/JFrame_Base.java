@@ -107,7 +107,37 @@ public abstract class JFrame_Base extends javax.swing.JFrame
         return jFormattedTextField_Null;
     }
     
+    public JFormattedTextField setFormatData(JFormattedTextField jFormattedTextField_Data)
+    {
+        try
+        {
+            MaskFormatter mask = new MaskFormatter("##/##/####");
+            mask.setPlaceholderCharacter('_');
+            jFormattedTextField_Data.setFormatterFactory(new DefaultFormatterFactory(mask));
+        }
+        catch (ParseException exc)
+        {
+            JOptionPane.showMessageDialog(this, exc.getMessage(), "Erro!", 3);
+        }
+        
+        return jFormattedTextField_Data;
+    }
 
+    public JFormattedTextField setFormatDecimal(JFormattedTextField jFormattedTextField_Decimal)
+    {
+        try
+        {
+            MaskFormatter mask = new MaskFormatter("##,##");
+            mask.setPlaceholderCharacter('0');
+            jFormattedTextField_Decimal.setFormatterFactory(new DefaultFormatterFactory(mask));
+        }
+        catch (ParseException exc)
+        {
+            JOptionPane.showMessageDialog(this, exc.getMessage(), "Erro!", 3);
+        }
+        return jFormattedTextField_Decimal;
+    }
+    
     public JPanel getjPanel_CENTER()
     {
         return jPanel_CENTER;
