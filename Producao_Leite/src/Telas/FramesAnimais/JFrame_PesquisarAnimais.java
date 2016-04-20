@@ -6,6 +6,7 @@ import Telas.JFrame_Principal;
 import java.awt.GridBagConstraints;
 import java.util.ArrayList;
 import javax.swing.JCheckBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -19,7 +20,7 @@ public class JFrame_PesquisarAnimais extends JFrame_Base
 {
     private JLabel jLabel_Pesquisa;
     private JLabel jLabel_ErroPesquisa;
-    private JTextField jTextField_Pesquisa;
+    private JFormattedTextField jFormattedTextField_Pesquisa;
     private JCheckBox jCheckBox_Nome;
     private JCheckBox jCheckBox_Numero;
     private ArrayList<Animal> animalList;
@@ -39,7 +40,7 @@ public class JFrame_PesquisarAnimais extends JFrame_Base
         
         jLabel_Pesquisa = new JLabel();
         jLabel_ErroPesquisa = new JLabel();
-        jTextField_Pesquisa = new JTextField(40);
+        jFormattedTextField_Pesquisa = new JFormattedTextField();
         jCheckBox_Nome = new JCheckBox();
         jCheckBox_Numero = new JCheckBox();
         
@@ -58,7 +59,7 @@ public class JFrame_PesquisarAnimais extends JFrame_Base
         getjPanel_CENTER().add(jLabel_Pesquisa, getCons());
         getCons().gridx = 2;
         getCons().gridwidth = 2;
-        getjPanel_CENTER().add(jTextField_Pesquisa, getCons());
+        getjPanel_CENTER().add(jFormattedTextField_Pesquisa, getCons());
         
         //Line 1
         getCons().gridy = 1;
@@ -86,6 +87,8 @@ public class JFrame_PesquisarAnimais extends JFrame_Base
                 {
                     jCheckBox_Numero.setSelected(false);
                 }
+                
+                jFormattedTextField_Pesquisa = setFormatNull(jFormattedTextField_Pesquisa);
             }
         });
         
@@ -98,6 +101,8 @@ public class JFrame_PesquisarAnimais extends JFrame_Base
                 {
                     jCheckBox_Nome.setSelected(false);
                 }
+                
+                jFormattedTextField_Pesquisa = setFormatNumero(jFormattedTextField_Pesquisa);
             }
         });
     }
@@ -105,23 +110,47 @@ public class JFrame_PesquisarAnimais extends JFrame_Base
     public void Confirmar()
     {
         int linha = -1;
-        for(int i = 0;animalList.size() > i;i++)
+        if(jCheckBox_Nome.isSelected())
         {
-            if(animalList.get(i).getNome().equalsIgnoreCase(jTextField_Pesquisa.getText()))
+            for(int i = 0;animalList.size() > i;i++)
             {
-                linha = i;
-                break;
+                if(animalList.get(i).getNome().equalsIgnoreCase(jFormattedTextField_Pesquisa.getText()))
+                {
+                    linha = i;
+                    break;
+                }
+            }
+            if(linha != -1)
+            {
+                JFrame_Principal.getJTable().setRowSelectionInterval(linha, linha);
+                JFrame_Principal.getJTable().setColumnSelectionInterval(0, 0);
+                dispose();
+            }
+            else
+            {
+                 JOptionPane.showMessageDialog(this, "Animal não encontrado!", "Erro!", 2);
             }
         }
-        if(linha != -1)
+        if(jCheckBox_Numero.isSelected())
         {
-            JFrame_Principal.getJTable().setRowSelectionInterval(linha, linha);
-            JFrame_Principal.getJTable().setColumnSelectionInterval(0, 0);
-            dispose();
-        }
-        else
-        {
-             JOptionPane.showMessageDialog(this, "Animal não encontrado!", "Erro!", 2);
+            for(int i = 0;animalList.size() > i;i++)
+            {
+                if(animalList.get(i).getNumero().equalsIgnoreCase(jFormattedTextField_Pesquisa.getText()))
+                {
+                    linha = i;
+                    break;
+                }
+            }
+            if(linha != -1)
+            {
+                JFrame_Principal.getJTable().setRowSelectionInterval(linha, linha);
+                JFrame_Principal.getJTable().setColumnSelectionInterval(1, 1);
+                dispose();
+            }
+            else
+            {
+                 JOptionPane.showMessageDialog(this, "Animal não encontrado!", "Erro!", 2);
+            }
         }
     }
 }

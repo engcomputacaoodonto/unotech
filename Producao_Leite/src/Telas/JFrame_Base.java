@@ -4,9 +4,14 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.text.ParseException;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -79,6 +84,29 @@ public abstract class JFrame_Base extends javax.swing.JFrame
         setSize(600, 400);
         setVisible(true);
     }
+    
+    public JFormattedTextField setFormatNumero(JFormattedTextField jFormattedTextField_Numero)
+    {
+        try
+        {
+            MaskFormatter mask = new MaskFormatter("######");
+            jFormattedTextField_Numero.setFormatterFactory(new DefaultFormatterFactory(mask));
+        }
+        catch (ParseException exc)
+        {
+            JOptionPane.showMessageDialog(this, exc.getMessage(), "Erro!", 3);
+        }
+        
+        return jFormattedTextField_Numero;
+    }
+    
+    public JFormattedTextField setFormatNull(JFormattedTextField jFormattedTextField_Null)
+    {
+        jFormattedTextField_Null.setFormatterFactory(null);
+        
+        return jFormattedTextField_Null;
+    }
+    
 
     public JPanel getjPanel_CENTER()
     {

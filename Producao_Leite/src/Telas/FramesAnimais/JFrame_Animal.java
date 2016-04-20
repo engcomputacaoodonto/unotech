@@ -4,7 +4,6 @@ import Model.Animal;
 import Telas.JFrame_Base;
 import java.awt.GridBagConstraints;
 import java.text.ParseException;
-import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
