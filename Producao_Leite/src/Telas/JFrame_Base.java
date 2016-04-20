@@ -127,7 +127,7 @@ public abstract class JFrame_Base extends javax.swing.JFrame
     {
         try
         {
-            MaskFormatter mask = new MaskFormatter("##,##");
+            MaskFormatter mask = new MaskFormatter("##.##");
             mask.setPlaceholderCharacter('0');
             jFormattedTextField_Decimal.setFormatterFactory(new DefaultFormatterFactory(mask));
         }

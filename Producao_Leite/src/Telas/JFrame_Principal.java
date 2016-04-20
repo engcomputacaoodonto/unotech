@@ -12,6 +12,7 @@ import Telas.FramesAnimais.JFrame_Animal;
 import Telas.FramesAnimais.JFrame_CadastrarAnimais;
 import Telas.FramesAnimais.JFrame_PesquisarAnimais;
 import Telas.FramesAnimais.JFrame_RemoverAnimais;
+import Telas.FramesProducaoDiaria.JFrame_CadastrarProducaoDiaria;
 import Telas.FramesProducaoDiaria.JFrame_ProducaoDiaria;
 import java.sql.Date;
 import java.text.ParseException;
@@ -330,7 +331,7 @@ public class JFrame_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //new JFrame_ProducaoDiaria();
+        new JFrame_CadastrarProducaoDiaria();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     public static void atualizarTabela()

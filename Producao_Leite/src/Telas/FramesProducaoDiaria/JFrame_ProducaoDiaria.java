@@ -144,6 +144,7 @@ public abstract class JFrame_ProducaoDiaria extends JFrame_Base
         
         //Line 9
         getCons().gridy = 9;
+        getCons().gridwidth = 2;
         getjPanel_CENTER().add(jLabel_Aviso, getCons());
         
         //Ações de componentes
@@ -196,25 +197,31 @@ public abstract class JFrame_ProducaoDiaria extends JFrame_Base
     {
         boolean retorno = true;
         
-        if(jTextField_Nome.getText().length() == 0)
+        if(jCheckBox_Nome.isSelected())
         {
-            jLabel_ErroNome.setText("O campo Nome deve ser preenchido!");
-            retorno = false;
+            if(jTextField_Nome.getText().length() == 0)
+            {
+                jLabel_ErroNome.setText("O campo Nome deve ser preenchido!");
+                retorno = false;
+            }
+
+            if(jTextField_Nome.getText().length() > 255)
+            {
+                jLabel_ErroNome.setText("O campo Nome deve ocupar no máximo 255 caracteres!");
+                retorno = false;
+            }
         }
         
-        if(jTextField_Nome.getText().length() > 255)
+        if(jCheckBox_Numero.isSelected())
         {
-            jLabel_ErroNome.setText("O campo Nome deve ocupar no máximo 255 caracteres!");
-            retorno = false;
+            if(jFormattedTextField_Numero.getText().equals("      "))
+            {
+                jLabel_ErroNumero.setText("O campo Número deve ser preenchido!");
+                retorno = false;
+            }
         }
         
-        if(jFormattedTextField_Numero.getText().equals("      "))
-        {
-            jLabel_ErroNumero.setText("O campo Número deve ser preenchido!");
-            retorno = false;
-        }
-        
-        if(jFormattedTextField_QtdLitros.getText().equals("00,00"))
+        if(jFormattedTextField_QtdLitros.getText().equals("00.00"))
         {
             jLabel_ErroQtdLitros.setText("O campo Litros Produzidos deve ser preenchido!");
             retorno = false;
@@ -247,6 +254,11 @@ public abstract class JFrame_ProducaoDiaria extends JFrame_Base
 
     public abstract void Confirmar();
 
+    public JLabel getjLabel_ErroData()
+    {
+        return jLabel_ErroData;
+    }
+    
     public JLabel getjLabel_Aviso()
     {
         return jLabel_Aviso;
