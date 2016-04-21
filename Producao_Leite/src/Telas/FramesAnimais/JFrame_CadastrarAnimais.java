@@ -2,7 +2,7 @@ package Telas.FramesAnimais;
 
 import DAO.AnimalDAO;
 import Model.Animal;
-import Telas.FramePrincipal.JFrame_Principal;
+import Telas.FramePrincipal.JTable_Tabela;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -60,7 +60,7 @@ public class JFrame_CadastrarAnimais extends JFrame_Animal
         if(verificacoes(animal))
         {
             AnimalDAO.registrarAnimal(animal);
-            //JPanel_Animal.addAnimalList(animal);
+            JTable_Tabela.addAnimal(animal);
         }
         else
             return;

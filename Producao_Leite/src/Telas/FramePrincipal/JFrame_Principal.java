@@ -2,11 +2,13 @@ package Telas.FramePrincipal;
 
 import DAO.AnimalDAO;
 import Model.Animal;
+import Telas.FramesAnimais.JFrame_CadastrarAnimais;
 import Telas.JFrame_Base;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.sql.Date;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
@@ -31,6 +33,7 @@ public class JFrame_Principal extends JFrame_Base
     private JScrollPane jScrollPane_BaseTabela;
     
     private JTable jTable_Tabela;
+    private JTable_Tabela tabela;
     
     public JFrame_Principal()
     {
@@ -65,7 +68,9 @@ public class JFrame_Principal extends JFrame_Base
         getjPanel_NORTH().add(jButton_Plantel);
         
         //jPanel_CENTER adicionando Botões
-        getCons().fill = GridBagConstraints.BOTH;
+        getCons().fill = GridBagConstraints.NONE;  
+        getCons().anchor = GridBagConstraints.NORTHWEST;  
+        getCons().insets = new Insets(10,10,10,10);
         
         //Linha 0
         getCons().gridx = 0;
@@ -78,6 +83,8 @@ public class JFrame_Principal extends JFrame_Base
         getCons().gridx = 3;
         getjPanel_CENTER().add(jButton_LocalizarAnimal, getCons());
         
+        //Ação Botões
+        //Botão Plantel
         jButton_Plantel.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -90,20 +97,25 @@ public class JFrame_Principal extends JFrame_Base
                 add();
             }
         });
+        
+        //Botão CadastrarAnimal
+        jButton_CadastrarAnimal.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                new JFrame_CadastrarAnimais();
+            }
+        });
+        
+        //Botão 
     }
     
     public void add()
     {
-        jTable_Tabela = new JTable();
-        jTable_Tabela.removeAll();
+        tabela = new JTable_Tabela(animalList);
         
-        TabelaAnimais();
-        
-        jScrollPane_BaseTabela = new JScrollPane(jTable_Tabela);
-        
-        getCons().fill = GridBagConstraints.NONE;  
-        getCons().anchor = GridBagConstraints.NORTHWEST;  
-        getCons().insets = new Insets(4,4,4,4);  
+        jScrollPane_BaseTabela = new JScrollPane(tabela.getjTable_Tabela());
+          
         getCons().weighty = 1;  
         getCons().gridheight = GridBagConstraints.REMAINDER;  
           
@@ -114,41 +126,6 @@ public class JFrame_Principal extends JFrame_Base
         getCons().gridx = 0;
         getjPanel_CENTER().add(jScrollPane_BaseTabela, getCons());  
     }
-    
-    public void TabelaAnimais()
-    {
-        try
-        {
-            if (!animalList.isEmpty())
-            {
-                String[] nomeColunas = {"Nome", " Numero", "Raça", "Data de Nascimento", "Sexo", "Situação"};
-                DefaultTableModel model = (DefaultTableModel) jTable_Tabela.getModel();
-                model.setColumnIdentifiers(nomeColunas);
-                model.setNumRows(0);
-                for (Animal c : animalList)
-                {
-                    String sexo = null;
-                    if(c.getSexo().equals("F"))
-                        sexo = "Fêmea";
-                    if(c.getSexo().equals("M"))
-                        sexo = "Macho";
-                    try
-                    {
-                        MaskFormatter Data = new MaskFormatter("##/##/####");
-                        Date dataNasc = c.getDataNasc();
-                        model.addRow(new Object[]{c.getNome(), c.getNumero(), c.getRaca(), dataNasc, sexo, c.getSituacao()});           
-                        
-                    } catch (ParseException exc) {
-                    }
-                }
-                
-            }
-        } catch (Exception e) {
-            
-        }
-    }
-      
-
     
     public void Confirmar(){}
     
