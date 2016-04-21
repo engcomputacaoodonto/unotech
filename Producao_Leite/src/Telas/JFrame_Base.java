@@ -38,7 +38,7 @@ public abstract class JFrame_Base extends javax.swing.JFrame
     
     private void componentes()
     {
-        cons = new GridBagConstraints();  
+        cons = new GridBagConstraints();
         GridBagLayout layout = new GridBagLayout();  
 
         jLabel_Titulo = new JLabel();
@@ -143,6 +143,11 @@ public abstract class JFrame_Base extends javax.swing.JFrame
         return jPanel_CENTER;
     }
 
+    public JPanel getjPanel_NORTH()
+    {
+        return jPanel_NORTH;
+    }
+
     public JLabel getjLabel_Titulo()
     {
         return jLabel_Titulo;
@@ -156,6 +161,11 @@ public abstract class JFrame_Base extends javax.swing.JFrame
     public JButton getjButton_Confirmar()
     {
         return jButton_Confirmar;
+    }
+
+    public void setjPanel_CENTER(JPanel jPanel_CENTER)
+    {
+        this.jPanel_CENTER = jPanel_CENTER;
     }
     
     public abstract void Confirmar();

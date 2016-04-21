@@ -21,7 +21,7 @@ public class ProducaoDiariaDAO
     public static void registrarProducao(ProducaoDiaria pd)
     {
         Conecta c = new Conecta();
-        String sql = "INSERT INTO producao VALUES(null, ?,?,?)";
+        String sql = "INSERT INTO Producao VALUES(null, ?,?,?)";
         c.pStmt(sql);
         try
         {
@@ -86,7 +86,7 @@ public class ProducaoDiariaDAO
         
         try
         {
-            ResultSet rSet = c.getPreparedStatement().executeQuery("SELECT * FROM CadastroAnimal");
+            ResultSet rSet = c.getPreparedStatement().executeQuery("SELECT * FROM Producao");
             for(;rSet.next();)
             {
                 pd = new ProducaoDiaria();

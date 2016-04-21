@@ -2,7 +2,7 @@ package Telas.FramesAnimais;
 
 import DAO.AnimalDAO;
 import Model.Animal;
-import Telas.JFrame_Principal;
+import Telas.FramePrincipal.JFrame_Principal;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -86,7 +86,7 @@ public class JFrame_AlterarAnimais extends JFrame_Animal
         if(verificacoes(animal))
         {
             AnimalDAO.alterarAnimal(animal);
-            JFrame_Principal.alterAnimalList(animal, select);
+            //JPanel_Animal.AlterarAnimalList(animal, select);
         }
         else
             return;

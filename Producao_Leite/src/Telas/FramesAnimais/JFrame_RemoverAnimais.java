@@ -2,7 +2,7 @@ package Telas.FramesAnimais;
 
 import DAO.AnimalDAO;
 import Model.Animal;
-import Telas.JFrame_Principal;
+import Telas.FramePrincipal.JFrame_Principal;
 import java.text.SimpleDateFormat;
 
 /**
@@ -59,7 +59,7 @@ public class JFrame_RemoverAnimais extends JFrame_Animal
     public void Confirmar()
     {
         AnimalDAO.removerAnimal(animal);
-        JFrame_Principal.removerAnimalList(select);
+        //JPanel_Animal.RemoverAnimalList(select);
         dispose();
     }
 }

@@ -5,13 +5,11 @@
         <group>
             <file>file:/C:/Users/Shelmo/Documents/NetBeansProjects/Producao_Leite/Producao_Leite/src/DAO/AnimalDAO.java</file>
             <file>file:/C:/Users/Shelmo/Documents/NetBeansProjects/Producao_Leite/Producao_Leite/src/Telas/JFrame_Base.java</file>
-            <file>file:/C:/Users/Shelmo/Documents/NetBeansProjects/Producao_Leite/Producao_Leite/src/Telas/JFrame_Principal.java</file>
             <file>file:/C:/Users/Shelmo/Documents/NetBeansProjects/Producao_Leite/Producao_Leite/src/Telas/FramesAnimais/JFrame_Animal.java</file>
-            <file>file:/C:/Users/Shelmo/Documents/NetBeansProjects/Producao_Leite/Producao_Leite/src/Telas/JFrame_ProducaoDiaria.java</file>
-            <file>file:/C:/Users/Shelmo/Documents/NetBeansProjects/Producao_Leite/Producao_Leite/src/Telas/FramesAnimais/JFrame_PesquisarAnimais.java</file>
-            <file>file:/C:/Users/Shelmo/Documents/NetBeansProjects/Producao_Leite/Producao_Leite/src/Telas/FramesAnimais/JFrame_AlterarAnimais.java</file>
-            <file>file:/C:/Users/Shelmo/Documents/NetBeansProjects/Producao_Leite/Producao_Leite/src/Telas/FramesAnimais/JFrame_RemoverAnimais.java</file>
-            <file>file:/C:/Users/Shelmo/Documents/NetBeansProjects/Producao_Leite/Producao_Leite/src/Telas/FramesAnimais/JFrame_CadastrarAnimais.java</file>
+            <file>file:/C:/Users/Shelmo/Documents/NetBeansProjects/Producao_Leite/Producao_Leite/src/Telas/FramePrincipal/JFrame_Principal.java</file>
+            <file>file:/C:/Users/Shelmo/Documents/NetBeansProjects/Producao_Leite/Producao_Leite/src/Telas/FramesProducaoDiaria/JFrame_ProducaoDiaria.java</file>
+            <file>file:/C:/Users/Shelmo/Documents/NetBeansProjects/Producao_Leite/Producao_Leite/src/Telas/FramePrincipal/JPanel_Animal.java</file>
+            <file>file:/C:/Users/Shelmo/Documents/NetBeansProjects/Producao_Leite/Producao_Leite/src/Telas/FramesProducaoDiaria/JFrame_CadastrarProducaoDiaria.java</file>
         </group>
     </open-files>
 </project-private>

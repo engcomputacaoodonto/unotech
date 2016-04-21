@@ -2,7 +2,7 @@ package Telas.FramesAnimais;
 
 import Model.Animal;
 import Telas.JFrame_Base;
-import Telas.JFrame_Principal;
+import Telas.FramePrincipal.JFrame_Principal;
 import java.awt.GridBagConstraints;
 import java.util.ArrayList;
 import javax.swing.JCheckBox;
@@ -122,8 +122,8 @@ public class JFrame_PesquisarAnimais extends JFrame_Base
             }
             if(linha != -1)
             {
-                JFrame_Principal.getJTable().setRowSelectionInterval(linha, linha);
-                JFrame_Principal.getJTable().setColumnSelectionInterval(0, 0);
+                //JPanel_Animal.getJTableAnimais().setRowSelectionInterval(linha, linha);
+                //JPanel_Animal.getJTableAnimais().setColumnSelectionInterval(0, 0);
                 dispose();
             }
             else
@@ -143,8 +143,8 @@ public class JFrame_PesquisarAnimais extends JFrame_Base
             }
             if(linha != -1)
             {
-                JFrame_Principal.getJTable().setRowSelectionInterval(linha, linha);
-                JFrame_Principal.getJTable().setColumnSelectionInterval(1, 1);
+                //JPanel_Animal.getJTableAnimais().setRowSelectionInterval(linha, linha);
+                //JPanel_Animal.getJTableAnimais().setColumnSelectionInterval(1, 1);
                 dispose();
             }
             else
