@@ -201,6 +201,12 @@ public class JTable_Tabela
         TabelaProducaoAnimalOrdenha();
     }
     
+    public static void removeProducaoAnimalOrdenha(int select)
+    {
+        producaoAnimalOrdenhaList.remove(select);
+        TabelaProducaoAnimalOrdenha();
+    }
+    
     public static void setProducaoAnimalOrdenha(ProducaoDiaria producaoAnimalOrdenha, int select)
     {
         producaoAnimalOrdenhaList.set(select, producaoAnimalOrdenha);

@@ -10,6 +10,7 @@ import Telas.FramesAnimais.JFrame_PesquisarAnimais;
 import Telas.FramesAnimais.JFrame_RemoverAnimais;
 import Telas.FramesProducaoDiaria.JFrame_AlterarProducaoAnimalOrdenha;
 import Telas.FramesProducaoDiaria.JFrame_CadastrarProducaoDiaria;
+import Telas.FramesProducaoDiaria.JFrame_RemoverProducaoAnimalOrdenha;
 import Telas.JFrame_Base;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -167,7 +168,7 @@ public class JFrame_Principal extends JFrame_Base
             }
         });
         
-        //Botão CadastrarAnimal
+        //Botão Cadastrar
         jButton_CadastrarAnimal.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -176,7 +177,6 @@ public class JFrame_Principal extends JFrame_Base
             }
         });
         
-        //Botão CadastrarProduçãoAnimalOrdenha
         jButton_CadastrarProducaoOrdenha.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -207,6 +207,27 @@ public class JFrame_Principal extends JFrame_Base
                 new JFrame_RemoverAnimais(animal, select);
             }
         });
+        
+        jButton_RemoverProducaoOrdenha.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                int select = tabela.getjTable_Tabela().getSelectedRow();
+                if(select == -1)
+                {
+                    JOptionPane.showMessageDialog(null,"Nunhum campo selecionado!", "Erro!", 2);
+                    return;
+                }
+                ProducaoDiaria pao = new ProducaoDiaria();
+                pao.setId(producaoAnimalOrdenhaList.get(select).getId());
+                pao.setIdAnimal(producaoAnimalOrdenhaList.get(select).getIdAnimal());
+                pao.setData(producaoAnimalOrdenhaList.get(select).getData());
+                pao.setQntLitros(producaoAnimalOrdenhaList.get(select).getQntLitros());
+                new JFrame_RemoverProducaoAnimalOrdenha(pao, select);
+            }
+        });
+        
+        
         
         //Botão Alterar
         jButton_AlterarAnimal.addActionListener(new java.awt.event.ActionListener()

@@ -32,13 +32,13 @@ public class JFrame_RemoverAnimais extends JFrame_Animal
         getjLabel_Aviso().setText("Deseja realmente remover esse animal?");
         
         getjTextField_Nome().setText(animal.getNome());
-        getjTextField_Nome().setEnabled(false);
+        getjTextField_Nome().setEditable(false);
         getjFormattedTextField_Numero().setText(animal.getNumero());
-        getjFormattedTextField_Numero().setEnabled(false);
+        getjFormattedTextField_Numero().setEditable(false);
         getjTextField_Raca().setText(animal.getRaca());
-        getjTextField_Raca().setEnabled(false);
+        getjTextField_Raca().setEditable(false);
         getjFormattedTextField_Data_Nasc().setText(format);
-        getjFormattedTextField_Data_Nasc().setEnabled(false);
+        getjFormattedTextField_Data_Nasc().setEditable(false);
         
         
         if(this.animal.getSexo().equals("M"))

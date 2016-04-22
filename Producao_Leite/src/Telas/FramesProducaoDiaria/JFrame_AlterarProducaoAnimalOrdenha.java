@@ -14,9 +14,9 @@ import java.text.SimpleDateFormat;
  */
 public class JFrame_AlterarProducaoAnimalOrdenha extends JFrame_ProducaoDiaria
 {
-    private ProducaoDiaria producaoAnimalOrdenha;
-    private int select;
-    private String nomeNumero[];
+    private final ProducaoDiaria producaoAnimalOrdenha;
+    private final int select;
+    private final String nomeNumero[];
     
     public JFrame_AlterarProducaoAnimalOrdenha(ProducaoDiaria producaoAnimalOrdenha, int select)
     {
@@ -34,10 +34,8 @@ public class JFrame_AlterarProducaoAnimalOrdenha extends JFrame_ProducaoDiaria
         getjButton_Confirmar().setText("Salvar Alterações");
         getjLabel_Aviso().setText("Alterações não salvas serão perdidas!");
         
-        if(!nomeNumero[0].isEmpty())
-            getjTextField_Nome().setText(nomeNumero[0]);
-        if(!nomeNumero[1].isEmpty())
-            getjFormattedTextField_Numero().setText(nomeNumero[1]);
+        getjTextField_Nome().setText(nomeNumero[0]);
+        getjFormattedTextField_Numero().setText(nomeNumero[1]);
         
         
         getjFormattedTextField_Data().setText(format);
