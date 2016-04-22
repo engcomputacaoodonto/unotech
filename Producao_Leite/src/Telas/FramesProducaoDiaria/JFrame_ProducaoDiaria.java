@@ -1,6 +1,7 @@
 package Telas.FramesProducaoDiaria;
 
 import Model.ProducaoDiaria;
+import Telas.FramePrincipal.JTable_Tabela;
 import Telas.JFrame_Base;
 import java.awt.GridBagConstraints;
 import java.sql.Date;
@@ -197,6 +198,9 @@ public abstract class JFrame_ProducaoDiaria extends JFrame_Base
     {
         boolean retorno = true;
         
+        String nomeNumero[] = {jTextField_Nome.getText(), jFormattedTextField_Numero.getText()};
+            
+        
         if(jCheckBox_Nome.isSelected())
         {
             if(jTextField_Nome.getText().length() == 0)
@@ -210,6 +214,12 @@ public abstract class JFrame_ProducaoDiaria extends JFrame_Base
                 jLabel_ErroNome.setText("O campo Nome deve ocupar no máximo 255 caracteres!");
                 retorno = false;
             }
+            
+            if(JTable_Tabela.getId(nomeNumero) == -1)
+            {
+                jLabel_ErroNome.setText(jTextField_Nome.getText() + " não cadastrado!");
+                return false;
+            }
         }
         
         if(jCheckBox_Numero.isSelected())
@@ -218,6 +228,12 @@ public abstract class JFrame_ProducaoDiaria extends JFrame_Base
             {
                 jLabel_ErroNumero.setText("O campo Número deve ser preenchido!");
                 retorno = false;
+            }
+            
+            if(JTable_Tabela.getId(nomeNumero) == -1)
+            {
+                jLabel_ErroNumero.setText(jFormattedTextField_Numero.getText() + " não cadastrado!");
+                return false;
             }
         }
         

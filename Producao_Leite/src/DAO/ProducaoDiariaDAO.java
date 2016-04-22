@@ -66,7 +66,7 @@ public class ProducaoDiariaDAO
             c.getPreparedStatement().setDate(1,pd.getData());
             c.getPreparedStatement().setDouble(2,pd.getQntLitros());
             c.getPreparedStatement().setInt(3,pd.getIdAnimal());
-            c.getPreparedStatement().setInt(3, pd.getId());
+            c.getPreparedStatement().setInt(4, pd.getId());
             c.getPreparedStatement().execute();
             c.Desconectar();
         }

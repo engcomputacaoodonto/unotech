@@ -2,7 +2,6 @@ package Telas.FramesAnimais;
 
 import DAO.AnimalDAO;
 import Model.Animal;
-import Telas.FramePrincipal.JFrame_Principal;
 import Telas.FramePrincipal.JTable_Tabela;
 import java.sql.Date;
 import java.text.ParseException;

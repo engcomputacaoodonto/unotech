@@ -8,6 +8,7 @@ import Telas.FramesAnimais.JFrame_AlterarAnimais;
 import Telas.FramesAnimais.JFrame_CadastrarAnimais;
 import Telas.FramesAnimais.JFrame_PesquisarAnimais;
 import Telas.FramesAnimais.JFrame_RemoverAnimais;
+import Telas.FramesProducaoDiaria.JFrame_AlterarProducaoAnimalOrdenha;
 import Telas.FramesProducaoDiaria.JFrame_CadastrarProducaoDiaria;
 import Telas.JFrame_Base;
 import java.awt.GridBagConstraints;
@@ -227,6 +228,25 @@ public class JFrame_Principal extends JFrame_Base
                 animal.setSexo(animalList.get(select).getSexo());
                 animal.setSituacao(animalList.get(select).getSituacao());
                 new JFrame_AlterarAnimais(animal, select);
+            }
+        });
+        
+        jButton_AlterarProducaoOrdenha.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                int select = tabela.getjTable_Tabela().getSelectedRow();
+                if(select == -1)
+                {
+                    JOptionPane.showMessageDialog(null,"Nunhum campo selecionado!", "Erro!", 2);
+                    return;
+                }
+                ProducaoDiaria pao = new ProducaoDiaria();
+                pao.setId(producaoAnimalOrdenhaList.get(select).getId());
+                pao.setIdAnimal(producaoAnimalOrdenhaList.get(select).getIdAnimal());
+                pao.setData(producaoAnimalOrdenhaList.get(select).getData());
+                pao.setQntLitros(producaoAnimalOrdenhaList.get(select).getQntLitros());
+                new JFrame_AlterarProducaoAnimalOrdenha(pao, select);
             }
         });
         

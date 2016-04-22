@@ -106,6 +106,7 @@ public class JTable_Tabela
                         {
                             nome = animalList.get(i).getNome();
                             numero = animalList.get(i).getNumero();
+                            break;
                         }
                     }
                     
@@ -133,6 +134,49 @@ public class JTable_Tabela
         TabelaProducaoAnimalOrdenha();
     }
     
+    public static String[] getNomeNumeroAnimal(int select)
+    {
+        String retorno[] = new String[2];
+        for(int i = 0;i<animalList.size();i++)
+        {
+            if(animalList.get(i).getId() == select)
+            {
+                retorno[0] = animalList.get(i).getNome();
+                retorno[1] = animalList.get(i).getNumero();
+                break;
+            }
+        }
+
+        return retorno;
+    }
+    
+    public static int getId(String nomeNumero[])
+    {
+        if(!nomeNumero[0].isEmpty())
+        {
+            for(Animal a: animalList)
+            {
+                if(a.getNome().equals(nomeNumero[0]))
+                {
+                    return a.getId();
+                }
+            }
+        }
+        
+        if(!nomeNumero[1].isEmpty())
+        {
+            for(Animal a: animalList)
+            {
+                if(a.getNumero().equals(nomeNumero[1]))
+                {
+                    return a.getId();
+                }
+            }
+        }
+        
+        return -1;
+    }
+    
     public static void addAnimal(Animal animal)
     {
         animalList.add(animal);
@@ -154,6 +198,12 @@ public class JTable_Tabela
     public static void addProducaoAnimalOrdenha(ProducaoDiaria producaoAnimalOrdenha)
     {
         producaoAnimalOrdenhaList.add(producaoAnimalOrdenha);
+        TabelaProducaoAnimalOrdenha();
+    }
+    
+    public static void setProducaoAnimalOrdenha(ProducaoDiaria producaoAnimalOrdenha, int select)
+    {
+        producaoAnimalOrdenhaList.set(select, producaoAnimalOrdenha);
         TabelaProducaoAnimalOrdenha();
     }
 
