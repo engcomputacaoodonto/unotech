@@ -1,6 +1,7 @@
-package Telas.FramesAnimais;
+package Telas.FramesProducaoDiaria;
 
-import Model.Animal;
+import Model.ProducaoDiaria;
+import Telas.FramePrincipal.JTable_Tabela;
 import Telas.JFrame_Base;
 import java.awt.GridBagConstraints;
 import java.util.ArrayList;
@@ -8,27 +9,25 @@ import javax.swing.JCheckBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import Telas.FramePrincipal.JTable_Tabela;
-
 
 /**
  *
  * @author Shelmo
  */
-public class JFrame_PesquisarAnimais extends JFrame_Base
+public class JFrame_PesquisarProducaoAnimalOrdenha extends JFrame_Base
 {
     private JLabel jLabel_Pesquisa;
     private JLabel jLabel_ErroPesquisa;
     private JFormattedTextField jFormattedTextField_Pesquisa;
     private JCheckBox jCheckBox_Nome;
     private JCheckBox jCheckBox_Numero;
-    private ArrayList<Animal> animalList;
+    private ArrayList<ProducaoDiaria> producaoAnimalOrdenha;
     
-    public JFrame_PesquisarAnimais(ArrayList<Animal> animalList)
+    public JFrame_PesquisarProducaoAnimalOrdenha(ArrayList<ProducaoDiaria> producaoAnimalOrdenha)
     {
         super("");
+        this.producaoAnimalOrdenha = producaoAnimalOrdenha;
         Componentes();
-        this.animalList = animalList;
     }
     
     private void Componentes()
@@ -129,9 +128,10 @@ public class JFrame_PesquisarAnimais extends JFrame_Base
         int linha = -1;
         if(Verificações() && jCheckBox_Nome.isSelected())
         {
-            for(int i = 0;animalList.size() > i;i++)
+            for(int i = 0;producaoAnimalOrdenha.size() > i;i++)
             {
-                if(animalList.get(i).getNome().equalsIgnoreCase(jFormattedTextField_Pesquisa.getText()))
+                String nomeNumero[] = {jFormattedTextField_Pesquisa.getText(), ""};
+                if(JTable_Tabela.getId(nomeNumero) == producaoAnimalOrdenha.get(i).getId())
                 {
                     linha = i;
                     break;
@@ -150,9 +150,10 @@ public class JFrame_PesquisarAnimais extends JFrame_Base
         }
         if(Verificações() && jCheckBox_Numero.isSelected())
         {
-            for(int i = 0;animalList.size() > i;i++)
+            for(int i = 0;producaoAnimalOrdenha.size() > i;i++)
             {
-                if(animalList.get(i).getNumero().equalsIgnoreCase(jFormattedTextField_Pesquisa.getText()))
+                String nomeNumero[] = {"", jFormattedTextField_Pesquisa.getText()};
+                if(JTable_Tabela.getId(nomeNumero) == producaoAnimalOrdenha.get(i).getId())
                 {
                     linha = i;
                     break;
@@ -171,3 +172,4 @@ public class JFrame_PesquisarAnimais extends JFrame_Base
         }
     }
 }
+

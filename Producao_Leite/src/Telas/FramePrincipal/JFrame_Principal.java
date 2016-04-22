@@ -10,6 +10,7 @@ import Telas.FramesAnimais.JFrame_PesquisarAnimais;
 import Telas.FramesAnimais.JFrame_RemoverAnimais;
 import Telas.FramesProducaoDiaria.JFrame_AlterarProducaoAnimalOrdenha;
 import Telas.FramesProducaoDiaria.JFrame_CadastrarProducaoDiaria;
+import Telas.FramesProducaoDiaria.JFrame_PesquisarProducaoAnimalOrdenha;
 import Telas.FramesProducaoDiaria.JFrame_RemoverProducaoAnimalOrdenha;
 import Telas.JFrame_Base;
 import java.awt.GridBagConstraints;
@@ -277,6 +278,14 @@ public class JFrame_Principal extends JFrame_Base
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
                 new JFrame_PesquisarAnimais(animalList);
+            }
+        });
+        
+        jButton_LocalizarProducaoOrdenha.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                new JFrame_PesquisarProducaoAnimalOrdenha(producaoAnimalOrdenhaList);
             }
         });
     }
