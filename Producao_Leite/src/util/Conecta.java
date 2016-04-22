@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -55,7 +56,8 @@ public class Conecta
         }
         catch(SQLException sqlex)
         {
-            return "Erro: " + sqlex.getMessage();
+            JOptionPane.showMessageDialog(null,"Erro: \n" + sqlex.getMessage(), "Erro!", 0);
+            return "Erro!";
         }
     }
     
@@ -69,6 +71,7 @@ public class Conecta
         }
         catch(SQLException sqlex)
         {
+            JOptionPane.showMessageDialog(null,"Erro: \n" + sqlex.getMessage(), "Erro!", 0);
             return "Erro: " + sqlex.getMessage();
         }
     }

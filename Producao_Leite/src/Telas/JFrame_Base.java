@@ -1,10 +1,13 @@
 package Telas;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.text.ParseException;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -23,13 +26,15 @@ public abstract class JFrame_Base extends javax.swing.JFrame
     private JPanel jPanel_NORTH;
     private JPanel jPanel_CENTER;
     private JLabel jLabel_Titulo;
+    private JLabel jLabel_Background;
     private JButton jButton_Voltar;
     private JButton jButton_Confirmar;
     private GridBagConstraints cons;
     
     
-    public JFrame_Base()
+    public JFrame_Base(String image)
     {
+        JLabel_Background(new ImageIcon(image));
         componentes();
         setVisible(true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -48,6 +53,10 @@ public abstract class JFrame_Base extends javax.swing.JFrame
         jPanel_SOUTH = new JPanel();
         jPanel_NORTH = new JPanel();
         jPanel_CENTER = new JPanel();
+        jPanel_CENTER.setOpaque(false);
+        jPanel_SOUTH.setOpaque(false);
+        jPanel_NORTH.setOpaque(false);
+
         
         
         jPanel_SOUTH.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -78,11 +87,19 @@ public abstract class JFrame_Base extends javax.swing.JFrame
         jPanel_SOUTH.add(jButton_Confirmar);
         jPanel_SOUTH.add(jButton_Voltar);
         jPanel_NORTH.add(jLabel_Titulo);
-        add(BorderLayout.SOUTH, jPanel_SOUTH);
-        add(BorderLayout.NORTH, jPanel_NORTH);
-        add(BorderLayout.CENTER, jPanel_CENTER);
+        jLabel_Background.setLayout(new BorderLayout());
+        jLabel_Background.add(BorderLayout.SOUTH, jPanel_SOUTH);
+        jLabel_Background.add(BorderLayout.NORTH, jPanel_NORTH);
+        jLabel_Background.add(BorderLayout.CENTER, jPanel_CENTER);
         setSize(600, 400);
         setVisible(true);
+    }
+    
+    private void JLabel_Background(ImageIcon img_bg)
+    {
+        Icon img_background = img_bg;
+        jLabel_Background = new JLabel(img_background);
+        setContentPane(jLabel_Background);
     }
     
     public JFormattedTextField setFormatNumero(JFormattedTextField jFormattedTextField_Numero)
@@ -161,6 +178,11 @@ public abstract class JFrame_Base extends javax.swing.JFrame
     public JButton getjButton_Confirmar()
     {
         return jButton_Confirmar;
+    }
+
+    public JButton getjButton_Voltar()
+    {
+        return jButton_Voltar;
     }
 
     public void setjPanel_CENTER(JPanel jPanel_CENTER)

@@ -41,9 +41,9 @@ public abstract class JFrame_Animal extends JFrame_Base
     private JCheckBox jCheckBox_Morte;
     private JCheckBox jCheckBox_Venda;
     
-    public JFrame_Animal()
+    public JFrame_Animal(String image)
     {
-        super();
+        super(image);
         componentes();
     }
     
@@ -196,6 +196,7 @@ public abstract class JFrame_Animal extends JFrame_Base
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
+                jCheckBox_Femea.setSelected(true);
                 if(jCheckBox_Macho.isSelected())
                 {
                     jCheckBox_Macho.setSelected(false);
@@ -208,6 +209,7 @@ public abstract class JFrame_Animal extends JFrame_Base
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
+                jCheckBox_Macho.setSelected(true);
                 if(jCheckBox_Femea.isSelected())
                 {
                     jCheckBox_Femea.setSelected(false);
@@ -220,6 +222,7 @@ public abstract class JFrame_Animal extends JFrame_Base
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
+                jCheckBox_Ativo.setSelected(true);
                 if(jCheckBox_Morte.isSelected())
                     jCheckBox_Morte.setSelected(false);
                 if(jCheckBox_Venda.isSelected())
@@ -230,6 +233,7 @@ public abstract class JFrame_Animal extends JFrame_Base
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
+                jCheckBox_Morte.setSelected(true);
                 if(jCheckBox_Venda.isSelected())
                     jCheckBox_Venda.setSelected(false);
                 if(jCheckBox_Ativo.isSelected())
@@ -240,6 +244,7 @@ public abstract class JFrame_Animal extends JFrame_Base
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
+                jCheckBox_Venda.setSelected(true);
                 if(jCheckBox_Morte.isSelected())
                     jCheckBox_Morte.setSelected(false);
                 if(jCheckBox_Ativo.isSelected())

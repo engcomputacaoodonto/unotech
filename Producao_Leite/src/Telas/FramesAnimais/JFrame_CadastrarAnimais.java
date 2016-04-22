@@ -16,9 +16,10 @@ public class JFrame_CadastrarAnimais extends JFrame_Animal
     
     public JFrame_CadastrarAnimais()
     {
-        super();
+        super("src\\Telas\\FramesAnimais\\Add_BackGround.jpg");
         getjLabel_Titulo().setText("Cadastrar Animal");
         getjButton_Confirmar().setText("Salvar");
+        getjLabel_Aviso().setOpaque(true);
         getjLabel_Aviso().setText("Os campos marcados com (*) devem ser preenchidos ou marcados!");
     }
     public void Confirmar()

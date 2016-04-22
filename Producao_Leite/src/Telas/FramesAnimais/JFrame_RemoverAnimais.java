@@ -2,7 +2,7 @@ package Telas.FramesAnimais;
 
 import DAO.AnimalDAO;
 import Model.Animal;
-import Telas.FramePrincipal.JFrame_Principal;
+import Telas.FramePrincipal.JTable_Tabela;
 import java.text.SimpleDateFormat;
 
 /**
@@ -12,16 +12,20 @@ import java.text.SimpleDateFormat;
 public class JFrame_RemoverAnimais extends JFrame_Animal
 {
     private Animal animal = new Animal();
-    private int select;
+    private final int select;
     
     public JFrame_RemoverAnimais(Animal animal, int select)
     {
-        super();
+        super("");
         this.animal = animal;
         this.select = select;
+        String format = null;
         
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        String format = sdf.format(this.animal.getDataNasc());
+        if(animal.getDataNasc() != null)
+        {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            format = sdf.format(this.animal.getDataNasc());
+        }
         
         getjLabel_Titulo().setText("Remover Animal");
         getjButton_Confirmar().setText("Remover");
@@ -59,7 +63,7 @@ public class JFrame_RemoverAnimais extends JFrame_Animal
     public void Confirmar()
     {
         AnimalDAO.removerAnimal(animal);
-        //JPanel_Animal.RemoverAnimalList(select);
+        JTable_Tabela.removeAnimal(select);
         dispose();
     }
 }

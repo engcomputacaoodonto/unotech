@@ -35,7 +35,7 @@ public abstract class JFrame_ProducaoDiaria extends JFrame_Base
     
     public JFrame_ProducaoDiaria()
     {
-        super();
+        super("");
         Componentes();
     }
     

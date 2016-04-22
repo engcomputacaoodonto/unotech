@@ -2,14 +2,13 @@ package Telas.FramesAnimais;
 
 import Model.Animal;
 import Telas.JFrame_Base;
-import Telas.FramePrincipal.JFrame_Principal;
 import java.awt.GridBagConstraints;
 import java.util.ArrayList;
 import javax.swing.JCheckBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+import Telas.FramePrincipal.JTable_Tabela;
 
 
 /**
@@ -27,7 +26,7 @@ public class JFrame_PesquisarAnimais extends JFrame_Base
     
     public JFrame_PesquisarAnimais(ArrayList<Animal> animalList)
     {
-        super();
+        super("");
         Componentes();
         this.animalList = animalList;
     }
@@ -46,11 +45,11 @@ public class JFrame_PesquisarAnimais extends JFrame_Base
         
         //Nome de Campos
         jLabel_ErroPesquisa.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel_Pesquisa.setText("Pesquisa: ");
+        jLabel_Pesquisa.setText("Localizar: ");
         
         //Nome de CheckBox
-        jCheckBox_Nome.setText("Pesquisar por Nome");
-        jCheckBox_Numero.setText("Pesquisar por Número");
+        jCheckBox_Nome.setText("Localizar por Nome");
+        jCheckBox_Numero.setText("Localizar por Número");
         
         //Line 0
         getCons().fill = GridBagConstraints.BOTH;
@@ -107,10 +106,26 @@ public class JFrame_PesquisarAnimais extends JFrame_Base
         });
     }
     
+    private boolean Verificações()
+    {
+        if(jFormattedTextField_Pesquisa.getText().length() == 0 ||
+                jFormattedTextField_Pesquisa.getText().equals("      "))
+        {
+            jLabel_ErroPesquisa.setText("O campo Localizar deve ser preenchido!");
+            return false;
+        }
+        if(jFormattedTextField_Pesquisa.getText().length() > 255 && jCheckBox_Nome.isSelected())
+        {
+            jLabel_ErroPesquisa.setText("O campo Localizar deve conter no máximo 255 caracteres!");
+            return false;
+        }
+        return true;
+    }
+    
     public void Confirmar()
     {
         int linha = -1;
-        if(jCheckBox_Nome.isSelected())
+        if(Verificações() && jCheckBox_Nome.isSelected())
         {
             for(int i = 0;animalList.size() > i;i++)
             {
@@ -122,8 +137,8 @@ public class JFrame_PesquisarAnimais extends JFrame_Base
             }
             if(linha != -1)
             {
-                //JPanel_Animal.getJTableAnimais().setRowSelectionInterval(linha, linha);
-                //JPanel_Animal.getJTableAnimais().setColumnSelectionInterval(0, 0);
+                JTable_Tabela.getjTable_Tabela().setRowSelectionInterval(linha, linha);
+                JTable_Tabela.getjTable_Tabela().setColumnSelectionInterval(0, 0);
                 dispose();
             }
             else
@@ -131,7 +146,7 @@ public class JFrame_PesquisarAnimais extends JFrame_Base
                  JOptionPane.showMessageDialog(this, "Animal não encontrado!", "Erro!", 2);
             }
         }
-        if(jCheckBox_Numero.isSelected())
+        if(Verificações() && jCheckBox_Numero.isSelected())
         {
             for(int i = 0;animalList.size() > i;i++)
             {
@@ -143,8 +158,8 @@ public class JFrame_PesquisarAnimais extends JFrame_Base
             }
             if(linha != -1)
             {
-                //JPanel_Animal.getJTableAnimais().setRowSelectionInterval(linha, linha);
-                //JPanel_Animal.getJTableAnimais().setColumnSelectionInterval(1, 1);
+                JTable_Tabela.getjTable_Tabela().setRowSelectionInterval(linha, linha);
+                JTable_Tabela.getjTable_Tabela().setColumnSelectionInterval(1, 1);
                 dispose();
             }
             else

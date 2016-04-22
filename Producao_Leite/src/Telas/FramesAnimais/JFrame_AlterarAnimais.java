@@ -3,6 +3,7 @@ package Telas.FramesAnimais;
 import DAO.AnimalDAO;
 import Model.Animal;
 import Telas.FramePrincipal.JFrame_Principal;
+import Telas.FramePrincipal.JTable_Tabela;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,12 +19,17 @@ public class JFrame_AlterarAnimais extends JFrame_Animal
     
     public JFrame_AlterarAnimais(Animal animal, int select)
     {
-        super();
+        super("");
         this.animal = animal;
         this.select = select;
         
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        String format = sdf.format(this.animal.getDataNasc());
+        String format = null;
+        
+        if(animal.getDataNasc() != null)
+        {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            format = sdf.format(this.animal.getDataNasc());
+        }
         
         getjLabel_Titulo().setText("Alterar Animal");
         getjButton_Confirmar().setText("Salvar Alterações");
@@ -86,7 +92,7 @@ public class JFrame_AlterarAnimais extends JFrame_Animal
         if(verificacoes(animal))
         {
             AnimalDAO.alterarAnimal(animal);
-            //JPanel_Animal.AlterarAnimalList(animal, select);
+            JTable_Tabela.setAnimal(animal, select);
         }
         else
             return;
