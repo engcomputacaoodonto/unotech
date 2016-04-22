@@ -4,6 +4,7 @@ import DAO.AnimalDAO;
 import DAO.ProducaoDiariaDAO;
 import Model.Animal;
 import Model.ProducaoDiaria;
+import Telas.FramePrincipal.JTable_Tabela;
 import static java.lang.Double.parseDouble;
 import java.sql.Date;
 import java.text.ParseException;
@@ -72,6 +73,7 @@ public class JFrame_CadastrarProducaoDiaria extends JFrame_ProducaoDiaria
         if(Verificacao(pd))
         {
             ProducaoDiariaDAO.registrarProducao(pd);
+            JTable_Tabela.addProducaoAnimalOrdenha(pd);
         }
         else
             return;

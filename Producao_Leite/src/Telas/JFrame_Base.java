@@ -185,10 +185,10 @@ public abstract class JFrame_Base extends javax.swing.JFrame
         return jButton_Voltar;
     }
 
-    public void setjPanel_CENTER(JPanel jPanel_CENTER)
+    public void setCons(GridBagConstraints cons)
     {
-        this.jPanel_CENTER = jPanel_CENTER;
+        this.cons = cons;
     }
-    
+
     public abstract void Confirmar();
 }

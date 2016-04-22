@@ -1,7 +1,9 @@
 package Telas.FramePrincipal;
 
 import DAO.AnimalDAO;
+import DAO.ProducaoDiariaDAO;
 import Model.Animal;
+import Model.ProducaoDiaria;
 import Telas.FramesAnimais.JFrame_AlterarAnimais;
 import Telas.FramesAnimais.JFrame_CadastrarAnimais;
 import Telas.FramesAnimais.JFrame_PesquisarAnimais;
@@ -14,7 +16,6 @@ import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -25,7 +26,9 @@ import javax.swing.JScrollPane;
  */
 public class JFrame_Principal extends JFrame_Base
 {
+    
     private ArrayList<Animal> animalList;
+    private ArrayList<ProducaoDiaria> producaoAnimalOrdenhaList;
     
     private JButton jButton_Plantel;
     private JButton jButton_ProducaoOrdenha;
@@ -33,8 +36,11 @@ public class JFrame_Principal extends JFrame_Base
     private JButton jButton_AlterarAnimal;
     private JButton jButton_RemoverAnimal;
     private JButton jButton_LocalizarAnimal;
+    private JButton jButton_CadastrarProducaoOrdenha;
+    private JButton jButton_AlterarProducaoOrdenha;
+    private JButton jButton_RemoverProducaoOrdenha;
+    private JButton jButton_LocalizarProducaoOrdenha;
     
-    private JScrollPane jScrollPane_BaseTabela;
     
     private JTable_Tabela tabela;
     
@@ -54,29 +60,41 @@ public class JFrame_Principal extends JFrame_Base
         jButton_AlterarAnimal = new JButton();
         jButton_RemoverAnimal = new JButton();
         jButton_LocalizarAnimal = new JButton();
+        jButton_CadastrarProducaoOrdenha = new JButton();
+        jButton_AlterarProducaoOrdenha = new JButton();
+        jButton_RemoverProducaoOrdenha = new JButton();
+        jButton_LocalizarProducaoOrdenha = new JButton();
         
-        //Texto Componentes
+        //Texto e Icones em Componentes
         Icon add = new ImageIcon("src\\Telas\\FramePrincipal\\add.png");
         jButton_CadastrarAnimal.setIcon(add);
+        jButton_CadastrarProducaoOrdenha.setIcon(add);
         Icon update = new ImageIcon("src\\Telas\\FramePrincipal\\update.png");
         jButton_AlterarAnimal.setIcon(update);
+        jButton_AlterarProducaoOrdenha.setIcon(update);
         Icon remove = new ImageIcon("src\\Telas\\FramePrincipal\\remove.png");
         jButton_RemoverAnimal.setIcon(remove);
+        jButton_RemoverProducaoOrdenha.setIcon(remove);
         Icon search = new ImageIcon("src\\Telas\\FramePrincipal\\search.png");
         jButton_LocalizarAnimal.setIcon(search);
+        jButton_LocalizarProducaoOrdenha.setIcon(search);
         jButton_Plantel.setText("Plantel");
         jButton_ProducaoOrdenha.setText("Produção/Animal/Ordenha");
         getjButton_Voltar().setText("Fechar");
         
         //Visibilidade Componentes
-        jButton_CadastrarAnimal.setVisible(false);
-        jButton_AlterarAnimal.setVisible(false);
-        jButton_RemoverAnimal.setVisible(false);
-        jButton_LocalizarAnimal.setVisible(false);
+        BotoesAnimaisVisibilidade(false);
+        BotoesProducaoOrdenhaVisibilidade(false);
         getjButton_Confirmar().setVisible(false);
         
+        //Adicionar Botões
         getjPanel_NORTH().add(jButton_Plantel);
         getjPanel_NORTH().add(jButton_ProducaoOrdenha);
+        
+        //Carregar dados
+        animalList = AnimalDAO.getListaAnimais();
+        producaoAnimalOrdenhaList = ProducaoDiariaDAO.getListaProducaoDiaria();
+        tabela = new JTable_Tabela(animalList, producaoAnimalOrdenhaList);
 
         
         //Ação Botões
@@ -86,12 +104,17 @@ public class JFrame_Principal extends JFrame_Base
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
                 getjPanel_CENTER().removeAll();
+                BotoesProducaoOrdenhaVisibilidade(false);
                 //jPanel_CENTER adicionando Botões
                 getCons().fill = GridBagConstraints.NONE;
                 getCons().anchor = GridBagConstraints.NORTHWEST;
                 getCons().insets = new Insets(10, 10, 10, 10);
 
                 //Linha 0
+                getCons().gridwidth = 1;
+                getCons().gridheight = 1;
+                getCons().weightx = 0;
+                getCons().weighty = 0;
                 getCons().gridx = 0;
                 getCons().gridy = 0;
                 getjPanel_CENTER().add(jButton_CadastrarAnimal, getCons());
@@ -101,13 +124,11 @@ public class JFrame_Principal extends JFrame_Base
                 getjPanel_CENTER().add(jButton_AlterarAnimal, getCons());
                 getCons().gridx = 3;
                 getjPanel_CENTER().add(jButton_LocalizarAnimal, getCons());
+                getCons().gridy = 1;
+                getCons().gridx = 0;
                 
-                animalList = AnimalDAO.getListaAnimais();
-                jButton_CadastrarAnimal.setVisible(true);
-                jButton_AlterarAnimal.setVisible(true);
-                jButton_LocalizarAnimal.setVisible(true);
-                jButton_RemoverAnimal.setVisible(true);
-                add();
+                BotoesAnimaisVisibilidade(true);
+                addAnimais();
             }
         });
         
@@ -117,7 +138,31 @@ public class JFrame_Principal extends JFrame_Base
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
                 getjPanel_CENTER().removeAll();
-                new JFrame_CadastrarProducaoDiaria();
+                BotoesAnimaisVisibilidade(false);
+                //jPanel_CENTER adicionando Botões
+                getCons().fill = GridBagConstraints.NONE;
+                getCons().anchor = GridBagConstraints.NORTHWEST;
+                getCons().insets = new Insets(10, 10, 10, 10);
+
+                //Linha 0
+                getCons().gridwidth = 1;
+                getCons().gridheight = 1;
+                getCons().weightx = 0;
+                getCons().weighty = 0;
+                getCons().gridx = 0;
+                getCons().gridy = 0;
+                getjPanel_CENTER().add(jButton_CadastrarProducaoOrdenha, getCons());
+                getCons().gridx = 1;
+                getjPanel_CENTER().add(jButton_RemoverProducaoOrdenha, getCons());
+                getCons().gridx = 2;
+                getjPanel_CENTER().add(jButton_AlterarProducaoOrdenha, getCons());
+                getCons().gridx = 3;
+                getjPanel_CENTER().add(jButton_LocalizarProducaoOrdenha, getCons());
+                getCons().gridy = 1;
+                getCons().gridx = 0;
+                
+                BotoesProducaoOrdenhaVisibilidade(true);
+                addProducaoAnimalOrdenha();
             }
         });
         
@@ -127,6 +172,15 @@ public class JFrame_Principal extends JFrame_Base
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
                 new JFrame_CadastrarAnimais();
+            }
+        });
+        
+        //Botão CadastrarProduçãoAnimalOrdenha
+        jButton_CadastrarProducaoOrdenha.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                new JFrame_CadastrarProducaoDiaria();
             }
         });
         
@@ -187,24 +241,49 @@ public class JFrame_Principal extends JFrame_Base
     }
 
     
-    public void add()
+    private void addAnimais()
     {
-        tabela = new JTable_Tabela(animalList);
-        
-        jScrollPane_BaseTabela = new JScrollPane(tabela.getjTable_Tabela());
-          
-        getCons().weighty = 1;  
-        getCons().gridheight = GridBagConstraints.REMAINDER;  
+        tabela.setTabelaAnimais();
+        JScrollPane jScrollPane_BaseTabela = new JScrollPane(tabela.getjTable_Tabela());
           
         getCons().fill = GridBagConstraints.BOTH;  
         getCons().weightx = 1;  
         getCons().gridwidth = GridBagConstraints.REMAINDER;
-        getCons().gridy = 1;
-        getCons().gridx = 0;
+        getCons().weighty = 1;  
+        getCons().gridheight = GridBagConstraints.REMAINDER;  
         getjPanel_CENTER().add(jScrollPane_BaseTabela, getCons());
     }
     
-    public void Confirmar(){}
+    private void addProducaoAnimalOrdenha()
+    {
+        tabela.setTabelaProducaoAnimalOrdenha();
+        JScrollPane jScrollPane_BaseTabela = new JScrollPane(tabela.getjTable_Tabela());
+          
+        getCons().fill = GridBagConstraints.BOTH;  
+        getCons().weightx = 1;  
+        getCons().gridwidth = GridBagConstraints.REMAINDER;
+        getCons().weighty = 1;  
+        getCons().gridheight = GridBagConstraints.REMAINDER;
+        getjPanel_CENTER().add(jScrollPane_BaseTabela, getCons());
+    }
+    
+    private void BotoesAnimaisVisibilidade(boolean visibilidade)
+    {
+        jButton_CadastrarAnimal.setVisible(visibilidade);
+        jButton_AlterarAnimal.setVisible(visibilidade);
+        jButton_RemoverAnimal.setVisible(visibilidade);
+        jButton_LocalizarAnimal.setVisible(visibilidade);
+    }
+    
+    private void BotoesProducaoOrdenhaVisibilidade(boolean visibilidade)
+    {
+        jButton_CadastrarProducaoOrdenha.setVisible(visibilidade);
+        jButton_AlterarProducaoOrdenha.setVisible(visibilidade);
+        jButton_RemoverProducaoOrdenha.setVisible(visibilidade);
+        jButton_LocalizarProducaoOrdenha.setVisible(visibilidade);
+    }
+    
+    public void Confirmar(){/*Método não necessário para essa classe*/}
     
     public static void main(String args[])
     {

@@ -18,11 +18,11 @@ public class JTable_Tabela
     private static ArrayList<Animal> animalList;
     private static ArrayList<ProducaoDiaria> producaoAnimalOrdenhaList;
     
-    public JTable_Tabela(ArrayList<Animal> animalList)
+    public JTable_Tabela(ArrayList<Animal> animalList, ArrayList<ProducaoDiaria> producaoAnimalOrdenhaList)
     {
+        JTable_Tabela.producaoAnimalOrdenhaList = producaoAnimalOrdenhaList;
         JTable_Tabela.animalList = animalList;
         jTable_Tabela = new JTable();
-        TabelaAnimais();
     }
     
     private static void TabelaAnimais()
@@ -94,35 +94,43 @@ public class JTable_Tabela
                 DefaultTableModel model = (DefaultTableModel) jTable_Tabela.getModel();
                 model.setColumnIdentifiers(nomeColunas);
                 model.setNumRows(0);
-                for (Animal c : animalList)
+                for (ProducaoDiaria c : producaoAnimalOrdenhaList)
                 {
-                    String sexo = null;
-                    String situacao = null;
                     String format = null;
-                    if(c.getSexo().equals("F"))
-                        sexo = "Fêmea";
-                    if(c.getSexo().equals("M"))
-                        sexo = "Macho";
+                    String nome = null;
+                    String numero = null;
                     
-                    if(c.getSituacao().equals("A"))
-                        situacao = "Ativo";
-                    if(c.getSituacao().equals("M"))
-                        situacao = "Morte";
-                    if(c.getSituacao().equals("V"))
-                        situacao = "Venda";
+                    for(int i = 0;i < animalList.size();i++)
+                    {
+                        if(c.getIdAnimal() == animalList.get(i).getId())
+                        {
+                            nome = animalList.get(i).getNome();
+                            numero = animalList.get(i).getNumero();
+                        }
+                    }
                     
-                    if(c.getDataNasc() != null)
+                    if(c.getData() != null)
                     {
                         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                        format = sdf.format(c.getDataNasc());
+                        format = sdf.format(c.getData());
                     }
-                    model.addRow(new Object[]{c.getNome(), c.getNumero(), c.getRaca(), format, sexo, situacao});
+                    model.addRow(new Object[]{nome, numero, format, c.getQntLitros()});
                 }
                 
             }
         } catch (Exception e) {
             
         }
+    }
+    
+    public static void setTabelaAnimais()
+    {
+        TabelaAnimais();
+    }
+    
+    public static void setTabelaProducaoAnimalOrdenha()
+    {
+        TabelaProducaoAnimalOrdenha();
     }
     
     public static void addAnimal(Animal animal)
@@ -141,6 +149,12 @@ public class JTable_Tabela
     {
         animalList.set(select, animal);
         TabelaAnimais();
+    }
+    
+    public static void addProducaoAnimalOrdenha(ProducaoDiaria producaoAnimalOrdenha)
+    {
+        producaoAnimalOrdenhaList.add(producaoAnimalOrdenha);
+        TabelaProducaoAnimalOrdenha();
     }
 
     public static JTable getjTable_Tabela()
