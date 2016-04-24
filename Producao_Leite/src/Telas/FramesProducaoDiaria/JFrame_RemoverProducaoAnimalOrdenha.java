@@ -17,7 +17,7 @@ public class JFrame_RemoverProducaoAnimalOrdenha extends JFrame_ProducaoDiaria
     
     public JFrame_RemoverProducaoAnimalOrdenha(ProducaoDiaria producaoAnimalOrdenha, int select)
     {
-        super();
+        super("");
         this.producaoAnimalOrdenha = producaoAnimalOrdenha;
         this.select = select;
         

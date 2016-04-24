@@ -29,6 +29,8 @@ import javax.swing.JScrollPane;
  */
 public class JFrame_Principal extends JFrame_Base
 {
+    private boolean TabelaAnimaisSelecionada;
+    private boolean TabelaProducaoAnimalOrdenhaSelecionada;
     
     private ArrayList<Animal> animalList;
     private ArrayList<ProducaoDiaria> producaoAnimalOrdenhaList;
@@ -257,18 +259,19 @@ public class JFrame_Principal extends JFrame_Base
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                int select = tabela.getjTable_Tabela().getSelectedRow();
-                if(select == -1)
-                {
-                    JOptionPane.showMessageDialog(null,"Nunhum campo selecionado!", "Erro!", 2);
-                    return;
-                }
-                ProducaoDiaria pao = new ProducaoDiaria();
-                pao.setId(producaoAnimalOrdenhaList.get(select).getId());
-                pao.setIdAnimal(producaoAnimalOrdenhaList.get(select).getIdAnimal());
-                pao.setData(producaoAnimalOrdenhaList.get(select).getData());
-                pao.setQntLitros(producaoAnimalOrdenhaList.get(select).getQntLitros());
-                new JFrame_AlterarProducaoAnimalOrdenha(pao, select);
+                int select = tabela.getjTable_Tabela().getSelectedRow(); 
+                if(select == -1) 
+                { 
+                    JOptionPane.showMessageDialog(null,"Nunhum campo selecionado!", "Erro!", 2); 
+                    return; 
+                } 
+                ProducaoDiaria pao = new ProducaoDiaria(); 
+                pao.setId(producaoAnimalOrdenhaList.get(select).getId()); 
+                pao.setIdAnimal(producaoAnimalOrdenhaList.get(select).getIdAnimal()); 
+                pao.setData(producaoAnimalOrdenhaList.get(select).getData()); 
+                pao.setQntLitros(producaoAnimalOrdenhaList.get(select).getQntLitros()); 
+                new JFrame_AlterarProducaoAnimalOrdenha(pao, select); 
+
             }
         });
         
@@ -288,6 +291,58 @@ public class JFrame_Principal extends JFrame_Base
                 new JFrame_PesquisarProducaoAnimalOrdenha(producaoAnimalOrdenhaList);
             }
         });
+        
+        //Click duplo na Tabela
+        JTable_Tabela.getjTable_Tabela().addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                if(evt.getClickCount() == 2 && TabelaAnimaisSelecionada)
+                {
+                    AlterarAnimal();
+                }
+                
+                if(evt.getClickCount() == 2 && TabelaProducaoAnimalOrdenhaSelecionada)
+                {
+                    AlterarProducaoAnimalOrddenha();
+                }
+            }
+        });
+    }
+    
+    private void AlterarAnimal()
+    {
+        int select = tabela.getjTable_Tabela().getSelectedRow();
+        if (select == -1)
+        {
+            JOptionPane.showMessageDialog(null, "Nunhum campo selecionado!", "Erro!", 2);
+            return;
+        }
+        Animal animal = new Animal();
+        animal.setId(animalList.get(select).getId());
+        animal.setNome(animalList.get(select).getNome());
+        animal.setNumero(animalList.get(select).getNumero());
+        animal.setRaca(animalList.get(select).getRaca());
+        animal.setDataNasc(animalList.get(select).getDataNasc());
+        animal.setSexo(animalList.get(select).getSexo());
+        animal.setSituacao(animalList.get(select).getSituacao());
+        new JFrame_AlterarAnimais(animal, select);
+    }
+    
+    private void AlterarProducaoAnimalOrddenha()
+    {
+        int select = tabela.getjTable_Tabela().getSelectedRow(); 
+        if (select == -1)
+        {
+            JOptionPane.showMessageDialog(null, "Nunhum campo selecionado!", "Erro!", 2);
+            return;
+        }
+        ProducaoDiaria pao = new ProducaoDiaria();
+        pao.setId(producaoAnimalOrdenhaList.get(select).getId());
+        pao.setIdAnimal(producaoAnimalOrdenhaList.get(select).getIdAnimal());
+        pao.setData(producaoAnimalOrdenhaList.get(select).getData());
+        pao.setQntLitros(producaoAnimalOrdenhaList.get(select).getQntLitros());
+        new JFrame_AlterarProducaoAnimalOrdenha(pao, select);
     }
 
     
@@ -295,7 +350,10 @@ public class JFrame_Principal extends JFrame_Base
     {
         tabela.setTabelaAnimais();
         JScrollPane jScrollPane_BaseTabela = new JScrollPane(tabela.getjTable_Tabela());
-          
+         
+        TabelaAnimaisSelecionada = true;
+        TabelaProducaoAnimalOrdenhaSelecionada = false;
+        
         getCons().fill = GridBagConstraints.BOTH;  
         getCons().weightx = 1;  
         getCons().gridwidth = GridBagConstraints.REMAINDER;
@@ -308,7 +366,9 @@ public class JFrame_Principal extends JFrame_Base
     {
         tabela.setTabelaProducaoAnimalOrdenha();
         JScrollPane jScrollPane_BaseTabela = new JScrollPane(tabela.getjTable_Tabela());
-          
+        
+        TabelaAnimaisSelecionada = false;
+        TabelaProducaoAnimalOrdenhaSelecionada = true;
         getCons().fill = GridBagConstraints.BOTH;  
         getCons().weightx = 1;  
         getCons().gridwidth = GridBagConstraints.REMAINDER;

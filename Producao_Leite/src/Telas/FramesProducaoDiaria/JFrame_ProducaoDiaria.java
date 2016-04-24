@@ -34,9 +34,9 @@ public abstract class JFrame_ProducaoDiaria extends JFrame_Base
     private JCheckBox jCheckBox_Numero;
     private JCheckBox jCheckBox_DataAtual;
     
-    public JFrame_ProducaoDiaria()
+    public JFrame_ProducaoDiaria(String imagem)
     {
-        super("");
+        super(imagem);
         Componentes();
     }
     

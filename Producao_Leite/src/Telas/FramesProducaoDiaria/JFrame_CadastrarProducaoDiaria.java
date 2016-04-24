@@ -21,7 +21,7 @@ public class JFrame_CadastrarProducaoDiaria extends JFrame_ProducaoDiaria
     
     public JFrame_CadastrarProducaoDiaria()
     {
-        super();
+        super("src\\Telas\\FramesProducaoDiaria\\add_BackGround.jpg");
         this.nomeNumero = new String[2];
         getjLabel_Titulo().setText("Cadastrar produção diária por animal");
         getjButton_Confirmar().setText("Salvar");

@@ -20,7 +20,7 @@ public class JFrame_AlterarProducaoAnimalOrdenha extends JFrame_ProducaoDiaria
     
     public JFrame_AlterarProducaoAnimalOrdenha(ProducaoDiaria producaoAnimalOrdenha, int select)
     {
-        super();
+        super("");
         this.producaoAnimalOrdenha = producaoAnimalOrdenha;
         this.select = select;
         
