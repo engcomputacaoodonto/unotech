@@ -18,7 +18,7 @@ public class JFrame_AlterarAnimais extends JFrame_Animal
     
     public JFrame_AlterarAnimais(Animal animal, int select)
     {
-        super("");
+        super("src\\Telas\\FramesAnimais\\Update_BackGround.jpg");
         this.animal = animal;
         this.select = select;
         

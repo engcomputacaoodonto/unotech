@@ -16,7 +16,7 @@ public class JFrame_RemoverAnimais extends JFrame_Animal
     
     public JFrame_RemoverAnimais(Animal animal, int select)
     {
-        super("");
+        super("src\\Telas\\FramesAnimais\\Remove_BackGround.jpg");
         this.animal = animal;
         this.select = select;
         String format = null;

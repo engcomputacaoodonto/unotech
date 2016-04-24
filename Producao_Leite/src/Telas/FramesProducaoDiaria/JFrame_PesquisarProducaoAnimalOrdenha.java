@@ -21,7 +21,7 @@ public class JFrame_PesquisarProducaoAnimalOrdenha extends JFrame_Base
     private JFormattedTextField jFormattedTextField_Pesquisa;
     private JCheckBox jCheckBox_Nome;
     private JCheckBox jCheckBox_Numero;
-    private ArrayList<ProducaoDiaria> producaoAnimalOrdenha;
+    private final ArrayList<ProducaoDiaria> producaoAnimalOrdenha;
     
     public JFrame_PesquisarProducaoAnimalOrdenha(ArrayList<ProducaoDiaria> producaoAnimalOrdenha)
     {

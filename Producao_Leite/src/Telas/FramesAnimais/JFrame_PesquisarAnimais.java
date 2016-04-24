@@ -9,6 +9,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import Telas.FramePrincipal.JTable_Tabela;
+import java.awt.Color;
 
 
 /**
@@ -26,7 +27,7 @@ public class JFrame_PesquisarAnimais extends JFrame_Base
     
     public JFrame_PesquisarAnimais(ArrayList<Animal> animalList)
     {
-        super("");
+        super("src\\Telas\\FramesAnimais\\Search_BackGround.jpg");
         Componentes();
         this.animalList = animalList;
     }
@@ -34,22 +35,27 @@ public class JFrame_PesquisarAnimais extends JFrame_Base
     private void Componentes()
     {
         getjLabel_Titulo().setText("Localizar");
+        getjLabel_Titulo().setOpaque(true);
         getjButton_Confirmar().setText("Localizar");
         
         
         jLabel_Pesquisa = new JLabel();
         jLabel_ErroPesquisa = new JLabel();
         jFormattedTextField_Pesquisa = new JFormattedTextField();
+        jFormattedTextField_Pesquisa.setOpaque(true);
         jCheckBox_Nome = new JCheckBox();
         jCheckBox_Numero = new JCheckBox();
         
-        //Nome de Campos
+        //Nome de Campos e Background
         jLabel_ErroPesquisa.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel_ErroPesquisa.setOpaque(true);
         jLabel_Pesquisa.setText("Localizar: ");
+        jLabel_Pesquisa.setOpaque(true);
         
         //Nome de CheckBox
         jCheckBox_Nome.setText("Localizar por Nome");
         jCheckBox_Numero.setText("Localizar por Número");
+
         
         //Line 0
         getCons().fill = GridBagConstraints.BOTH;
