@@ -11,7 +11,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 
 /**
  *
@@ -131,6 +130,10 @@ public abstract class JFrame_ProducaoDiaria extends JFrame_Base
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                     String format = sdf.format(getDate());
                     jFormattedTextField_Data.setText(format);
+                }
+                if(!jCheckBox_DataAtual.isSelected())
+                {
+                    jFormattedTextField_Data.setText(null);
                 }
             }
         });

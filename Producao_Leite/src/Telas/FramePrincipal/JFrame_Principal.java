@@ -181,7 +181,7 @@ public class JFrame_Principal extends JFrame_Base
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                new JFrame_Empresa();
+                //new JFrame_Empresa();
             }
         });
         

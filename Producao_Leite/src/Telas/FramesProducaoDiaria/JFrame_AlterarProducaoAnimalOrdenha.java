@@ -30,7 +30,7 @@ public class JFrame_AlterarProducaoAnimalOrdenha extends JFrame_ProducaoDiaria
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         format = sdf.format(producaoAnimalOrdenha.getData());
         
-        getjLabel_Titulo().setText("Alterar produção diária por animal");
+        getjLabel_Titulo().setText("Alterar produção por animal por ordenha");
         getjButton_Confirmar().setText("Salvar Alterações");
         getjLabel_Aviso().setText("Alterações não salvas serão perdidas!");
         

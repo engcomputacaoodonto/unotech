@@ -1,15 +1,12 @@
 package Telas.FramesProducaoDiaria;
 
-import DAO.AnimalDAO;
 import DAO.ProducaoDiariaDAO;
-import Model.Animal;
 import Model.ProducaoDiaria;
 import Telas.FramePrincipal.JTable_Tabela;
 import static java.lang.Double.parseDouble;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 
 /**
  *
@@ -23,7 +20,7 @@ public class JFrame_CadastrarProducaoDiaria extends JFrame_ProducaoDiaria
     {
         super("src\\Telas\\FramesProducaoDiaria\\add_BackGround.jpg");
         this.nomeNumero = new String[2];
-        getjLabel_Titulo().setText("Cadastrar produção diária por animal");
+        getjLabel_Titulo().setText("Cadastrar produção por animal por ordenha");
         getjButton_Confirmar().setText("Salvar");
         getjLabel_Aviso().setText("Os campos marcados com (*) devem ser preenchidos ou marcados!");
     }

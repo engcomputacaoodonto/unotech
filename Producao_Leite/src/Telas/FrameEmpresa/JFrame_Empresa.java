@@ -11,7 +11,7 @@ import javax.swing.JTextField;
  *
  * @author Shelmo
  */
-public class JFrame_Empresa extends JFrame_Base
+public abstract class JFrame_Empresa extends JFrame_Base
 {
     private JLabel jLabel_Nome;
     private JLabel jLabel_RazaoSocial;
@@ -83,13 +83,13 @@ public class JFrame_Empresa extends JFrame_Base
         jLabel_ErroRazaoSocial = new JLabel();
         jLabel_ErroTelefone = new JLabel();
         
-        jTextField_Bairro = new JTextField(40);
-        jTextField_Cidade = new JTextField(40);
-        jTextField_Email = new JTextField(40);
-        jTextField_HomePage = new JTextField(40);
-        jTextField_Logradouro = new JTextField(40);
-        jTextField_Nome = new JTextField(40);
-        jTextField_RazaoSocial = new JTextField(40);
+        jTextField_Bairro = new JTextField(15);
+        jTextField_Cidade = new JTextField(10);
+        jTextField_Email = new JTextField(30);
+        jTextField_HomePage = new JTextField(30);
+        jTextField_Logradouro = new JTextField(10);
+        jTextField_Nome = new JTextField(30);
+        jTextField_RazaoSocial = new JTextField(30);
         
         jFormattedTextField_Cnpj = new JFormattedTextField();
         jFormattedTextField_Teleone = new JFormattedTextField();
@@ -175,9 +175,153 @@ public class JFrame_Empresa extends JFrame_Base
         getCons().gridx = 1;
         getCons().gridwidth = 3;
         getjPanel_CENTER().add(jTextField_Email, getCons());
+        
+        //Linha 7
+        getCons().gridy = 7;
+        getjPanel_CENTER().add(jLabel_ErroEmail, getCons());
+        
+        //Linha 8
+        getCons().gridx = 0;
+        getCons().gridy = 8;
+        getCons().gridwidth = 1;
+        getjPanel_CENTER().add(jLabel_HomePage, getCons());
+        getCons().gridx = 1;
+        getCons().gridwidth = 3;
+        getjPanel_CENTER().add(jTextField_HomePage, getCons());
+        
+        //Linha 9
+        getCons().gridy = 9;
+        getjPanel_CENTER().add(jLabel_ErroHomePage, getCons());
+        
+        //Linha 10
+        getCons().gridx = 0;
+        getCons().gridy = 10;
+        getCons().gridwidth = 1;
+        getjPanel_CENTER().add(jLabel_Cidade, getCons());
+        getCons().gridx = 1;
+        getjPanel_CENTER().add(jTextField_Cidade, getCons());
+        getCons().gridx = 2;
+        getjPanel_CENTER().add(jLabel_Bairro, getCons());
+        getCons().gridx = 3;
+        getjPanel_CENTER().add(jTextField_Bairro, getCons());
+        
+        //Linha 11
+        getCons().gridx = 1;
+        getCons().gridy = 11;
+        getjPanel_CENTER().add(jLabel_ErroCidade, getCons());
+        getCons().gridx = 3;
+        getjPanel_CENTER().add(jLabel_ErroBairro, getCons());
+        
+        //Linha 12
+        getCons().gridx = 0;
+        getCons().gridy = 12;
+        getjPanel_CENTER().add(jLabel_Logradouro, getCons());
+        getCons().gridx = 1;
+        getjPanel_CENTER().add(jTextField_Logradouro, getCons());
+        getCons().gridx = 2;
+        getjPanel_CENTER().add(jLabel_Estado, getCons());
+        getCons().gridx = 3;
+        getjPanel_CENTER().add(jComboBox_Estado, getCons());
+        
+        //Linha 13
+        getCons().gridx = 1;
+        getCons().gridy = 13;
+        getjPanel_CENTER().add(jLabel_ErroLogradouro, getCons());
+        getCons().gridx = 3;
+        getjPanel_CENTER().add(jLabel_ErroEstado, getCons());
+        
+        
+        //Linha 14
+        getCons().gridx = 1;
+        getjPanel_CENTER().add(jLabel_Aviso, getCons());
+        
+        
+
+        //Dados JComboBox
+        jComboBox_Estado.addItem("Acre");
+        jComboBox_Estado.addItem("Alagoas");
+        jComboBox_Estado.addItem("Amapá");
+        jComboBox_Estado.addItem("Amazonas");
+        jComboBox_Estado.addItem("Bahia");
+        jComboBox_Estado.addItem("Ceará");
+        jComboBox_Estado.addItem("Distrito Federal");
+        jComboBox_Estado.addItem("Espirito Santo");
+        jComboBox_Estado.addItem("Goiás");
+        jComboBox_Estado.addItem("Maranhão");
+        jComboBox_Estado.addItem("Mato Grosso");
+        jComboBox_Estado.addItem("Mato Grosso do Sul");
+        jComboBox_Estado.addItem("Minas Gerais");
+        jComboBox_Estado.addItem("Pará");
+        jComboBox_Estado.addItem("Paraíba");
+        jComboBox_Estado.addItem("Paraná");
+        jComboBox_Estado.addItem("Pernambuco");
+        jComboBox_Estado.addItem("Piauí");
+        jComboBox_Estado.addItem("Rio de Janeiro");
+        jComboBox_Estado.addItem("Rio Grande do Norte");
+        jComboBox_Estado.addItem("Rio Grande do Sul");
+        jComboBox_Estado.addItem("Rondônia");
+        jComboBox_Estado.addItem("Roraima");
+        jComboBox_Estado.addItem("Santa Catarina");
+        jComboBox_Estado.addItem("São Paulo");
+        jComboBox_Estado.addItem("Sergipe");
+        jComboBox_Estado.addItem("Tocantins");
+        jComboBox_Estado.setSelectedIndex(23);
+    }
+
+    public JLabel getjLabel_Aviso()
+    {
+        return jLabel_Aviso;
+    }
+
+    public JTextField getjTextField_Nome()
+    {
+        return jTextField_Nome;
+    }
+
+    public JTextField getjTextField_RazaoSocial()
+    {
+        return jTextField_RazaoSocial;
+    }
+
+    public JTextField getjTextField_Email()
+    {
+        return jTextField_Email;
+    }
+
+    public JTextField getjTextField_HomePage()
+    {
+        return jTextField_HomePage;
+    }
+
+    public JTextField getjTextField_Cidade()
+    {
+        return jTextField_Cidade;
+    }
+
+    public JTextField getjTextField_Bairro()
+    {
+        return jTextField_Bairro;
+    }
+
+    public JTextField getjTextField_Logradouro()
+    {
+        return jTextField_Logradouro;
+    }
+
+    public JFormattedTextField getjFormattedTextField_Cnpj()
+    {
+        return jFormattedTextField_Cnpj;
+    }
+
+    public JFormattedTextField getjFormattedTextField_Teleone()
+    {
+        return jFormattedTextField_Teleone;
+    }
+
+    public JComboBox getjComboBox_Estado()
+    {
+        return jComboBox_Estado;
     }
     
-    
-    
-    public void Confirmar(){}
+    public abstract void Confirmar();
 }
