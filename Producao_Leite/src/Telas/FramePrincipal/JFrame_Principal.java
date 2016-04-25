@@ -4,6 +4,7 @@ import DAO.AnimalDAO;
 import DAO.ProducaoDiariaDAO;
 import Model.Animal;
 import Model.ProducaoDiaria;
+import Telas.FrameEmpresa.JFrame_Empresa;
 import Telas.FramesAnimais.JFrame_AlterarAnimais;
 import Telas.FramesAnimais.JFrame_CadastrarAnimais;
 import Telas.FramesAnimais.JFrame_PesquisarAnimais;
@@ -37,6 +38,7 @@ public class JFrame_Principal extends JFrame_Base
     
     private JButton jButton_Plantel;
     private JButton jButton_ProducaoOrdenha;
+    private JButton jButton_Empresa;
     private JButton jButton_CadastrarAnimal;
     private JButton jButton_AlterarAnimal;
     private JButton jButton_RemoverAnimal;
@@ -61,6 +63,7 @@ public class JFrame_Principal extends JFrame_Base
         //Iniciar Componentes
         jButton_Plantel = new JButton();
         jButton_ProducaoOrdenha = new JButton();
+        jButton_Empresa = new JButton();
         jButton_CadastrarAnimal = new JButton();
         jButton_AlterarAnimal = new JButton();
         jButton_RemoverAnimal = new JButton();
@@ -85,6 +88,7 @@ public class JFrame_Principal extends JFrame_Base
         jButton_LocalizarProducaoOrdenha.setIcon(search);
         jButton_Plantel.setText("Plantel");
         jButton_ProducaoOrdenha.setText("Produção/Animal/Ordenha");
+        jButton_Empresa.setText("Laticínio");
         getjButton_Voltar().setText("Fechar");
         
         //Visibilidade Componentes
@@ -95,6 +99,7 @@ public class JFrame_Principal extends JFrame_Base
         //Adicionar Botões
         getjPanel_NORTH().add(jButton_Plantel);
         getjPanel_NORTH().add(jButton_ProducaoOrdenha);
+        getjPanel_NORTH().add(jButton_Empresa);
         
         //Carregar dados
         animalList = AnimalDAO.getListaAnimais();
@@ -168,6 +173,15 @@ public class JFrame_Principal extends JFrame_Base
                 
                 BotoesProducaoOrdenhaVisibilidade(true);
                 addProducaoAnimalOrdenha();
+            }
+        });
+        
+        //Botão Empresa
+        jButton_Empresa.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                new JFrame_Empresa();
             }
         });
         
