@@ -25,7 +25,7 @@ public class JFrame_PesquisarProducaoAnimalOrdenha extends JFrame_Base
     
     public JFrame_PesquisarProducaoAnimalOrdenha(ArrayList<ProducaoDiaria> producaoAnimalOrdenha)
     {
-        super("");
+        super("src\\Telas\\FramesProducaoDiaria\\Search_BackGround.jpg");
         this.producaoAnimalOrdenha = producaoAnimalOrdenha;
         Componentes();
     }

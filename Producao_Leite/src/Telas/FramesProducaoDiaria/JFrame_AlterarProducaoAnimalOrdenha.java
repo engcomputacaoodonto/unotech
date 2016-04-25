@@ -20,7 +20,7 @@ public class JFrame_AlterarProducaoAnimalOrdenha extends JFrame_ProducaoDiaria
     
     public JFrame_AlterarProducaoAnimalOrdenha(ProducaoDiaria producaoAnimalOrdenha, int select)
     {
-        super("");
+        super("src\\Telas\\FramesProducaoDiaria\\Update_BackGround.jpg");
         this.producaoAnimalOrdenha = producaoAnimalOrdenha;
         this.select = select;
         

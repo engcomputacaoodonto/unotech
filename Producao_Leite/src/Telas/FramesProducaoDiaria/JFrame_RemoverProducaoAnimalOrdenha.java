@@ -17,7 +17,7 @@ public class JFrame_RemoverProducaoAnimalOrdenha extends JFrame_ProducaoDiaria
     
     public JFrame_RemoverProducaoAnimalOrdenha(ProducaoDiaria producaoAnimalOrdenha, int select)
     {
-        super("");
+        super("src\\Telas\\FramesProducaoDiaria\\Remove_BackGround.jpg");
         this.producaoAnimalOrdenha = producaoAnimalOrdenha;
         this.select = select;
         
