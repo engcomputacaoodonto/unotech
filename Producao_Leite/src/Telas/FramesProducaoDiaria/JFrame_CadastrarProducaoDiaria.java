@@ -32,12 +32,8 @@ public class JFrame_CadastrarProducaoDiaria extends JFrame_ProducaoDiaria
     {
         ClearJLabel();
         ProducaoDiaria pd = new ProducaoDiaria();
-         
-        nomeNumero[0] = getjTextField_Nome().getText();
-        nomeNumero[1] = getjFormattedTextField_Numero().getText();
         
-        
-        pd.setIdAnimal(JTable_Tabela.getId(nomeNumero));
+        pd.setIdAnimal(JTable_Tabela.getId(getjComboBox_Animal().getSelectedIndex()));
         try
         {
             java.util.Date dataUtil = new SimpleDateFormat("dd/MM/yyyy").parse(getjFormattedTextField_Data().getText());

@@ -1,5 +1,6 @@
 package Telas.FramesProducaoDiaria;
 
+import Model.Animal;
 import Model.ProducaoDiaria;
 import Telas.FramePrincipal.JTable_Tabela;
 import Telas.JFrame_Base;
@@ -128,12 +129,11 @@ public class JFrame_PesquisarProducaoAnimalOrdenha extends JFrame_Base
         int linha = -1;
         if(Verificações() && jCheckBox_Nome.isSelected())
         {
-            for(int i = 0;producaoAnimalOrdenha.size() > i;i++)
+            for(Animal a : JTable_Tabela.getAnimalList())
             {
-                String nomeNumero[] = {jFormattedTextField_Pesquisa.getText(), ""};
-                if(JTable_Tabela.getId(nomeNumero) == producaoAnimalOrdenha.get(i).getId())
+                if(a.getNome().equalsIgnoreCase(jFormattedTextField_Pesquisa.getText()))
                 {
-                    linha = i;
+                    linha = JTable_Tabela.getIndexPAO(a.getId());
                     break;
                 }
             }
@@ -150,12 +150,11 @@ public class JFrame_PesquisarProducaoAnimalOrdenha extends JFrame_Base
         }
         if(Verificações() && jCheckBox_Numero.isSelected())
         {
-            for(int i = 0;producaoAnimalOrdenha.size() > i;i++)
+            for(Animal a : JTable_Tabela.getAnimalList())
             {
-                String nomeNumero[] = {"", jFormattedTextField_Pesquisa.getText()};
-                if(JTable_Tabela.getId(nomeNumero) == producaoAnimalOrdenha.get(i).getId())
+                if(a.getNumero().equals(jFormattedTextField_Pesquisa.getText()))
                 {
-                    linha = i;
+                    linha = JTable_Tabela.getIndexPAO(a.getId());
                     break;
                 }
             }

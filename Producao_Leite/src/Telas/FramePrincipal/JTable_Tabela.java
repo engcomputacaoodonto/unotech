@@ -133,48 +133,39 @@ public class JTable_Tabela
     {
         TabelaProducaoAnimalOrdenha();
     }
-    
-    public static String[] getNomeNumeroAnimal(int select)
-    {
-        String retorno[] = new String[2];
-        for(int i = 0;i<animalList.size();i++)
-        {
-            if(animalList.get(i).getId() == select)
-            {
-                retorno[0] = animalList.get(i).getNome();
-                retorno[1] = animalList.get(i).getNumero();
-                break;
-            }
-        }
 
-        return retorno;
+    public static ArrayList<Animal> getAnimalList()
+    {
+        return animalList;
     }
     
-    public static int getId(String nomeNumero[])
+    public static int getId(int select)
     {
-        if(!nomeNumero[0].isEmpty())
+        return animalList.get(select).getId();
+    }
+    
+    public static int getIndexPAO(int id)
+    {
+        int i = 0;
+        for(ProducaoDiaria pao : producaoAnimalOrdenhaList)
         {
-            for(Animal a: animalList)
-            {
-                if(a.getNome().equals(nomeNumero[0]))
-                {
-                    return a.getId();
-                }
-            }
+            if(pao.getIdAnimal() == id)
+                return i;
+            i++;
         }
-        
-        if(!nomeNumero[1].isEmpty())
-        {
-            for(Animal a: animalList)
-            {
-                if(a.getNumero().equals(nomeNumero[1]))
-                {
-                    return a.getId();
-                }
-            }
-        }
-        
         return -1;
+    }
+    
+    public static int getIndex(int id)
+    {
+        int i = 0;
+        for(Animal a : animalList)
+        {
+            if(a.getId() == id)
+                return i;
+            i++;
+        }
+        return i;
     }
     
     public static void addAnimal(Animal animal)

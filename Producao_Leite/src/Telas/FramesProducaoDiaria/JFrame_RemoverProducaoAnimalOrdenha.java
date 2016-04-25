@@ -13,7 +13,6 @@ public class JFrame_RemoverProducaoAnimalOrdenha extends JFrame_ProducaoDiaria
 {
     private final ProducaoDiaria producaoAnimalOrdenha;
     private final int select;
-    private final String nomeNumero[];
     
     public JFrame_RemoverProducaoAnimalOrdenha(ProducaoDiaria producaoAnimalOrdenha, int select)
     {
@@ -25,25 +24,20 @@ public class JFrame_RemoverProducaoAnimalOrdenha extends JFrame_ProducaoDiaria
         getjButton_Confirmar().setText("Remover");
         getjLabel_Aviso().setText("Deseja realmente remover a produção de leite desse Animal?");
         
-        nomeNumero = JTable_Tabela.getNomeNumeroAnimal(this.producaoAnimalOrdenha.getIdAnimal());
+        getjComboBox_Animal().setSelectedIndex(JTable_Tabela.getIndex(producaoAnimalOrdenha.getIdAnimal()));
         String format = null;
         
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         format = sdf.format(producaoAnimalOrdenha.getData());
         
-        getjTextField_Nome().setText(nomeNumero[0]);
-        getjFormattedTextField_Numero().setText(nomeNumero[1]);
-        
         
         getjFormattedTextField_Data().setText(format);
         getjFormattedTextField_QtdLitros().setText(String.valueOf(producaoAnimalOrdenha.getQntLitros()));
         
-        getjTextField_Nome().setEditable(false);
+        getjComboBox_Animal().setEnabled(false);
         getjFormattedTextField_Data().setEditable(false);
         getjFormattedTextField_Data().setEditable(false);
         getjFormattedTextField_QtdLitros().setEditable(false);
-        getjCheckBox_Nome().setEnabled(false);
-        getjCheckBox_Numero().setEnabled(false);
         getjCheckBox_DataAtual().setVisible(false);
     }
     

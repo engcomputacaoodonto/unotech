@@ -16,7 +16,6 @@ public class JFrame_AlterarProducaoAnimalOrdenha extends JFrame_ProducaoDiaria
 {
     private final ProducaoDiaria producaoAnimalOrdenha;
     private final int select;
-    private final String nomeNumero[];
     
     public JFrame_AlterarProducaoAnimalOrdenha(ProducaoDiaria producaoAnimalOrdenha, int select)
     {
@@ -24,7 +23,8 @@ public class JFrame_AlterarProducaoAnimalOrdenha extends JFrame_ProducaoDiaria
         this.producaoAnimalOrdenha = producaoAnimalOrdenha;
         this.select = select;
         
-        nomeNumero = JTable_Tabela.getNomeNumeroAnimal(this.producaoAnimalOrdenha.getIdAnimal());
+        getjComboBox_Animal().setSelectedIndex(JTable_Tabela.getIndex(producaoAnimalOrdenha.getIdAnimal()));
+        
         String format = null;
         
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -34,9 +34,6 @@ public class JFrame_AlterarProducaoAnimalOrdenha extends JFrame_ProducaoDiaria
         getjButton_Confirmar().setText("Salvar Alterações");
         getjLabel_Aviso().setText("Alterações não salvas serão perdidas!");
         
-        getjTextField_Nome().setText(nomeNumero[0]);
-        getjFormattedTextField_Numero().setText(nomeNumero[1]);
-        
         
         getjFormattedTextField_Data().setText(format);
         getjFormattedTextField_QtdLitros().setText(String.valueOf(producaoAnimalOrdenha.getQntLitros()));
@@ -45,11 +42,7 @@ public class JFrame_AlterarProducaoAnimalOrdenha extends JFrame_ProducaoDiaria
     {
         ClearJLabel();
         
-        nomeNumero[0] = getjTextField_Nome().getText();
-        nomeNumero[1] = getjFormattedTextField_Numero().getText();
-        
-        
-        producaoAnimalOrdenha.setIdAnimal(JTable_Tabela.getId(nomeNumero));
+        producaoAnimalOrdenha.setIdAnimal(JTable_Tabela.getId(getjComboBox_Animal().getSelectedIndex()));
         
         try
         {
