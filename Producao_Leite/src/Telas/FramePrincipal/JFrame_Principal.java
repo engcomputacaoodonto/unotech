@@ -4,6 +4,7 @@ import DAO.AnimalDAO;
 import DAO.ProducaoDiariaDAO;
 import Model.Animal;
 import Model.ProducaoDiaria;
+import Telas.FrameEmpresa.JFrame_CadastrarEmpresa;
 import Telas.FrameEmpresa.JFrame_Empresa;
 import Telas.FramesAnimais.JFrame_AlterarAnimais;
 import Telas.FramesAnimais.JFrame_CadastrarAnimais;
@@ -47,6 +48,7 @@ public class JFrame_Principal extends JFrame_Base
     private JButton jButton_AlterarProducaoOrdenha;
     private JButton jButton_RemoverProducaoOrdenha;
     private JButton jButton_LocalizarProducaoOrdenha;
+    private JButton jButton_CadastrarEmpresa;
     
     
     private JTable_Tabela tabela;
@@ -72,11 +74,12 @@ public class JFrame_Principal extends JFrame_Base
         jButton_AlterarProducaoOrdenha = new JButton();
         jButton_RemoverProducaoOrdenha = new JButton();
         jButton_LocalizarProducaoOrdenha = new JButton();
-        
+        jButton_CadastrarEmpresa = new JButton();
         //Texto e Icones em Componentes
         Icon add = new ImageIcon("src\\Telas\\FramePrincipal\\add.png");
         jButton_CadastrarAnimal.setIcon(add);
         jButton_CadastrarProducaoOrdenha.setIcon(add);
+        jButton_CadastrarEmpresa.setIcon(add);
         Icon update = new ImageIcon("src\\Telas\\FramePrincipal\\update.png");
         jButton_AlterarAnimal.setIcon(update);
         jButton_AlterarProducaoOrdenha.setIcon(update);
@@ -92,6 +95,7 @@ public class JFrame_Principal extends JFrame_Base
         getjButton_Voltar().setText("Fechar");
         
         //Visibilidade Componentes
+        jButton_CadastrarEmpresa.setVisible(false);
         BotoesAnimaisVisibilidade(false);
         BotoesProducaoOrdenhaVisibilidade(false);
         getjButton_Confirmar().setVisible(false);
@@ -181,7 +185,23 @@ public class JFrame_Principal extends JFrame_Base
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                //new JFrame_Empresa();
+                getjPanel_CENTER().removeAll();
+                
+                
+                getCons().fill = GridBagConstraints.NONE;
+                getCons().anchor = GridBagConstraints.NORTHWEST;
+                getCons().insets = new Insets(10, 10, 10, 10);
+
+                //Linha 0
+                getCons().gridwidth = 1;
+                getCons().gridheight = 1;
+                getCons().weightx = 0;
+                getCons().weighty = 0;
+                getCons().gridx = 0;
+                getCons().gridy = 0;
+                getjPanel_CENTER().add(jButton_CadastrarEmpresa, getCons());
+                
+                jButton_CadastrarEmpresa.setVisible(true);
             }
         });
         
@@ -199,6 +219,14 @@ public class JFrame_Principal extends JFrame_Base
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
                 new JFrame_CadastrarProducaoDiaria();
+            }
+        });
+        
+        jButton_CadastrarEmpresa.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                new JFrame_CadastrarEmpresa();
             }
         });
         

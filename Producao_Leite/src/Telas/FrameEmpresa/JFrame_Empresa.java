@@ -48,9 +48,9 @@ public abstract class JFrame_Empresa extends JFrame_Base
     
     private JComboBox jComboBox_Estado;
     
-    public JFrame_Empresa()
+    public JFrame_Empresa(String Image)
     {
-        super("");
+        super(Image);
         
         getjLabel_Titulo().setText("Teste");
         getjButton_Confirmar().setText("Salvar");
@@ -233,6 +233,7 @@ public abstract class JFrame_Empresa extends JFrame_Base
         
         //Linha 14
         getCons().gridx = 1;
+        getCons().gridwidth = 3;
         getjPanel_CENTER().add(jLabel_Aviso, getCons());
         
         
