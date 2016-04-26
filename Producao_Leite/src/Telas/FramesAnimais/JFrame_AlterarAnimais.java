@@ -73,22 +73,20 @@ public class JFrame_AlterarAnimais extends JFrame_Animal
         if(getjCheckBox_Venda().isSelected())
             animal.setSituacao("V");
         
-        if(!getjFormattedTextField_Data_Nasc().getText().equals("__/__/____"))
+        boolean v = verificacoes(animal);
+        try
         {
-            try
-            { 
-                java.util.Date dataUtil = new SimpleDateFormat("dd/MM/yyyy").parse(getjFormattedTextField_Data_Nasc().getText());
-                Date data = new Date(dataUtil.getTime());
-                animal.setDataNasc(data);
-            }
-            catch (ParseException ex)
-            {
-                getjLabel_Erro_Data_Nasc().setText("Data inválida!");
-                return;
-            }
+            java.util.Date dataUtil = new SimpleDateFormat("dd/MM/yyyy").parse(getjFormattedTextField_Data_Nasc().getText());
+            Date data = new Date(dataUtil.getTime());
+            animal.setDataNasc(data);
+        }
+        catch (ParseException ex)
+        {
+            getjLabel_Erro_Data_Nasc().setText("Data inválida!");
+            return;
         }
         
-        if(verificacoes(animal))
+        if(v)
         {
             AnimalDAO.alterarAnimal(animal);
             JTable_Tabela.setAnimal(animal, select);

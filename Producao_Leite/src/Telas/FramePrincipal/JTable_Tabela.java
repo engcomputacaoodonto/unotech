@@ -1,9 +1,11 @@
 package Telas.FramePrincipal;
 
 import DAO.AnimalDAO;
+import DAO.ColetaLeiteDAO;
 import DAO.EmpresaDAO;
 import DAO.ProducaoDiariaDAO;
 import Model.Animal;
+import Model.ColetaLeite;
 import Model.Empresa;
 import Model.ProducaoDiaria;
 import java.awt.Color;
@@ -22,12 +24,14 @@ public class JTable_Tabela
     private static ArrayList<Animal> animalList;
     private static ArrayList<ProducaoDiaria> producaoAnimalOrdenhaList;
     private static ArrayList<Empresa> empresaList;
+    private static ArrayList<ColetaLeite> coletaLeiteList;
     
     public JTable_Tabela()
     {
         JTable_Tabela.producaoAnimalOrdenhaList = ProducaoDiariaDAO.getListaProducaoDiaria();
         JTable_Tabela.animalList = AnimalDAO.getListaAnimais();
         JTable_Tabela.empresaList = EmpresaDAO.getListaEmpresa();
+        JTable_Tabela.coletaLeiteList = ColetaLeiteDAO.getColetaLeite();
         jTable_Tabela = new JTable();
     }
     
@@ -153,6 +157,11 @@ public class JTable_Tabela
     public static ArrayList<Empresa> getEmpresa()
     {
         return empresaList;
+    }
+    
+    public static ArrayList<ColetaLeite> getColetaLeite()
+    {
+        return coletaLeiteList;
     }
     
     public static int getId(int select)

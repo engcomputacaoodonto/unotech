@@ -14,12 +14,10 @@ import java.text.SimpleDateFormat;
  */
 public class JFrame_CadastrarProducaoDiaria extends JFrame_ProducaoDiaria
 {
-    private String nomeNumero[];
     
     public JFrame_CadastrarProducaoDiaria()
     {
         super("src\\Telas\\FramesProducaoDiaria\\add_BackGround.jpg");
-        this.nomeNumero = new String[2];
         getjLabel_Titulo().setText("Cadastrar produção por animal por ordenha");
         getjButton_Confirmar().setText("Salvar");
         getjLabel_Aviso().setText("Os campos marcados com (*) devem ser preenchidos ou marcados!");

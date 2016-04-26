@@ -29,7 +29,7 @@ public class JFrame_PesquisarProducaoAnimalOrdenha extends JFrame_BaseLocalizar
         getjCheckBox2().setText("Localizar por Número");
     }
     
-    private boolean Verificações()
+    private boolean Verificacoes()
     {
         if(getjFormattedTextField_Localizar().getText().length() == 0 ||
                 getjFormattedTextField_Localizar().getText().equals("      "))
@@ -62,7 +62,7 @@ public class JFrame_PesquisarProducaoAnimalOrdenha extends JFrame_BaseLocalizar
     public void Confirmar()
     {
         int linha = -1;
-        if(Verificações() && getjCheckBox1().isSelected())
+        if(Verificacoes() && getjCheckBox1().isSelected())
         {
             for(Animal a : JTable_Tabela.getAnimalList())
             {
@@ -83,7 +83,7 @@ public class JFrame_PesquisarProducaoAnimalOrdenha extends JFrame_BaseLocalizar
                  JOptionPane.showMessageDialog(this, "Animal não encontrado!", "Erro!", 2);
             }
         }
-        if(Verificações() && getjCheckBox2().isSelected())
+        if(Verificacoes() && getjCheckBox2().isSelected())
         {
             for(Animal a : JTable_Tabela.getAnimalList())
             {

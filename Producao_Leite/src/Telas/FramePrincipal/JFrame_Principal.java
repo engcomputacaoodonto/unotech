@@ -4,6 +4,8 @@ import DAO.AnimalDAO;
 import DAO.ProducaoDiariaDAO;
 import Model.Animal;
 import Model.ProducaoDiaria;
+import Telas.FrameColetaLeite.JFrame_CadastrarColetaLeite;
+import Telas.FrameColetaLeite.JFrame_ColetaLeite;
 import Telas.FrameEmpresa.JFrame_CadastrarEmpresa;
 import Telas.FrameEmpresa.JFrame_Empresa;
 import Telas.FramesAnimais.JFrame_AlterarAnimais;
@@ -37,6 +39,7 @@ public class JFrame_Principal extends JFrame_Base
     private JButton jButton_Plantel;
     private JButton jButton_ProducaoOrdenha;
     private JButton jButton_Empresa;
+    private JButton jButton_ColetaLeite;
     private JButton jButton_CadastrarAnimal;
     private JButton jButton_AlterarAnimal;
     private JButton jButton_RemoverAnimal;
@@ -63,6 +66,7 @@ public class JFrame_Principal extends JFrame_Base
         jButton_Plantel = new JButton();
         jButton_ProducaoOrdenha = new JButton();
         jButton_Empresa = new JButton();
+        jButton_ColetaLeite = new JButton();
         jButton_CadastrarAnimal = new JButton();
         jButton_AlterarAnimal = new JButton();
         jButton_RemoverAnimal = new JButton();
@@ -89,6 +93,7 @@ public class JFrame_Principal extends JFrame_Base
         jButton_Plantel.setText("Plantel");
         jButton_ProducaoOrdenha.setText("Produção/Animal/Ordenha");
         jButton_Empresa.setText("Laticínio");
+        jButton_ColetaLeite.setText("Coleta de Leite");
         getjButton_Voltar().setText("Fechar");
         
         //Visibilidade Componentes
@@ -101,6 +106,7 @@ public class JFrame_Principal extends JFrame_Base
         getjPanel_NORTH().add(jButton_Plantel);
         getjPanel_NORTH().add(jButton_ProducaoOrdenha);
         getjPanel_NORTH().add(jButton_Empresa);
+        getjPanel_NORTH().add(jButton_ColetaLeite);
         
         //Carregar dados
         tabela = new JTable_Tabela();
@@ -197,6 +203,15 @@ public class JFrame_Principal extends JFrame_Base
                 getjPanel_CENTER().add(jButton_CadastrarEmpresa, getCons());
                 
                 jButton_CadastrarEmpresa.setVisible(true);
+            }
+        });
+        
+        //Botão ColetaLeite
+        jButton_ColetaLeite.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                new JFrame_CadastrarColetaLeite();
             }
         });
         

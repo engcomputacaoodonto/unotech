@@ -21,7 +21,7 @@ public class ProducaoDiariaDAO
     public static void registrarProducao(ProducaoDiaria pd)
     {
         Conecta c = new Conecta();
-        String sql = "INSERT INTO Producao VALUES(null, ?,?,?)";
+        String sql = "INSERT INTO Producao VALUES(NULL, ?,?,?)";
         c.pStmt(sql);
         try
         {
