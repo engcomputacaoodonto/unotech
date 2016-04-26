@@ -9,6 +9,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import Telas.FramePrincipal.JTable_Tabela;
+import Telas.JFrame_BaseLocalizar;
 import java.awt.Color;
 
 
@@ -16,128 +17,59 @@ import java.awt.Color;
  *
  * @author Shelmo
  */
-public class JFrame_PesquisarAnimais extends JFrame_Base
+public class JFrame_PesquisarAnimais extends JFrame_BaseLocalizar
 {
-    private JLabel jLabel_Pesquisa;
-    private JLabel jLabel_ErroPesquisa;
-    private JFormattedTextField jFormattedTextField_Pesquisa;
-    private JCheckBox jCheckBox_Nome;
-    private JCheckBox jCheckBox_Numero;
     private ArrayList<Animal> animalList;
     
-    public JFrame_PesquisarAnimais(ArrayList<Animal> animalList)
+    public JFrame_PesquisarAnimais()
     {
         super("src\\Telas\\FramesAnimais\\Search_BackGround.jpg");
-        Componentes();
-        this.animalList = animalList;
+        this.animalList = JTable_Tabela.getAnimalList();
+        
+        getjCheckBox3().setVisible(false);
+        getjCheckBox1().setText("Localizar por Nome");
+        getjCheckBox2().setText("Localizar por Número");
     }
     
-    private void Componentes()
-    {
-        getjLabel_Titulo().setText("Localizar");
-        getjLabel_Titulo().setOpaque(true);
-        getjButton_Confirmar().setText("Localizar");
-        
-        
-        jLabel_Pesquisa = new JLabel();
-        jLabel_ErroPesquisa = new JLabel();
-        jFormattedTextField_Pesquisa = new JFormattedTextField();
-        jFormattedTextField_Pesquisa.setOpaque(true);
-        jCheckBox_Nome = new JCheckBox();
-        jCheckBox_Numero = new JCheckBox();
-        
-        //Nome de Campos e Background
-        jLabel_ErroPesquisa.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel_ErroPesquisa.setOpaque(true);
-        jLabel_Pesquisa.setText("Localizar: ");
-        jLabel_Pesquisa.setOpaque(true);
-        
-        //Nome de CheckBox
-        jCheckBox_Nome.setText("Localizar por Nome");
-        jCheckBox_Numero.setText("Localizar por Número");
-
-        
-        //Line 0
-        getCons().fill = GridBagConstraints.BOTH;
-        getCons().gridx = 0;
-        getCons().gridy = 0;
-        getjPanel_CENTER().add(jLabel_Pesquisa, getCons());
-        getCons().gridx = 2;
-        getCons().gridwidth = 2;
-        getjPanel_CENTER().add(jFormattedTextField_Pesquisa, getCons());
-        
-        //Line 1
-        getCons().gridy = 1;
-        getjPanel_CENTER().add(jLabel_ErroPesquisa, getCons());
-        
-        //Line 2
-        getCons().gridwidth = 1;
-        getCons().gridx = 2;
-        getCons().gridy = 2;
-        getjPanel_CENTER().add(jCheckBox_Nome, getCons());
-        getCons().gridx = 3;
-        getjPanel_CENTER().add(jCheckBox_Numero, getCons());
-        
-        //Marcar Pesquisar por Nome como Padrao
-        jCheckBox_Nome.setSelected(true);
-        
-        
-        //Ações Componentes
-        //CheckBox Pesquisar por Nome
-        jCheckBox_Nome.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jCheckBox_Nome.setSelected(true);
-                if(jCheckBox_Numero.isSelected())
-                {
-                    jCheckBox_Numero.setSelected(false);
-                    jFormattedTextField_Pesquisa = setFormatNull(jFormattedTextField_Pesquisa);
-                    jFormattedTextField_Pesquisa.setText(null);
-                }
-            }
-        });
-        
-        //CheckBox Pesquisar por Número
-        jCheckBox_Numero.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jCheckBox_Numero.setSelected(true);
-                if(jCheckBox_Nome.isSelected())
-                {
-                    jCheckBox_Nome.setSelected(false);
-                    jFormattedTextField_Pesquisa = setFormatNumero(jFormattedTextField_Pesquisa);
-                    jFormattedTextField_Pesquisa.setText(null);
-                }
-            }
-        });
-    }
     
     private boolean Verificações()
     {
-        if(jFormattedTextField_Pesquisa.getText().length() == 0 ||
-                jFormattedTextField_Pesquisa.getText().equals("      "))
+        if(getjFormattedTextField_Localizar().getText().length() == 0 ||
+                getjFormattedTextField_Localizar().getText().equals("      "))
         {
-            jLabel_ErroPesquisa.setText("O campo Localizar deve ser preenchido!");
+            getjLabel_ErroLocalizar().setText("O campo Localizar deve ser preenchido!");
             return false;
         }
-        if(jFormattedTextField_Pesquisa.getText().length() > 255 && jCheckBox_Nome.isSelected())
+        if(getjFormattedTextField_Localizar().getText().length() > 255)
         {
-            jLabel_ErroPesquisa.setText("O campo Localizar deve conter no máximo 255 caracteres!");
+            getjLabel_ErroLocalizar().setText("O campo Localizar deve conter no máximo 255 caracteres!");
             return false;
         }
         return true;
     }
     
+    public void AcaoJCheckBox1()
+    {
+        setjFormattedTextField_Localizar(setFormatNull(getjFormattedTextField_Localizar()));
+        getjFormattedTextField_Localizar().setText(null);
+    }
+    
+    public void AcaoJCheckBox2()
+    {
+        setjFormattedTextField_Localizar(setFormatNumero(getjFormattedTextField_Localizar()));
+        getjFormattedTextField_Localizar().setText(null);
+    }
+    
+    public void AcaoJCheckBox3(){}
+    
     public void Confirmar()
     {
         int linha = -1;
-        if(Verificações() && jCheckBox_Nome.isSelected())
+        if(Verificações() && getjCheckBox1().isSelected())
         {
             for(int i = 0;animalList.size() > i;i++)
             {
-                if(animalList.get(i).getNome().equalsIgnoreCase(jFormattedTextField_Pesquisa.getText()))
+                if(animalList.get(i).getNome().equalsIgnoreCase(getjFormattedTextField_Localizar().getText()))
                 {
                     linha = i;
                     break;
@@ -154,11 +86,11 @@ public class JFrame_PesquisarAnimais extends JFrame_Base
                  JOptionPane.showMessageDialog(this, "Animal não encontrado!", "Erro!", 2);
             }
         }
-        if(Verificações() && jCheckBox_Numero.isSelected())
+        if(Verificações() && getjCheckBox2().isSelected())
         {
             for(int i = 0;animalList.size() > i;i++)
             {
-                if(animalList.get(i).getNumero().equalsIgnoreCase(jFormattedTextField_Pesquisa.getText()))
+                if(animalList.get(i).getNumero().equalsIgnoreCase(getjFormattedTextField_Localizar().getText()))
                 {
                     linha = i;
                     break;

@@ -34,9 +34,6 @@ public class JFrame_Principal extends JFrame_Base
     private boolean TabelaAnimaisSelecionada;
     private boolean TabelaProducaoAnimalOrdenhaSelecionada;
     
-    private ArrayList<Animal> animalList;
-    private ArrayList<ProducaoDiaria> producaoAnimalOrdenhaList;
-    
     private JButton jButton_Plantel;
     private JButton jButton_ProducaoOrdenha;
     private JButton jButton_Empresa;
@@ -106,9 +103,7 @@ public class JFrame_Principal extends JFrame_Base
         getjPanel_NORTH().add(jButton_Empresa);
         
         //Carregar dados
-        animalList = AnimalDAO.getListaAnimais();
-        producaoAnimalOrdenhaList = ProducaoDiariaDAO.getListaProducaoDiaria();
-        tabela = new JTable_Tabela(animalList, producaoAnimalOrdenhaList);
+        tabela = new JTable_Tabela();
 
         
         //Ação Botões
@@ -242,13 +237,13 @@ public class JFrame_Principal extends JFrame_Base
                     return;
                 }
                 Animal animal = new Animal();
-                animal.setId(animalList.get(select).getId());
-                animal.setNome(animalList.get(select).getNome());
-                animal.setNumero(animalList.get(select).getNumero());
-                animal.setRaca(animalList.get(select).getRaca());
-                animal.setDataNasc(animalList.get(select).getDataNasc());
-                animal.setSexo(animalList.get(select).getSexo());
-                animal.setSituacao(animalList.get(select).getSituacao());
+                animal.setId(JTable_Tabela.getAnimalList().get(select).getId());
+                animal.setNome(JTable_Tabela.getAnimalList().get(select).getNome());
+                animal.setNumero(JTable_Tabela.getAnimalList().get(select).getNumero());
+                animal.setRaca(JTable_Tabela.getAnimalList().get(select).getRaca());
+                animal.setDataNasc(JTable_Tabela.getAnimalList().get(select).getDataNasc());
+                animal.setSexo(JTable_Tabela.getAnimalList().get(select).getSexo());
+                animal.setSituacao(JTable_Tabela.getAnimalList().get(select).getSituacao());
                 new JFrame_RemoverAnimais(animal, select);
             }
         });
@@ -264,10 +259,10 @@ public class JFrame_Principal extends JFrame_Base
                     return;
                 }
                 ProducaoDiaria pao = new ProducaoDiaria();
-                pao.setId(producaoAnimalOrdenhaList.get(select).getId());
-                pao.setIdAnimal(producaoAnimalOrdenhaList.get(select).getIdAnimal());
-                pao.setData(producaoAnimalOrdenhaList.get(select).getData());
-                pao.setQntLitros(producaoAnimalOrdenhaList.get(select).getQntLitros());
+                pao.setId(JTable_Tabela.getProducaoAnimalOrdenha().get(select).getId());
+                pao.setIdAnimal(JTable_Tabela.getProducaoAnimalOrdenha().get(select).getIdAnimal());
+                pao.setData(JTable_Tabela.getProducaoAnimalOrdenha().get(select).getData());
+                pao.setQntLitros(JTable_Tabela.getProducaoAnimalOrdenha().get(select).getQntLitros());
                 new JFrame_RemoverProducaoAnimalOrdenha(pao, select);
             }
         });
@@ -286,13 +281,13 @@ public class JFrame_Principal extends JFrame_Base
                     return;
                 }
                 Animal animal = new Animal();
-                animal.setId(animalList.get(select).getId());
-                animal.setNome(animalList.get(select).getNome());
-                animal.setNumero(animalList.get(select).getNumero());
-                animal.setRaca(animalList.get(select).getRaca());
-                animal.setDataNasc(animalList.get(select).getDataNasc());
-                animal.setSexo(animalList.get(select).getSexo());
-                animal.setSituacao(animalList.get(select).getSituacao());
+                animal.setId(JTable_Tabela.getAnimalList().get(select).getId());
+                animal.setNome(JTable_Tabela.getAnimalList().get(select).getNome());
+                animal.setNumero(JTable_Tabela.getAnimalList().get(select).getNumero());
+                animal.setRaca(JTable_Tabela.getAnimalList().get(select).getRaca());
+                animal.setDataNasc(JTable_Tabela.getAnimalList().get(select).getDataNasc());
+                animal.setSexo(JTable_Tabela.getAnimalList().get(select).getSexo());
+                animal.setSituacao(JTable_Tabela.getAnimalList().get(select).getSituacao());
                 new JFrame_AlterarAnimais(animal, select);
             }
         });
@@ -308,10 +303,10 @@ public class JFrame_Principal extends JFrame_Base
                     return; 
                 } 
                 ProducaoDiaria pao = new ProducaoDiaria(); 
-                pao.setId(producaoAnimalOrdenhaList.get(select).getId()); 
-                pao.setIdAnimal(producaoAnimalOrdenhaList.get(select).getIdAnimal()); 
-                pao.setData(producaoAnimalOrdenhaList.get(select).getData()); 
-                pao.setQntLitros(producaoAnimalOrdenhaList.get(select).getQntLitros()); 
+                pao.setId(JTable_Tabela.getProducaoAnimalOrdenha().get(select).getId()); 
+                pao.setIdAnimal(JTable_Tabela.getProducaoAnimalOrdenha().get(select).getIdAnimal()); 
+                pao.setData(JTable_Tabela.getProducaoAnimalOrdenha().get(select).getData()); 
+                pao.setQntLitros(JTable_Tabela.getProducaoAnimalOrdenha().get(select).getQntLitros()); 
                 new JFrame_AlterarProducaoAnimalOrdenha(pao, select); 
 
             }
@@ -322,7 +317,7 @@ public class JFrame_Principal extends JFrame_Base
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                new JFrame_PesquisarAnimais(animalList);
+                new JFrame_PesquisarAnimais();
             }
         });
         
@@ -330,7 +325,7 @@ public class JFrame_Principal extends JFrame_Base
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                new JFrame_PesquisarProducaoAnimalOrdenha(producaoAnimalOrdenhaList);
+                new JFrame_PesquisarProducaoAnimalOrdenha();
             }
         });
         
@@ -361,13 +356,13 @@ public class JFrame_Principal extends JFrame_Base
             return;
         }
         Animal animal = new Animal();
-        animal.setId(animalList.get(select).getId());
-        animal.setNome(animalList.get(select).getNome());
-        animal.setNumero(animalList.get(select).getNumero());
-        animal.setRaca(animalList.get(select).getRaca());
-        animal.setDataNasc(animalList.get(select).getDataNasc());
-        animal.setSexo(animalList.get(select).getSexo());
-        animal.setSituacao(animalList.get(select).getSituacao());
+        animal.setId(JTable_Tabela.getAnimalList().get(select).getId());
+        animal.setNome(JTable_Tabela.getAnimalList().get(select).getNome());
+        animal.setNumero(JTable_Tabela.getAnimalList().get(select).getNumero());
+        animal.setRaca(JTable_Tabela.getAnimalList().get(select).getRaca());
+        animal.setDataNasc(JTable_Tabela.getAnimalList().get(select).getDataNasc());
+        animal.setSexo(JTable_Tabela.getAnimalList().get(select).getSexo());
+        animal.setSituacao(JTable_Tabela.getAnimalList().get(select).getSituacao());
         new JFrame_AlterarAnimais(animal, select);
     }
     
@@ -380,10 +375,10 @@ public class JFrame_Principal extends JFrame_Base
             return;
         }
         ProducaoDiaria pao = new ProducaoDiaria();
-        pao.setId(producaoAnimalOrdenhaList.get(select).getId());
-        pao.setIdAnimal(producaoAnimalOrdenhaList.get(select).getIdAnimal());
-        pao.setData(producaoAnimalOrdenhaList.get(select).getData());
-        pao.setQntLitros(producaoAnimalOrdenhaList.get(select).getQntLitros());
+        pao.setId(JTable_Tabela.getProducaoAnimalOrdenha().get(select).getId());
+        pao.setIdAnimal(JTable_Tabela.getProducaoAnimalOrdenha().get(select).getIdAnimal());
+        pao.setData(JTable_Tabela.getProducaoAnimalOrdenha().get(select).getData());
+        pao.setQntLitros(JTable_Tabela.getProducaoAnimalOrdenha().get(select).getQntLitros());
         new JFrame_AlterarProducaoAnimalOrdenha(pao, select);
     }
 

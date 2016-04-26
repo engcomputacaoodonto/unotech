@@ -1,6 +1,10 @@
 package Telas.FramePrincipal;
 
+import DAO.AnimalDAO;
+import DAO.EmpresaDAO;
+import DAO.ProducaoDiariaDAO;
 import Model.Animal;
+import Model.Empresa;
 import Model.ProducaoDiaria;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
@@ -17,11 +21,13 @@ public class JTable_Tabela
     private static JTable jTable_Tabela;
     private static ArrayList<Animal> animalList;
     private static ArrayList<ProducaoDiaria> producaoAnimalOrdenhaList;
+    private static ArrayList<Empresa> empresaList;
     
-    public JTable_Tabela(ArrayList<Animal> animalList, ArrayList<ProducaoDiaria> producaoAnimalOrdenhaList)
+    public JTable_Tabela()
     {
-        JTable_Tabela.producaoAnimalOrdenhaList = producaoAnimalOrdenhaList;
-        JTable_Tabela.animalList = animalList;
+        JTable_Tabela.producaoAnimalOrdenhaList = ProducaoDiariaDAO.getListaProducaoDiaria();
+        JTable_Tabela.animalList = AnimalDAO.getListaAnimais();
+        JTable_Tabela.empresaList = EmpresaDAO.getListaEmpresa();
         jTable_Tabela = new JTable();
     }
     
@@ -137,6 +143,16 @@ public class JTable_Tabela
     public static ArrayList<Animal> getAnimalList()
     {
         return animalList;
+    }
+    
+    public static ArrayList<ProducaoDiaria> getProducaoAnimalOrdenha()
+    {
+        return producaoAnimalOrdenhaList;
+    }
+    
+    public static ArrayList<Empresa> getEmpresa()
+    {
+        return empresaList;
     }
     
     public static int getId(int select)
