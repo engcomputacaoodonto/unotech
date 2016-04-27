@@ -16,7 +16,7 @@ public class JFrame_LocalizarEmpresa extends JFrame_BaseLocalizar
     
     public JFrame_LocalizarEmpresa()
     {
-        super("");
+        super("src\\Telas\\FrameEmpresa\\searchBackGround.jpg");
         this.empresaList = JTable_Tabela.getEmpresa();
         
         getjCheckBox1().setText("Localizar por Nome");
@@ -79,7 +79,7 @@ public class JFrame_LocalizarEmpresa extends JFrame_BaseLocalizar
             }
             else
             {
-                 JOptionPane.showMessageDialog(this, "Animal não encontrado!", "Erro!", 2);
+                 JOptionPane.showMessageDialog(this, "Empresa não encontrada!", "Erro!", 2);
             }
         }
         
@@ -101,7 +101,7 @@ public class JFrame_LocalizarEmpresa extends JFrame_BaseLocalizar
             }
             else
             {
-                 JOptionPane.showMessageDialog(this, "Animal não encontrado!", "Erro!", 2);
+                 JOptionPane.showMessageDialog(this, "Empresa não encontrada!", "Erro!", 2);
             }
         }
         
@@ -123,7 +123,7 @@ public class JFrame_LocalizarEmpresa extends JFrame_BaseLocalizar
             }
             else
             {
-                 JOptionPane.showMessageDialog(this, "Animal não encontrado!", "Erro!", 2);
+                 JOptionPane.showMessageDialog(this, "Empresa não encontrada!", "Erro!", 2);
             }
         }
     }

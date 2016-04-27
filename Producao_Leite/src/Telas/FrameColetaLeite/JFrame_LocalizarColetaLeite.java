@@ -19,7 +19,7 @@ public class JFrame_LocalizarColetaLeite extends JFrame_BaseLocalizar
     
     public JFrame_LocalizarColetaLeite()
     {
-        super("");
+        super("src\\Telas\\FrameColetaLeite\\searchColetaLeite.jpg");
         
         this.coletaLeiteList = JTable_Tabela.getColetaLeite();
         
@@ -44,19 +44,32 @@ public class JFrame_LocalizarColetaLeite extends JFrame_BaseLocalizar
     
     private boolean Verificacoes()
     {
+        if(getjFormattedTextField_Localizar().getText().isEmpty() ||
+                getjFormattedTextField_Localizar().getText().equals("__/__/____"))
+        {
+            getjLabel_ErroLocalizar().setText("O campo Localizar é obrigatório!");
+            return false;
+        }
+        
+        if(getjFormattedTextField_Localizar().getText().length() > 255)
+        {
+            getjLabel_ErroLocalizar().setText("O campo Localizar deve conter no máximo 255 caracteres!");
+            return false;
+        }
         return true;
     }
     
     public void Confirmar()
     {
         int linha = -1;
+        getjLabel_ErroLocalizar().setText(null);
         if(Verificacoes() && getjCheckBox1().isSelected())
         {
             for(Empresa e : JTable_Tabela.getEmpresa())
             {
                 if(e.getNomeFantasia().equalsIgnoreCase(getjFormattedTextField_Localizar().getText()))
                 {
-                    linha = JTable_Tabela.getIndexPAO(e.getIdEmpresa());
+                    linha = JTable_Tabela.getLinhaEmpresa(e.getIdEmpresa());
                     break;
                 }
             }
@@ -68,21 +81,23 @@ public class JFrame_LocalizarColetaLeite extends JFrame_BaseLocalizar
             }
             else
             {
-                 JOptionPane.showMessageDialog(this, "Animal não encontrado!", "Erro!", 2);
+                 JOptionPane.showMessageDialog(this, "Empresa não encontrada!", "Erro!", 2);
             }
         }
         
         if(Verificacoes() && getjCheckBox2().isSelected())
         {
+            int i = 0;
             for(ColetaLeite cl : JTable_Tabela.getColetaLeite())
             {
                 String format = null;
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 format = sdf.format(cl.getDataColeta());
-                if(getjFormattedTextField_Localizar().getText().equalsIgnoreCase(format))
+                if(getjFormattedTextField_Localizar().getText().equals(format))
                 {
-                    
+                    linha = i;
                 }
+                i++;
             }
             if(linha != -1)
             {
@@ -92,7 +107,7 @@ public class JFrame_LocalizarColetaLeite extends JFrame_BaseLocalizar
             }
             else
             {
-                 JOptionPane.showMessageDialog(this, "Animal não encontrado!", "Erro!", 2);
+                JOptionPane.showMessageDialog(this, "Data não encontrada!", "Erro!", 2);
             }
         }
     }

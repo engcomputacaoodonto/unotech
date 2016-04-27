@@ -96,5 +96,10 @@ public class Animal
     public void setSituacao(String situacao)
     {
         this.situacao = situacao;
-    }   
+    }
+    
+    public String toString()
+    {
+        return nome + " - " + numero;
+    }
 }

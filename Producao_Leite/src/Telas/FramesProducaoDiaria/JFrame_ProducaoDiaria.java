@@ -170,8 +170,6 @@ public abstract class JFrame_ProducaoDiaria extends JFrame_Base
         return data;
     }
 
-    public abstract void Confirmar();
-
     public JLabel getjLabel_ErroData()
     {
         return jLabel_ErroData;

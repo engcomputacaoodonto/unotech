@@ -6,8 +6,11 @@ import Telas.FramePrincipal.JTable_Tabela;
 import java.sql.Date;
 import Telas.JFrame_Base;
 import java.awt.Color;
+import java.awt.GridBagConstraints;
 import java.text.SimpleDateFormat;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -66,16 +69,17 @@ public abstract class JFrame_ColetaLeite extends JFrame_Base
         jFormattedTextField_QtdLitros = new JFormattedTextField();
         
         //Carregar dados ComboBox
+        jComboBox_Empresa.setEditable(true);
         DefaultComboBoxModel comboModel = (DefaultComboBoxModel) jComboBox_Empresa.getModel();
         comboModel.removeAllElements();
-        
+        comboModel.addElement("--Selecione--");
         for(Empresa e : JTable_Tabela.getEmpresa())
             comboModel.addElement(e);
         
         //Textos
         jLabel_Empresa.setText("Empresa*:");
         jLabel_Data.setText("Data*:");
-        jLabel_QtdLitros.setText("Litros de Leite Entregue*:");
+        jLabel_QtdLitros.setText("Litros de Leite Coletados*:");
         jLabel_Qualidade.setText("Qualidade*:");
         jCheckBox_DataAtual.setText("Data Atual");
         jCheckBox_LeiteAcido.setText("Ácido");
@@ -86,10 +90,19 @@ public abstract class JFrame_ColetaLeite extends JFrame_Base
         jLabel_ErroEmpresa.setForeground(Color.red);
         jLabel_ErroQtdLitros.setForeground(Color.red);
         
+        //Botão Nova Empresa
+        Icon add = new ImageIcon("src\\Telas\\FrameColetaLeite\\add.png");
+        jButton_NovaEmpresa.setIcon(add);
+        
         //Máscaras
         jFormattedTextField_Data = setFormatData(jFormattedTextField_Data);
         jFormattedTextField_QtdLitros = setFormatNumero(jFormattedTextField_QtdLitros);
         
+        //Iniciar JCheckBox Padrão
+        jCheckBox_LeiteBom.setSelected(true);
+        
+        
+        getCons().fill = GridBagConstraints.BOTH;
         //Linha 0
         getCons().gridx = 0;
         getCons().gridy = 0;
@@ -129,11 +142,13 @@ public abstract class JFrame_ColetaLeite extends JFrame_Base
         
         //Linha 5
         getCons().gridy = 5;
+        getCons().gridwidth = 4;
         getjPanel_CENTER().add(jLabel_ErroQtdLitros, getCons());
         
         //Linha 6
         getCons().gridx = 0;
         getCons().gridy = 6;
+        getCons().gridwidth = 1;
         getjPanel_CENTER().add(jLabel_Qualidade, getCons());
         getCons().gridx = 1;
         getjPanel_CENTER().add(jCheckBox_LeiteBom, getCons());
@@ -141,7 +156,7 @@ public abstract class JFrame_ColetaLeite extends JFrame_Base
         getjPanel_CENTER().add(jCheckBox_LeiteAcido, getCons());
         
         //Linha 7
-        getCons().gridx = 1;
+        getCons().gridx = 0;
         getCons().gridy = 7;
         getCons().gridwidth = 3;
         getjPanel_CENTER().add(jLabel_Aviso, getCons());
@@ -201,6 +216,41 @@ public abstract class JFrame_ColetaLeite extends JFrame_Base
         });
     }
     
+    public boolean Verificacoes()
+    {
+        boolean retorno = true;
+        
+        if(jComboBox_Empresa.getSelectedIndex() == 0)
+        {
+            jLabel_ErroEmpresa.setText("Selecione o laticínio que coletou o leite!");
+            retorno = false;
+        }
+        
+        if(jFormattedTextField_QtdLitros.getText().equals("000000"))
+        {
+            jLabel_ErroQtdLitros.setText("O campo Quantidade de Litros Coletados é obrigatório!");
+            retorno = false;
+        }
+        
+        return retorno;
+    }
+    
+    public void LimparErros()
+    {
+        jLabel_ErroData.setText(null);
+        jLabel_ErroEmpresa.setText(null);
+        jLabel_ErroQtdLitros.setText(null);
+    }
+    
+    public void LimparCampos()
+    {
+        getjComboBox_Empresa().setSelectedIndex(0);
+        getjFormattedTextField_Data().setText(null);
+        getjFormattedTextField_QtdLitros().setText(null);
+        getjCheckBox_LeiteBom().setSelected(true);
+        getjCheckBox_LeiteAcido().setSelected(false);
+    }
+    
     private Date getDate()
     {
         java.util.Date dataUtil = new java.util.Date();
@@ -242,6 +292,14 @@ public abstract class JFrame_ColetaLeite extends JFrame_Base
     {
         return jLabel_ErroData;
     }
-    
-    public abstract void Confirmar();
+
+    public JCheckBox getjCheckBox_DataAtual()
+    {
+        return jCheckBox_DataAtual;
+    }
+
+    public JButton getjButton_NovaEmpresa()
+    {
+        return jButton_NovaEmpresa;
+    }
 }

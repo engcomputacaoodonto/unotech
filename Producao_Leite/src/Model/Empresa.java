@@ -72,6 +72,11 @@ public class Empresa
     {
         return logradouro;
     }
+    
+    public String toString()
+    {
+        return nomeFantasia;
+    }
 
     public void setIdEmpresa(int idEmpresa)
     {
@@ -127,6 +132,4 @@ public class Empresa
     {
         this.logradouro = logradouro;
     }
-    
-    
 }

@@ -1,13 +1,17 @@
 package Telas.FramePrincipal;
 
-import DAO.AnimalDAO;
-import DAO.ProducaoDiariaDAO;
 import Model.Animal;
+import Model.ColetaLeite;
+import Model.Empresa;
 import Model.ProducaoDiaria;
+import Telas.FrameColetaLeite.JFrame_AlterarColetaLeite;
 import Telas.FrameColetaLeite.JFrame_CadastrarColetaLeite;
-import Telas.FrameColetaLeite.JFrame_ColetaLeite;
+import Telas.FrameColetaLeite.JFrame_LocalizarColetaLeite;
+import Telas.FrameColetaLeite.JFrame_RemoverColetaLeite;
+import Telas.FrameEmpresa.JFrame_AlterarEmpresa;
 import Telas.FrameEmpresa.JFrame_CadastrarEmpresa;
-import Telas.FrameEmpresa.JFrame_Empresa;
+import Telas.FrameEmpresa.JFrame_LocalizarEmpresa;
+import Telas.FrameEmpresa.JFrame_RemoverEmpresa;
 import Telas.FramesAnimais.JFrame_AlterarAnimais;
 import Telas.FramesAnimais.JFrame_CadastrarAnimais;
 import Telas.FramesAnimais.JFrame_PesquisarAnimais;
@@ -17,14 +21,14 @@ import Telas.FramesProducaoDiaria.JFrame_CadastrarProducaoDiaria;
 import Telas.FramesProducaoDiaria.JFrame_PesquisarProducaoAnimalOrdenha;
 import Telas.FramesProducaoDiaria.JFrame_RemoverProducaoAnimalOrdenha;
 import Telas.JFrame_Base;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.util.ArrayList;
+import java.awt.Toolkit;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 /**
@@ -33,31 +37,35 @@ import javax.swing.JScrollPane;
  */
 public class JFrame_Principal extends JFrame_Base
 {
-    private boolean TabelaAnimaisSelecionada;
-    private boolean TabelaProducaoAnimalOrdenhaSelecionada;
+    private boolean PlantelSelecionado;
+    private boolean ProducaoAnimalOrdenhaSelecionado;
+    private boolean EmpresaSelecionado;
+    private boolean ColetaLeiteSelecionado;
+    
+    private final int PLANTEL = 0;
+    private final int PRODUCAOANIMALORDENHA = 1;
+    private final int EMPRESA = 2;
+    private final int COLETALEITE = 3;
     
     private JButton jButton_Plantel;
     private JButton jButton_ProducaoOrdenha;
     private JButton jButton_Empresa;
     private JButton jButton_ColetaLeite;
-    private JButton jButton_CadastrarAnimal;
-    private JButton jButton_AlterarAnimal;
-    private JButton jButton_RemoverAnimal;
-    private JButton jButton_LocalizarAnimal;
-    private JButton jButton_CadastrarProducaoOrdenha;
-    private JButton jButton_AlterarProducaoOrdenha;
-    private JButton jButton_RemoverProducaoOrdenha;
-    private JButton jButton_LocalizarProducaoOrdenha;
-    private JButton jButton_CadastrarEmpresa;
+    private JButton jButton_Add;
+    private JButton jButton_Update;
+    private JButton jButton_Remove;
+    private JButton jButton_Search;
+    private JButton jButton_Close;
     
+    private JScrollPane jScrollPane_BaseTabela;
     
     private JTable_Tabela tabela;
     
     public JFrame_Principal()
     {
         super("src\\Telas\\FramePrincipal\\dairy.jpg");
-        setSize(1920, 1080);
         Componentes();
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
     
     public void Componentes()
@@ -67,39 +75,37 @@ public class JFrame_Principal extends JFrame_Base
         jButton_ProducaoOrdenha = new JButton();
         jButton_Empresa = new JButton();
         jButton_ColetaLeite = new JButton();
-        jButton_CadastrarAnimal = new JButton();
-        jButton_AlterarAnimal = new JButton();
-        jButton_RemoverAnimal = new JButton();
-        jButton_LocalizarAnimal = new JButton();
-        jButton_CadastrarProducaoOrdenha = new JButton();
-        jButton_AlterarProducaoOrdenha = new JButton();
-        jButton_RemoverProducaoOrdenha = new JButton();
-        jButton_LocalizarProducaoOrdenha = new JButton();
-        jButton_CadastrarEmpresa = new JButton();
+        jButton_Add = new JButton();
+        jButton_Update = new JButton();
+        jButton_Remove = new JButton();
+        jButton_Search = new JButton();
+        jButton_Close = new JButton();
+        
         //Texto e Icones em Componentes
         Icon add = new ImageIcon("src\\Telas\\FramePrincipal\\add.png");
-        jButton_CadastrarAnimal.setIcon(add);
-        jButton_CadastrarProducaoOrdenha.setIcon(add);
-        jButton_CadastrarEmpresa.setIcon(add);
+        jButton_Add.setIcon(add);
         Icon update = new ImageIcon("src\\Telas\\FramePrincipal\\update.png");
-        jButton_AlterarAnimal.setIcon(update);
-        jButton_AlterarProducaoOrdenha.setIcon(update);
+        jButton_Update.setIcon(update);
         Icon remove = new ImageIcon("src\\Telas\\FramePrincipal\\remove.png");
-        jButton_RemoverAnimal.setIcon(remove);
-        jButton_RemoverProducaoOrdenha.setIcon(remove);
+        jButton_Remove.setIcon(remove);
         Icon search = new ImageIcon("src\\Telas\\FramePrincipal\\search.png");
-        jButton_LocalizarAnimal.setIcon(search);
-        jButton_LocalizarProducaoOrdenha.setIcon(search);
+        jButton_Search.setIcon(search);
+        Icon close = new ImageIcon("src\\Telas\\FramePrincipal\\close.png");
+        jButton_Close.setIcon(close);
         jButton_Plantel.setText("Plantel");
+        jButton_Plantel.setFont(new java.awt.Font("Tahoma", 1, 24));
+        jButton_ProducaoOrdenha.setFont(new java.awt.Font("Tahoma", 1, 24));
+        jButton_Empresa.setFont(new java.awt.Font("Tahoma", 1, 24));
+        jButton_ColetaLeite.setFont(new java.awt.Font("Tahoma", 1, 24));
         jButton_ProducaoOrdenha.setText("Produção/Animal/Ordenha");
         jButton_Empresa.setText("Laticínio");
         jButton_ColetaLeite.setText("Coleta de Leite");
         getjButton_Voltar().setText("Fechar");
+        getjButton_Voltar().setFont(new java.awt.Font("Tahoma", 1, 18));
+        
         
         //Visibilidade Componentes
-        jButton_CadastrarEmpresa.setVisible(false);
-        BotoesAnimaisVisibilidade(false);
-        BotoesProducaoOrdenhaVisibilidade(false);
+        VisibilidadeBotoes(false);
         getjButton_Confirmar().setVisible(false);
         
         //Adicionar Botões
@@ -110,6 +116,29 @@ public class JFrame_Principal extends JFrame_Base
         
         //Carregar dados
         tabela = new JTable_Tabela();
+        
+        
+        //jPanel_CENTER adicionando Botões
+        getCons().fill = GridBagConstraints.NONE;
+        getCons().anchor = GridBagConstraints.NORTHEAST;
+        getCons().insets = new Insets(10, 10, 10, 10);
+
+        //Linha 0
+        getCons().gridwidth = 1;
+        getCons().gridheight = 1;
+        getCons().weightx = 0;
+        getCons().weighty = 0;
+        getCons().gridx = 0;
+        getCons().gridy = 0;
+        getjPanel_CENTER().add(jButton_Add, getCons());
+        getCons().gridx = 1;
+        getjPanel_CENTER().add(jButton_Remove, getCons());
+        getCons().gridx = 2;
+        getjPanel_CENTER().add(jButton_Update, getCons());
+        getCons().gridx = 3;
+        getjPanel_CENTER().add(jButton_Search, getCons());
+        getCons().gridx = 4;
+        getjPanel_CENTER().add(jButton_Close, getCons());
 
         
         //Ação Botões
@@ -118,32 +147,7 @@ public class JFrame_Principal extends JFrame_Base
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                getjPanel_CENTER().removeAll();
-                BotoesProducaoOrdenhaVisibilidade(false);
-                //jPanel_CENTER adicionando Botões
-                getCons().fill = GridBagConstraints.NONE;
-                getCons().anchor = GridBagConstraints.NORTHWEST;
-                getCons().insets = new Insets(10, 10, 10, 10);
-
-                //Linha 0
-                getCons().gridwidth = 1;
-                getCons().gridheight = 1;
-                getCons().weightx = 0;
-                getCons().weighty = 0;
-                getCons().gridx = 0;
-                getCons().gridy = 0;
-                getjPanel_CENTER().add(jButton_CadastrarAnimal, getCons());
-                getCons().gridx = 1;
-                getjPanel_CENTER().add(jButton_RemoverAnimal, getCons());
-                getCons().gridx = 2;
-                getjPanel_CENTER().add(jButton_AlterarAnimal, getCons());
-                getCons().gridx = 3;
-                getjPanel_CENTER().add(jButton_LocalizarAnimal, getCons());
-                getCons().gridy = 1;
-                getCons().gridx = 0;
-                
-                BotoesAnimaisVisibilidade(true);
-                addAnimais();
+                MostrarTabela(PLANTEL);
             }
         });
         
@@ -152,32 +156,7 @@ public class JFrame_Principal extends JFrame_Base
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                getjPanel_CENTER().removeAll();
-                BotoesAnimaisVisibilidade(false);
-                //jPanel_CENTER adicionando Botões
-                getCons().fill = GridBagConstraints.NONE;
-                getCons().anchor = GridBagConstraints.NORTHWEST;
-                getCons().insets = new Insets(10, 10, 10, 10);
-
-                //Linha 0
-                getCons().gridwidth = 1;
-                getCons().gridheight = 1;
-                getCons().weightx = 0;
-                getCons().weighty = 0;
-                getCons().gridx = 0;
-                getCons().gridy = 0;
-                getjPanel_CENTER().add(jButton_CadastrarProducaoOrdenha, getCons());
-                getCons().gridx = 1;
-                getjPanel_CENTER().add(jButton_RemoverProducaoOrdenha, getCons());
-                getCons().gridx = 2;
-                getjPanel_CENTER().add(jButton_AlterarProducaoOrdenha, getCons());
-                getCons().gridx = 3;
-                getjPanel_CENTER().add(jButton_LocalizarProducaoOrdenha, getCons());
-                getCons().gridy = 1;
-                getCons().gridx = 0;
-                
-                BotoesProducaoOrdenhaVisibilidade(true);
-                addProducaoAnimalOrdenha();
+                MostrarTabela(PRODUCAOANIMALORDENHA);
             }
         });
         
@@ -186,23 +165,7 @@ public class JFrame_Principal extends JFrame_Base
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                getjPanel_CENTER().removeAll();
-                
-                
-                getCons().fill = GridBagConstraints.NONE;
-                getCons().anchor = GridBagConstraints.NORTHWEST;
-                getCons().insets = new Insets(10, 10, 10, 10);
-
-                //Linha 0
-                getCons().gridwidth = 1;
-                getCons().gridheight = 1;
-                getCons().weightx = 0;
-                getCons().weighty = 0;
-                getCons().gridx = 0;
-                getCons().gridy = 0;
-                getjPanel_CENTER().add(jButton_CadastrarEmpresa, getCons());
-                
-                jButton_CadastrarEmpresa.setVisible(true);
+                MostrarTabela(EMPRESA);
             }
         });
         
@@ -211,136 +174,93 @@ public class JFrame_Principal extends JFrame_Base
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                new JFrame_CadastrarColetaLeite();
+                MostrarTabela(COLETALEITE);
             }
         });
         
-        //Botão Cadastrar
-        jButton_CadastrarAnimal.addActionListener(new java.awt.event.ActionListener()
+        //Botão Add
+        jButton_Add.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                new JFrame_CadastrarAnimais();
-            }
-        });
-        
-        jButton_CadastrarProducaoOrdenha.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                new JFrame_CadastrarProducaoDiaria();
-            }
-        });
-        
-        jButton_CadastrarEmpresa.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                new JFrame_CadastrarEmpresa();
+                if(PlantelSelecionado)
+                    new JFrame_CadastrarAnimais();
+                
+                if(ProducaoAnimalOrdenhaSelecionado)
+                    new JFrame_CadastrarProducaoDiaria();
+                
+                if(EmpresaSelecionado)
+                    new JFrame_CadastrarEmpresa();
+                
+                if(ColetaLeiteSelecionado)
+                    new JFrame_CadastrarColetaLeite();
             }
         });
         
         //Botão Remover
-        jButton_RemoverAnimal.addActionListener(new java.awt.event.ActionListener()
+        jButton_Remove.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                int select = tabela.getjTable_Tabela().getSelectedRow();
-                if(select == -1)
-                {
-                    JOptionPane.showMessageDialog(null,"Nunhum campo selecionado!", "Erro!", 2);
-                    return;
-                }
-                Animal animal = new Animal();
-                animal.setId(JTable_Tabela.getAnimalList().get(select).getId());
-                animal.setNome(JTable_Tabela.getAnimalList().get(select).getNome());
-                animal.setNumero(JTable_Tabela.getAnimalList().get(select).getNumero());
-                animal.setRaca(JTable_Tabela.getAnimalList().get(select).getRaca());
-                animal.setDataNasc(JTable_Tabela.getAnimalList().get(select).getDataNasc());
-                animal.setSexo(JTable_Tabela.getAnimalList().get(select).getSexo());
-                animal.setSituacao(JTable_Tabela.getAnimalList().get(select).getSituacao());
-                new JFrame_RemoverAnimais(animal, select);
+                if(PlantelSelecionado)
+                    Remover(PLANTEL);
+                
+                if(ProducaoAnimalOrdenhaSelecionado)
+                    Remover(PRODUCAOANIMALORDENHA);
+                
+                if(EmpresaSelecionado)
+                    Remover(EMPRESA);
+                
+                if(ColetaLeiteSelecionado)
+                    Remover(COLETALEITE);
             }
         });
-        
-        jButton_RemoverProducaoOrdenha.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                int select = tabela.getjTable_Tabela().getSelectedRow();
-                if(select == -1)
-                {
-                    JOptionPane.showMessageDialog(null,"Nunhum campo selecionado!", "Erro!", 2);
-                    return;
-                }
-                ProducaoDiaria pao = new ProducaoDiaria();
-                pao.setId(JTable_Tabela.getProducaoAnimalOrdenha().get(select).getId());
-                pao.setIdAnimal(JTable_Tabela.getProducaoAnimalOrdenha().get(select).getIdAnimal());
-                pao.setData(JTable_Tabela.getProducaoAnimalOrdenha().get(select).getData());
-                pao.setQntLitros(JTable_Tabela.getProducaoAnimalOrdenha().get(select).getQntLitros());
-                new JFrame_RemoverProducaoAnimalOrdenha(pao, select);
-            }
-        });
-        
         
         
         //Botão Alterar
-        jButton_AlterarAnimal.addActionListener(new java.awt.event.ActionListener()
+        jButton_Update.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                int select = tabela.getjTable_Tabela().getSelectedRow();
-                if(select == -1)
-                {
-                    JOptionPane.showMessageDialog(null,"Nunhum campo selecionado!", "Erro!", 2);
-                    return;
-                }
-                Animal animal = new Animal();
-                animal.setId(JTable_Tabela.getAnimalList().get(select).getId());
-                animal.setNome(JTable_Tabela.getAnimalList().get(select).getNome());
-                animal.setNumero(JTable_Tabela.getAnimalList().get(select).getNumero());
-                animal.setRaca(JTable_Tabela.getAnimalList().get(select).getRaca());
-                animal.setDataNasc(JTable_Tabela.getAnimalList().get(select).getDataNasc());
-                animal.setSexo(JTable_Tabela.getAnimalList().get(select).getSexo());
-                animal.setSituacao(JTable_Tabela.getAnimalList().get(select).getSituacao());
-                new JFrame_AlterarAnimais(animal, select);
-            }
-        });
-        
-        jButton_AlterarProducaoOrdenha.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                int select = tabela.getjTable_Tabela().getSelectedRow(); 
-                if(select == -1) 
-                { 
-                    JOptionPane.showMessageDialog(null,"Nunhum campo selecionado!", "Erro!", 2); 
-                    return; 
-                } 
-                ProducaoDiaria pao = new ProducaoDiaria(); 
-                pao.setId(JTable_Tabela.getProducaoAnimalOrdenha().get(select).getId()); 
-                pao.setIdAnimal(JTable_Tabela.getProducaoAnimalOrdenha().get(select).getIdAnimal()); 
-                pao.setData(JTable_Tabela.getProducaoAnimalOrdenha().get(select).getData()); 
-                pao.setQntLitros(JTable_Tabela.getProducaoAnimalOrdenha().get(select).getQntLitros()); 
-                new JFrame_AlterarProducaoAnimalOrdenha(pao, select); 
-
+                if(PlantelSelecionado)
+                    Alterar(PLANTEL);
+                
+                if(ProducaoAnimalOrdenhaSelecionado)
+                    Alterar(PRODUCAOANIMALORDENHA);
+                
+                if(EmpresaSelecionado)
+                    Alterar(EMPRESA);
+                
+                if(ColetaLeiteSelecionado)
+                    Alterar(COLETALEITE);
             }
         });
         
         //Botão Localizar
-        jButton_LocalizarAnimal.addActionListener(new java.awt.event.ActionListener()
+        jButton_Search.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                new JFrame_PesquisarAnimais();
+                if(PlantelSelecionado)
+                    new JFrame_PesquisarAnimais();
+                
+                if(ProducaoAnimalOrdenhaSelecionado)
+                    new JFrame_PesquisarProducaoAnimalOrdenha();
+                
+                if(EmpresaSelecionado)
+                    new JFrame_LocalizarEmpresa();
+                
+                if(ColetaLeiteSelecionado)
+                    new JFrame_LocalizarColetaLeite();
             }
         });
         
-        jButton_LocalizarProducaoOrdenha.addActionListener(new java.awt.event.ActionListener()
+        //Botão Close
+        jButton_Close.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                new JFrame_PesquisarProducaoAnimalOrdenha();
+                LimparTela();
             }
         });
         
@@ -349,62 +269,104 @@ public class JFrame_Principal extends JFrame_Base
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                if(evt.getClickCount() == 2 && TabelaAnimaisSelecionada)
+                if(evt.getClickCount() == 2)
                 {
-                    AlterarAnimal();
-                }
-                
-                if(evt.getClickCount() == 2 && TabelaProducaoAnimalOrdenhaSelecionada)
-                {
-                    AlterarProducaoAnimalOrddenha();
+                    if(PlantelSelecionado)
+                        Alterar(PLANTEL);
+                    if(ProducaoAnimalOrdenhaSelecionado)
+                        Alterar(PRODUCAOANIMALORDENHA);
+                    if(EmpresaSelecionado)
+                        Alterar(EMPRESA);
+                    if(ColetaLeiteSelecionado)
+                        Alterar(COLETALEITE);
                 }
             }
         });
     }
     
-    private void AlterarAnimal()
+    private int SelecionarTabela()
     {
         int select = tabela.getjTable_Tabela().getSelectedRow();
         if (select == -1)
-        {
             JOptionPane.showMessageDialog(null, "Nunhum campo selecionado!", "Erro!", 2);
-            return;
-        }
-        Animal animal = new Animal();
-        animal.setId(JTable_Tabela.getAnimalList().get(select).getId());
-        animal.setNome(JTable_Tabela.getAnimalList().get(select).getNome());
-        animal.setNumero(JTable_Tabela.getAnimalList().get(select).getNumero());
-        animal.setRaca(JTable_Tabela.getAnimalList().get(select).getRaca());
-        animal.setDataNasc(JTable_Tabela.getAnimalList().get(select).getDataNasc());
-        animal.setSexo(JTable_Tabela.getAnimalList().get(select).getSexo());
-        animal.setSituacao(JTable_Tabela.getAnimalList().get(select).getSituacao());
-        new JFrame_AlterarAnimais(animal, select);
+        
+        return select;
+        
     }
     
-    private void AlterarProducaoAnimalOrddenha()
+    private void Alterar(int constante)
     {
-        int select = tabela.getjTable_Tabela().getSelectedRow(); 
-        if (select == -1)
-        {
-            JOptionPane.showMessageDialog(null, "Nunhum campo selecionado!", "Erro!", 2);
+        int select = SelecionarTabela();
+        
+        if(select == -1)
             return;
+        
+        if(constante == 0)
+        {
+            Animal animal = JTable_Tabela.getAnimalList().get(select);
+            new JFrame_AlterarAnimais(animal, select);
         }
-        ProducaoDiaria pao = new ProducaoDiaria();
-        pao.setId(JTable_Tabela.getProducaoAnimalOrdenha().get(select).getId());
-        pao.setIdAnimal(JTable_Tabela.getProducaoAnimalOrdenha().get(select).getIdAnimal());
-        pao.setData(JTable_Tabela.getProducaoAnimalOrdenha().get(select).getData());
-        pao.setQntLitros(JTable_Tabela.getProducaoAnimalOrdenha().get(select).getQntLitros());
-        new JFrame_AlterarProducaoAnimalOrdenha(pao, select);
+        
+        if(constante == 1)
+        {
+            ProducaoDiaria pao = JTable_Tabela.getProducaoAnimalOrdenha().get(select);
+            new JFrame_AlterarProducaoAnimalOrdenha(pao, select);
+        }
+        
+        if(constante == 2)
+        {
+            Empresa empresa = JTable_Tabela.getEmpresa().get(select);
+            new JFrame_AlterarEmpresa(empresa, select);
+        }
+        
+        if(constante == 3)
+        {
+            ColetaLeite coletaLeite = JTable_Tabela.getColetaLeite().get(select);
+            new JFrame_AlterarColetaLeite(coletaLeite, select);
+        }
     }
-
     
-    private void addAnimais()
+    private void Remover(int constante)
     {
-        tabela.setTabelaAnimais();
-        JScrollPane jScrollPane_BaseTabela = new JScrollPane(tabela.getjTable_Tabela());
-         
-        TabelaAnimaisSelecionada = true;
-        TabelaProducaoAnimalOrdenhaSelecionada = false;
+        int select = SelecionarTabela();
+        
+        if(select == -1)
+            return;
+        
+        if(constante == 0)
+        {
+            Animal animal = JTable_Tabela.getAnimalList().get(select);
+            new JFrame_RemoverAnimais(animal, select);
+        }
+        
+        if(constante == 1)
+        {
+            ProducaoDiaria pao = JTable_Tabela.getProducaoAnimalOrdenha().get(select);
+            new JFrame_RemoverProducaoAnimalOrdenha(pao, select);
+        }
+        
+        if(constante == 2)
+        {
+            Empresa empresa = JTable_Tabela.getEmpresa().get(select);
+            new JFrame_RemoverEmpresa(empresa, select);
+        }
+        
+        if(constante == 3)
+        {
+            ColetaLeite coletaLeite = JTable_Tabela.getColetaLeite().get(select);
+            new JFrame_RemoverColetaLeite(coletaLeite, select);
+        }
+    }
+    
+    private void MontarJPanelCentral(int constante)
+    {
+        if(jScrollPane_BaseTabela != null)
+            LimparTela();
+        VisibilidadeBotoes(true);
+        TelaSelecionada(constante);
+        getCons().gridy = 1;
+        getCons().gridx = 0;
+        jScrollPane_BaseTabela = new JScrollPane(JTable_Tabela.getjTable_Tabela());
         
         getCons().fill = GridBagConstraints.BOTH;  
         getCons().weightx = 1;  
@@ -414,35 +376,43 @@ public class JFrame_Principal extends JFrame_Base
         getjPanel_CENTER().add(jScrollPane_BaseTabela, getCons());
     }
     
-    private void addProducaoAnimalOrdenha()
+    private void MostrarTabela(int constante)
     {
-        tabela.setTabelaProducaoAnimalOrdenha();
-        JScrollPane jScrollPane_BaseTabela = new JScrollPane(tabela.getjTable_Tabela());
+        JTable_Tabela.SelecionarTabela(constante);
+        MontarJPanelCentral(constante);
+    }
+    
+    private void VisibilidadeBotoes(boolean visi)
+    {
+        jButton_Add.setVisible(visi);
+        jButton_Close.setVisible(visi);
+        jButton_Remove.setVisible(visi);
+        jButton_Search.setVisible(visi);
+        jButton_Update.setVisible(visi);
+    }
+    
+    private void TelaSelecionada(int constante)
+    {
+        PlantelSelecionado = false;
+        ProducaoAnimalOrdenhaSelecionado = false;
+        EmpresaSelecionado = false;
+        ColetaLeiteSelecionado = false;
         
-        TabelaAnimaisSelecionada = false;
-        TabelaProducaoAnimalOrdenhaSelecionada = true;
-        getCons().fill = GridBagConstraints.BOTH;  
-        getCons().weightx = 1;  
-        getCons().gridwidth = GridBagConstraints.REMAINDER;
-        getCons().weighty = 1;  
-        getCons().gridheight = GridBagConstraints.REMAINDER;
-        getjPanel_CENTER().add(jScrollPane_BaseTabela, getCons());
+        if(constante == 0)
+            PlantelSelecionado = true;
+        if(constante == 1)
+            ProducaoAnimalOrdenhaSelecionado = true;
+        if(constante == 2)
+            EmpresaSelecionado = true;
+        if(constante == 3)
+            ColetaLeiteSelecionado = true;
     }
     
-    private void BotoesAnimaisVisibilidade(boolean visibilidade)
+    private void LimparTela()
     {
-        jButton_CadastrarAnimal.setVisible(visibilidade);
-        jButton_AlterarAnimal.setVisible(visibilidade);
-        jButton_RemoverAnimal.setVisible(visibilidade);
-        jButton_LocalizarAnimal.setVisible(visibilidade);
-    }
-    
-    private void BotoesProducaoOrdenhaVisibilidade(boolean visibilidade)
-    {
-        jButton_CadastrarProducaoOrdenha.setVisible(visibilidade);
-        jButton_AlterarProducaoOrdenha.setVisible(visibilidade);
-        jButton_RemoverProducaoOrdenha.setVisible(visibilidade);
-        jButton_LocalizarProducaoOrdenha.setVisible(visibilidade);
+        TelaSelecionada(-1);
+        VisibilidadeBotoes(false);
+        jScrollPane_BaseTabela.setVisible(false);
     }
     
     public void Confirmar(){/*Método não necessário para essa classe*/}

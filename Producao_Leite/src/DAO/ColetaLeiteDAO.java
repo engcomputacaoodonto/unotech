@@ -63,7 +63,7 @@ public class ColetaLeiteDAO
             c.getPreparedStatement().setDate(2, coletaLeite.getDataColeta());
             c.getPreparedStatement().setInt(3, coletaLeite.getQtdLitros());
             c.getPreparedStatement().setString(4, coletaLeite.getQualidade());
-            c.getPreparedStatement().setInt(4, coletaLeite.getIdColetaLeite());
+            c.getPreparedStatement().setInt(5, coletaLeite.getIdColetaLeite());
             c.getPreparedStatement().execute();
             c.Desconectar();
         }

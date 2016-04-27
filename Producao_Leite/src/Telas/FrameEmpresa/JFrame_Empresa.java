@@ -26,8 +26,6 @@ public abstract class JFrame_Empresa extends JFrame_Base
     private JLabel jLabel_Aviso;
     private JLabel jLabel_ErroNome;
     private JLabel jLabel_ErroRazaoSocial;
-    private JLabel jLabel_ErroCnpj;
-    private JLabel jLabel_ErroTelefone;
     private JLabel jLabel_ErroEmail;
     private JLabel jLabel_ErroHomePage;
     private JLabel jLabel_ErroCidade;
@@ -74,14 +72,12 @@ public abstract class JFrame_Empresa extends JFrame_Base
         
         jLabel_ErroBairro = new JLabel();
         jLabel_ErroCidade = new JLabel();
-        jLabel_ErroCnpj = new JLabel();
         jLabel_ErroEmail = new JLabel();
         jLabel_ErroEstado = new JLabel();
         jLabel_ErroHomePage = new JLabel();
         jLabel_ErroLogradouro = new JLabel();
         jLabel_ErroNome = new JLabel();
         jLabel_ErroRazaoSocial = new JLabel();
-        jLabel_ErroTelefone = new JLabel();
         
         jTextField_Bairro = new JTextField(15);
         jTextField_Cidade = new JTextField(10);
@@ -111,8 +107,6 @@ public abstract class JFrame_Empresa extends JFrame_Base
         //Foreground Erros
         jLabel_ErroNome.setForeground(Color.red);
         jLabel_ErroRazaoSocial.setForeground(Color.red);
-        jLabel_ErroCnpj.setForeground(Color.red);
-        jLabel_ErroTelefone.setForeground(Color.red);
         jLabel_ErroEmail.setForeground(Color.red);
         jLabel_ErroHomePage.setForeground(Color.red);
         jLabel_ErroCidade.setForeground(Color.red);
@@ -160,13 +154,6 @@ public abstract class JFrame_Empresa extends JFrame_Base
         getjPanel_CENTER().add(jLabel_Telefone, getCons());
         getCons().gridx = 3;
         getjPanel_CENTER().add(jFormattedTextField_Teleone, getCons());
-        
-        //Linha 5
-        getCons().gridx = 1;
-        getCons().gridy = 5;
-        getjPanel_CENTER().add(jLabel_ErroCnpj, getCons());
-        getCons().gridx = 3;
-        getjPanel_CENTER().add(jLabel_ErroTelefone, getCons());
         
         //Linha 6
         getCons().gridx = 0;
@@ -239,6 +226,7 @@ public abstract class JFrame_Empresa extends JFrame_Base
         
 
         //Dados JComboBox
+        jComboBox_Estado.addItem("--SELECIONE--");
         jComboBox_Estado.addItem("Acre");
         jComboBox_Estado.addItem("Alagoas");
         jComboBox_Estado.addItem("Amapá");
@@ -266,9 +254,90 @@ public abstract class JFrame_Empresa extends JFrame_Base
         jComboBox_Estado.addItem("São Paulo");
         jComboBox_Estado.addItem("Sergipe");
         jComboBox_Estado.addItem("Tocantins");
-        jComboBox_Estado.setSelectedIndex(23);
+    }
+    
+    public boolean Verificações()
+    {
+        boolean retorno = true;
+        
+        if(jTextField_Nome.getText().isEmpty())
+        {
+            jLabel_ErroNome.setText("O campo Nome é obrigatório!");
+            retorno = false;
+        }
+        
+        if(jTextField_Nome.getText().length() > 255)
+        {
+            jLabel_ErroNome.setText("O campo Nome deve conter no máximo 255 caracteres!");
+            retorno = false;
+        }
+        
+        if(jTextField_RazaoSocial.getText().length() > 255)
+        {
+            jLabel_ErroRazaoSocial.setText("O campo Razão Social deve conter no máximo 255 caracteres!");
+            retorno = false;
+        }
+        
+        if(jTextField_Bairro.getText().length() > 255)
+        {
+            jLabel_ErroBairro.setText("O campo Bairro deve conter no máximo 255 caracteres!");
+            retorno = false;
+        }
+        
+        if(jTextField_Cidade.getText().length() > 255)
+        {
+            jLabel_ErroCidade.setText("O campo Cidade deve conter no máximo 255 caracteres!");
+            retorno = false;
+        }
+        
+        if(jTextField_Email.getText().length() > 255)
+        {
+            jLabel_ErroEmail.setText("O campo E-mail deve conter no máximo 255 caracteres!");
+            retorno = false;
+        }
+        
+        if(jTextField_HomePage.getText().length() > 255)
+        {
+            jLabel_ErroHomePage.setText("O campo HomePage deve conter no máximo 255 caracteres!");
+            retorno = false;
+        }
+        
+        if(jTextField_Logradouro.getText().length() > 255)
+        {
+            jLabel_ErroLogradouro.setText("O campo Logradouro deve conter no máximo 255 caracteres!");
+            retorno = false;
+        }
+        
+        return retorno;
     }
 
+    public void LimparErros()
+    {
+        jLabel_ErroBairro.setText(null);
+        jLabel_ErroCidade.setText(null);
+        jLabel_ErroEmail.setText(null);
+        jLabel_ErroEstado.setText(null);
+        jLabel_ErroHomePage.setText(null);
+        jLabel_ErroLogradouro.setText(null);
+        jLabel_ErroNome.setText(null);
+        jLabel_ErroRazaoSocial.setText(null);
+        jLabel_Estado.setText(null);
+    }
+    
+    public void LimparCampos()
+    {
+        jTextField_Bairro.setText(null);
+        jTextField_Cidade.setText(null);
+        jTextField_Email.setText(null);
+        jTextField_HomePage.setText(null);
+        jTextField_Logradouro.setText(null);
+        jTextField_Nome.setText(null);
+        jTextField_RazaoSocial.setText(null);
+        jFormattedTextField_Cnpj.setText(null);
+        jFormattedTextField_Teleone.setText(null);
+        jComboBox_Estado.setSelectedIndex(0);
+    }
+    
     public JLabel getjLabel_Aviso()
     {
         return jLabel_Aviso;

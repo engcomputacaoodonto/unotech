@@ -7,6 +7,7 @@ package Telas.FrameEmpresa;
 
 import DAO.EmpresaDAO;
 import Model.Empresa;
+import Telas.FramePrincipal.JTable_Tabela;
 
 /**
  *
@@ -16,7 +17,7 @@ public class JFrame_CadastrarEmpresa extends JFrame_Empresa
 {
     public JFrame_CadastrarEmpresa()
     {
-        super("");
+        super("src\\Telas\\FrameEmpresa\\addBackGround.jpg");
         getjLabel_Aviso().setText("Os campos marcados com (*) devem ser marcados");
         getjButton_Confirmar().setText("Salvar");
         getjLabel_Titulo().setText("Nova Empresa");
@@ -24,6 +25,7 @@ public class JFrame_CadastrarEmpresa extends JFrame_Empresa
     
     public void Confirmar()
     {
+        LimparErros();
         Empresa empresa = new Empresa();
         empresa.setNomeFantasia(getjTextField_Nome().getText());
         empresa.setRazaoSocial(getjTextField_RazaoSocial().getText());
@@ -34,7 +36,19 @@ public class JFrame_CadastrarEmpresa extends JFrame_Empresa
         empresa.setCidade(getjTextField_Cidade().getText());
         empresa.setLogradouro(getjTextField_Logradouro().getText());
         empresa.setBairro(getjTextField_Bairro().getText());
-        empresa.setEstado((String) getjComboBox_Estado().getItemAt(getjComboBox_Estado().getSelectedIndex()));
-        EmpresaDAO.RegistrarEmpresa(empresa);
+        if(getjComboBox_Estado().getSelectedIndex() == 0)
+            empresa.setEstado("");
+        else
+            empresa.setEstado((String) getjComboBox_Estado().getItemAt(getjComboBox_Estado().getSelectedIndex()));
+        
+        if(Verificações())
+        {
+            EmpresaDAO.RegistrarEmpresa(empresa);
+            JTable_Tabela.addEmpresa(empresa);
+        }
+        else
+            return;
+        
+        LimparCampos();
     }
 }

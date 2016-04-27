@@ -2,6 +2,7 @@ package Telas.FrameEmpresa;
 
 import DAO.EmpresaDAO;
 import Model.Empresa;
+import Telas.FramePrincipal.JTable_Tabela;
 
 /**
  *
@@ -10,11 +11,17 @@ import Model.Empresa;
 public class JFrame_AlterarEmpresa extends JFrame_Empresa
 {
     private final Empresa empresa;
+    private final int select;
     
-    public JFrame_AlterarEmpresa(Empresa empresa)
+    public JFrame_AlterarEmpresa(Empresa empresa, int select)
     {
-        super("");
+        super("src\\Telas\\FrameEmpresa\\updateBackGround.jpg");
         this.empresa = empresa;
+        this.select = select;
+        
+        getjLabel_Titulo().setText("Alterar Laticínio");
+        getjButton_Confirmar().setText("Salvar Alterarções");
+        getjLabel_Aviso().setText("Alterações não salvas serão perdidas!");
         
         getjTextField_Nome().setText(this.empresa.getNomeFantasia());
         getjTextField_RazaoSocial().setText(this.empresa.getRazaoSocial());
@@ -30,6 +37,7 @@ public class JFrame_AlterarEmpresa extends JFrame_Empresa
     
     public void Confirmar()
     {
+        LimparErros();
         empresa.setNomeFantasia(getjTextField_Nome().getText());
         empresa.setRazaoSocial(getjTextField_RazaoSocial().getText());
         empresa.setCnpj(getjFormattedTextField_Cnpj().getText());
@@ -39,7 +47,19 @@ public class JFrame_AlterarEmpresa extends JFrame_Empresa
         empresa.setCidade(getjTextField_Cidade().getText());
         empresa.setLogradouro(getjTextField_Logradouro().getText());
         empresa.setBairro(getjTextField_Bairro().getText());
-        empresa.setEstado((String) getjComboBox_Estado().getItemAt(getjComboBox_Estado().getSelectedIndex()));
-        EmpresaDAO.AlterarEmpresa(empresa);
+        if(getjComboBox_Estado().getSelectedIndex() == 0)
+            empresa.setEstado("");
+        else
+            empresa.setEstado((String) getjComboBox_Estado().getItemAt(getjComboBox_Estado().getSelectedIndex()));
+        
+        if(Verificações())
+        {
+            EmpresaDAO.AlterarEmpresa(empresa);
+            JTable_Tabela.setEmpresa(empresa, select);
+        }
+        else
+            return;
+        
+        dispose();
     }
 }

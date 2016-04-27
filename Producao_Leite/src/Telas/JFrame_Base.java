@@ -39,6 +39,7 @@ public abstract class JFrame_Base extends javax.swing.JFrame
         setVisible(true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);
+        setLocationRelativeTo(null);
     }
     
     private void componentes()
@@ -107,6 +108,7 @@ public abstract class JFrame_Base extends javax.swing.JFrame
         try
         {
             MaskFormatter mask = new MaskFormatter("######");
+            mask.setPlaceholderCharacter('0');
             jFormattedTextField_Numero.setFormatterFactory(new DefaultFormatterFactory(mask));
         }
         catch (ParseException exc)
