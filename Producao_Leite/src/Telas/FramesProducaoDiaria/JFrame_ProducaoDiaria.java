@@ -54,7 +54,10 @@ public abstract class JFrame_ProducaoDiaria extends JFrame_Base
         //Carregar dados ComboBox
         jComboBox_Animal.setEditable(true);
         for(Animal a:JTable_Tabela.getAnimalList())
-            jComboBox_Animal.addItem(a.getNome()+" - "+a.getNumero());
+        {
+            if(a.getSexo().equals("F") && a.getSituacao().equals("A"))
+                jComboBox_Animal.addItem(a.getNome()+" - "+a.getNumero());
+        }
         
         //Nome de Campos
         jLabel_Animal.setText("Vaca*:");

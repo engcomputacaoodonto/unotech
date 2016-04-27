@@ -20,7 +20,7 @@ public class JFrame_CadastrarEmpresa extends JFrame_Empresa
         super("src\\Telas\\FrameEmpresa\\addBackGround.jpg");
         getjLabel_Aviso().setText("Os campos marcados com (*) devem ser marcados");
         getjButton_Confirmar().setText("Salvar");
-        getjLabel_Titulo().setText("Nova Empresa");
+        getjLabel_Titulo().setText("Novo Laticínio");
     }
     
     public void Confirmar()
