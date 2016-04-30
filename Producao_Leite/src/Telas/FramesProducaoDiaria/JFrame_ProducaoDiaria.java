@@ -1,6 +1,7 @@
 package Telas.FramesProducaoDiaria;
 
 import Model.Animal;
+import Mascaras.Mascaras;
 import Model.ProducaoDiaria;
 import Telas.FramePrincipal.JTable_Tabela;
 import Telas.JFrame_Base;
@@ -73,10 +74,10 @@ public abstract class JFrame_ProducaoDiaria extends JFrame_Base
         jCheckBox_DataAtual.setText("Utilizar data atual");
         
         //Máscara Data
-        jFormattedTextField_Data = setFormatData(jFormattedTextField_Data);
+        jFormattedTextField_Data = Mascaras.setFormat(jFormattedTextField_Data, "##/##/####", '_');
         
         //Máscara Decimal
-        jFormattedTextField_QtdLitros = setFormatDecimal(jFormattedTextField_QtdLitros);
+        jFormattedTextField_QtdLitros = Mascaras.setFormat(jFormattedTextField_QtdLitros, "##.##", Mascaras.NULO);
         
         //Line 0
         getCons().fill = GridBagConstraints.BOTH;

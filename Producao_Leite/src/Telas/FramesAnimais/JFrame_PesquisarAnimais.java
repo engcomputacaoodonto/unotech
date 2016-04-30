@@ -1,16 +1,11 @@
 package Telas.FramesAnimais;
 
 import Model.Animal;
-import Telas.JFrame_Base;
-import java.awt.GridBagConstraints;
+import Mascaras.Mascaras;
 import java.util.ArrayList;
-import javax.swing.JCheckBox;
-import javax.swing.JFormattedTextField;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import Telas.FramePrincipal.JTable_Tabela;
 import Telas.JFrame_BaseLocalizar;
-import java.awt.Color;
 
 
 /**
@@ -50,13 +45,13 @@ public class JFrame_PesquisarAnimais extends JFrame_BaseLocalizar
     
     public void AcaoJCheckBox1()
     {
-        setjFormattedTextField_Localizar(setFormatNull(getjFormattedTextField_Localizar()));
+        setjFormattedTextField_Localizar(Mascaras.setFormat(getjFormattedTextField_Localizar(), "", Mascaras.NULO));
         getjFormattedTextField_Localizar().setText(null);
     }
     
     public void AcaoJCheckBox2()
     {
-        setjFormattedTextField_Localizar(setFormatNumero(getjFormattedTextField_Localizar()));
+        setjFormattedTextField_Localizar(Mascaras.setFormat(getjFormattedTextField_Localizar(), "######", Mascaras.NULO));
         getjFormattedTextField_Localizar().setText(null);
     }
     

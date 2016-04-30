@@ -1,6 +1,7 @@
 package Telas.FrameEmpresa;
 
 import Telas.JFrame_Base;
+import Mascaras.Mascaras;
 import java.awt.Color;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -42,7 +43,7 @@ public abstract class JFrame_Empresa extends JFrame_Base
     private JTextField jTextField_Logradouro;
     
     private JFormattedTextField jFormattedTextField_Cnpj;
-    private JFormattedTextField jFormattedTextField_Teleone;
+    private JFormattedTextField jFormattedTextField_Telefone;
     
     private JComboBox jComboBox_Estado;
     
@@ -88,7 +89,7 @@ public abstract class JFrame_Empresa extends JFrame_Base
         jTextField_RazaoSocial = new JTextField(30);
         
         jFormattedTextField_Cnpj = new JFormattedTextField();
-        jFormattedTextField_Teleone = new JFormattedTextField();
+        jFormattedTextField_Telefone = new JFormattedTextField();
         
         jComboBox_Estado = new JComboBox();
         
@@ -115,8 +116,8 @@ public abstract class JFrame_Empresa extends JFrame_Base
         jLabel_ErroEstado.setForeground(Color.red);
         
         //Máscaras
-        jFormattedTextField_Cnpj = setFormatCNPJ(jFormattedTextField_Cnpj);
-        jFormattedTextField_Teleone = setFormatTelefone(jFormattedTextField_Teleone);
+        jFormattedTextField_Cnpj = Mascaras.setFormat(jFormattedTextField_Cnpj, "##.###.###/####-##", '_');
+        jFormattedTextField_Telefone = Mascaras.setFormat(jFormattedTextField_Telefone, "(##)####-####", '_');
         
         //Linha 0
         getCons().gridx = 0;
@@ -153,7 +154,7 @@ public abstract class JFrame_Empresa extends JFrame_Base
         getCons().gridx = 2;
         getjPanel_CENTER().add(jLabel_Telefone, getCons());
         getCons().gridx = 3;
-        getjPanel_CENTER().add(jFormattedTextField_Teleone, getCons());
+        getjPanel_CENTER().add(jFormattedTextField_Telefone, getCons());
         
         //Linha 6
         getCons().gridx = 0;
@@ -334,7 +335,7 @@ public abstract class JFrame_Empresa extends JFrame_Base
         jTextField_Nome.setText(null);
         jTextField_RazaoSocial.setText(null);
         jFormattedTextField_Cnpj.setText(null);
-        jFormattedTextField_Teleone.setText(null);
+        jFormattedTextField_Telefone.setText(null);
         jComboBox_Estado.setSelectedIndex(0);
     }
     
@@ -385,13 +386,11 @@ public abstract class JFrame_Empresa extends JFrame_Base
 
     public JFormattedTextField getjFormattedTextField_Teleone()
     {
-        return jFormattedTextField_Teleone;
+        return jFormattedTextField_Telefone;
     }
 
     public JComboBox getjComboBox_Estado()
     {
         return jComboBox_Estado;
     }
-    
-    public abstract void Confirmar();
 }

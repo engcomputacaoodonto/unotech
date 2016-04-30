@@ -8,7 +8,6 @@ import Model.Animal;
 import Model.ColetaLeite;
 import Model.Empresa;
 import Model.ProducaoDiaria;
-import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JTable;

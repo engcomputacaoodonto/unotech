@@ -1,6 +1,7 @@
 package Telas.FrameEmpresa;
 
 import Model.Empresa;
+import Mascaras.Mascaras;
 import Telas.FramePrincipal.JTable_Tabela;
 import Telas.JFrame_BaseLocalizar;
 import java.util.ArrayList;
@@ -26,19 +27,19 @@ public class JFrame_LocalizarEmpresa extends JFrame_BaseLocalizar
     
     public void AcaoJCheckBox1()
     {
-        setjFormattedTextField_Localizar(setFormatNull(getjFormattedTextField_Localizar()));
+        setjFormattedTextField_Localizar(Mascaras.setFormat(getjFormattedTextField_Localizar(), null, Mascaras.NULO));
         getjFormattedTextField_Localizar().setText(null);
     }
     
     public void AcaoJCheckBox2()
     {
-        setjFormattedTextField_Localizar(setFormatNull(getjFormattedTextField_Localizar()));
+        setjFormattedTextField_Localizar(Mascaras.setFormat(getjFormattedTextField_Localizar(), null, Mascaras.NULO));
         getjFormattedTextField_Localizar().setText(null);
     }
     
     public void AcaoJCheckBox3()
     {
-        setjFormattedTextField_Localizar(setFormatCNPJ(getjFormattedTextField_Localizar()));
+        setjFormattedTextField_Localizar(Mascaras.setFormat(getjFormattedTextField_Localizar(), "##.###.###/####-##", '_'));
         getjFormattedTextField_Localizar().setText(null);
     }
     

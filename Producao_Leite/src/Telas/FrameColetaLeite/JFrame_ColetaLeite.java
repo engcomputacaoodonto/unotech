@@ -1,5 +1,6 @@
 package Telas.FrameColetaLeite;
 
+import Mascaras.Mascaras;
 import Model.Empresa;
 import Telas.FrameEmpresa.JFrame_CadastrarEmpresa;
 import Telas.FramePrincipal.JTable_Tabela;
@@ -95,8 +96,8 @@ public abstract class JFrame_ColetaLeite extends JFrame_Base
         jButton_NovaEmpresa.setIcon(add);
         
         //Máscaras
-        jFormattedTextField_Data = setFormatData(jFormattedTextField_Data);
-        jFormattedTextField_QtdLitros = setFormatNumero(jFormattedTextField_QtdLitros);
+        jFormattedTextField_Data = Mascaras.setFormat(jFormattedTextField_Data, "##/##/####", '_');
+        jFormattedTextField_QtdLitros = Mascaras.setFormat(jFormattedTextField_QtdLitros, "##.##", Mascaras.NULO);
         
         //Iniciar JCheckBox Padrão
         jCheckBox_LeiteBom.setSelected(true);

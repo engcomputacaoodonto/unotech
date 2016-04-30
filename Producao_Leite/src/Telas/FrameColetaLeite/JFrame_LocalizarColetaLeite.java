@@ -1,6 +1,6 @@
 package Telas.FrameColetaLeite;
 
-import Model.Animal;
+import Mascaras.Mascaras;
 import Model.ColetaLeite;
 import Model.Empresa;
 import Telas.FramePrincipal.JTable_Tabela;
@@ -30,13 +30,13 @@ public class JFrame_LocalizarColetaLeite extends JFrame_BaseLocalizar
     
     public void AcaoJCheckBox1()
     {
-        setjFormattedTextField_Localizar(setFormatNull(getjFormattedTextField_Localizar()));
+        setjFormattedTextField_Localizar(Mascaras.setFormat(getjFormattedTextField_Localizar(), null, Mascaras.NULO));
         getjFormattedTextField_Localizar().setText(null);
     }
     
     public void AcaoJCheckBox2()
     {
-        setjFormattedTextField_Localizar(setFormatData(getjFormattedTextField_Localizar()));
+        setjFormattedTextField_Localizar(Mascaras.setFormat(getjFormattedTextField_Localizar(), "##/##/####", '_'));
         getjFormattedTextField_Localizar().setText(null);
     }
     

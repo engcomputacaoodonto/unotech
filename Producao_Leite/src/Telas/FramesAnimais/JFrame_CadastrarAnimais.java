@@ -21,6 +21,8 @@ public class JFrame_CadastrarAnimais extends JFrame_Animal
         getjButton_Confirmar().setText("Salvar");
         getjLabel_Aviso().setOpaque(true);
         getjLabel_Aviso().setText("Os campos marcados com (*) devem ser preenchidos ou marcados!");
+        getjCheckBox_Ativo().setSelected(true);
+        getjCheckBox_Femea().setSelected(true);
     }
     public void Confirmar()
     {

@@ -1,16 +1,13 @@
 package Telas.FramesAnimais;
 
 import Model.Animal;
+import Mascaras.Mascaras;
 import Telas.JFrame_Base;
 import java.awt.GridBagConstraints;
-import java.text.ParseException;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
 import javax.swing.JCheckBox;
-import javax.swing.JOptionPane;
-import javax.swing.text.DefaultFormatterFactory;
-import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -74,8 +71,8 @@ public abstract class JFrame_Animal extends JFrame_Base
         jCheckBox_Venda = new JCheckBox();
         
         //Máscaras        
-        jFormattedTextField_Data_Nasc = setFormatData(jFormattedTextField_Data_Nasc);
-        jFormattedTextField_Numero = setFormatNumero(jFormattedTextField_Numero);
+        jFormattedTextField_Data_Nasc = Mascaras.setFormat(jFormattedTextField_Data_Nasc, "##/##/####", '_');
+        jFormattedTextField_Numero = Mascaras.setFormat(jFormattedTextField_Numero, "######", Mascaras.NULO);
         
         //Nomes de Campos
         jLabel_Nome.setText("Nome*:");
@@ -269,7 +266,7 @@ public abstract class JFrame_Animal extends JFrame_Base
             retorno = false;
         }
         
-        if(jFormattedTextField_Numero.getText().equals("      "))
+        if(jFormattedTextField_Numero.getText().equals("000000"))
         {
             jLabel_Erro_Numero.setText("O campo Número deve ser preenchido!");
             retorno = false;
